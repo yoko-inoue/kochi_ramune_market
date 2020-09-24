@@ -1,0 +1,28 @@
+.Header
+  .HeaderInner
+    .HeaderInner__mainHeader
+      .HeaderInner__mainHeader__icon
+        = link_to root_path, class:"Header__mainHeader__icon_img" do
+          = image_tag "logo/logo.png", width: "140px", hight: "40px"
+      .HeaderInner__mainHeader__search-box
+        .HeaderInner__mainHeader__search-box__form
+          = form_with url: "#", local: true, method: :get, class:"form" do |f|
+            = f.text_field :keyword, class: 'input-text', placeholder: 'キーワードから探す'
+            %button{ type: "submit", class:"submit-btn" }
+              .SearchBox__icon
+                = image_tag "icon/icon-search 1.png", width: "20px", hight: "20px"
+    .HeaderInner__nav
+      %ul.List-left
+        %li.List-left__category-list
+          = link_to "#", class: "btn" do
+            カテゴリー
+        %li.list-left__brand-list
+          = link_to "#", class: "btn" do
+            ブランド
+      %ul.List-right
+        %li.List-right__log-in
+          = link_to "#", class: "right-btn" do
+            ログイン
+        %li.List-right__sign-up
+          = link_to "#", class: "right-btn",data: {"turbolinks" => false}  do
+            新規会員登録

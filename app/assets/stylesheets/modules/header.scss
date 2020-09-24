@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+}
+
+.Header{
+  padding: 0 60px;
+  .HeaderInner{
+    max-width: 1040px;
+    width: 100%;
+    min-height: 82px;
+    margin: 0 auto;
+    padding: 15px 0 0;
+    &__mainHeader{
+      position: relative;
+      display: flex;
+      &__icon{
+        margin-right: 30px;
+        width: 140px;
+        margin-right: 30px;
+        border-radius: 4px;
+      }
+      &__search-box{
+        width: 100%;
+        display: flex;
+        margin-bottom: 5px;
+        &__form{
+          width: 100%;
+          .form{
+            width: 100%;
+            display: flex;
+            .input-text{
+              width: calc(100% - 26px);
+              height: 36px;
+              padding-left: 5px;
+            }
+            .submit-btn{
+              background-color: #3CCACE;
+              padding: 8px;
+              width: 36px;
+              border: 0;
+              cursor: pointer;
+              .SearchBox__icon{
+                img{
+                  width: 100%;
+                  vertical-align: bottom;
+                }
+              }
+            }
+          }
+        }
+        
+      }
+    }
+    &__nav{
+      display: flex;
+      margin-bottom: 8px;
+      .List-left{
+        position: relative;
+        display: flex;
+        padding-top: 5px;
+        list-style: none;
+        .btn{
+          text-decoration: none;
+          color: #333333;
+          margin-right: 45px;
+          font-size: 14px;
+        }
+        .btn:hover{
+          color: #FFB340;
+        }
+      }
+      .List-right{
+        margin-left: auto;
+        display: flex;
+        list-style: none;
+        .right-btn{
+          text-decoration: none;
+          color: #333333;
+          margin-left: 20px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
