@@ -128,8 +128,7 @@
           margin-top: 16px;
           width: 30%;
           text-align: left;
-          display: flex;
-          align-items: center;
+          @include flex_align-c();
           flex-direction: column;
           &__h{
             font-weight: bold;
@@ -156,6 +155,7 @@
       background-image: image-url(pict/bg-topMiddleDl-pict);
       background-position: right bottom;
       background-size: cover;
+      margin-top: 50px;
       @include flex_align-c();
       &__box{
         color:#fff;
