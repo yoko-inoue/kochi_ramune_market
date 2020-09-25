@@ -6,8 +6,8 @@
 |password|string|null: false|
 
 ### Association
-- has_many :to_do_list
-- has_many :user_evaluation
+- has_many :to_do_lists
+- has_many :user_evaluations
 - has_many :sell_items
 - has_many :buy_items
 - has_one :credit_card
@@ -49,10 +49,6 @@
 ## Credit_Cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null: false, unique: true|
-|expiration_year|integer|null: false|
-|expiration_month|integer|null: false|
-|security_code|integer|null: false|
 |user_id|reference|null: false, foreign_key: true|
 
 ### Association
@@ -84,7 +80,6 @@
 |name|string|null: false|
 |introduction|text|null: false|
 |price|integer|null: false|
-|item_images_id|reference|null:false,foreign_key: true|
 |category_id|reference|null:false,foreign_key: true|
 |size_id|reference|null:false,foreign_key: true|
 |brand_id|reference|null:false,foreign_key: true|
@@ -96,7 +91,7 @@
 |buyer_id|reference|foreign_key: true|
 
 ### Association
-- has_many :item_image
+- has_many :item_images
 - has_one :user_evaluation
 - belongs_to :category
 - belongs_to :size
@@ -120,7 +115,7 @@
 ## Categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string||
+|name|string|null: false|
 
 ### Association
 - has_many :items
@@ -128,7 +123,7 @@
 ## Sizesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|size|string||
+|size|string|null: false|
 
 ### Association
 - has_many :items
@@ -136,7 +131,7 @@
 ## Brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string||
+|name|string|null: false|
 
 ### Association
 - has_many :items
