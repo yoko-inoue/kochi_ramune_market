@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-
+@import 'mixin/flex_align-c';
 .Header{
   padding: 0 60px;
   .HeaderInner{
@@ -12,7 +12,8 @@
     padding: 15px 0 0;
     &__mainHeader{
       position: relative;
-      display: flex;
+      @include flex_align-c;
+      
       &__icon{
         margin-right: 30px;
         width: 140px;
