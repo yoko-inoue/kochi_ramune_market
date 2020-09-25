@@ -8,6 +8,8 @@
         %br
         フリマアプリです
       .Main__upper__box__btn
+        .Main__upper__box__btn__abtn
+          = link_to image_tag("svg/Download_app-store.svg", alt:"app store"), "#"
         .Main__upper__box__btn__gbtn
           = link_to image_tag("svg/google-play-badge.png", alt:"google play"), "#"
   .Main__reason
@@ -47,6 +49,8 @@
         %br
         ほしかったあの商品に出会えるかもしれません。
       .Main__middle__box__btn
+        .Main__middle__box__btn__abtn
+          = link_to image_tag("svg/Download_app-store.svg", alt:"app store"), "#"
         .Main__middle__box__btn__gbtn
           = link_to image_tag("svg/google-play-badge.png", alt:"google play"), "#"
   .Main__char
@@ -69,3 +73,11 @@
         %p.list__p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
   .Main__category
     %h2 ピックアップカテゴリー
+    .Main__category__box
+      .Main__category__box__head
+        = link_to "新規投稿商品", "#", class: "title"
+  .Main__category
+    %h2 ピックアップブランド
+    .Main__category__box
+      .Main__category__box__head
+        = link_to "アーカイバ", "#", class: "title"
