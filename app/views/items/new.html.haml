@@ -1,0 +1,151 @@
+.exhibit
+  .exhibit__single-container
+    = form_with(model: @product, local: true) do |f|
+      .exhibit__single-head
+        商品の情報を入力
+      
+
+      /商品画像フォーム
+      .exhibit__item-images
+        .exhibit__sell-upload-box
+          .exhibit__sell-upload-head
+            出品画像
+            .exhibit__form-require
+              必須
+        .exhibit__p
+          最大10枚までアップロードできます
+        #image-box-1
+          .item-box.item-num-0#image-box__container
+            = f.fields_for :images do |i|
+              .exhibit__sell-upload-items-container
+                %label
+                  .exhibit__sell-upload-drop-box
+                    = i.file_field :name, value:"", style: "display:none", class: "sell-upload-drop-file"
+                    %i.fa.fa-camera
+        .exhibit__no-image
+
+
+      /商品の説明
+      .exhibit__item-detail
+        %h3.show-sub-head
+          商品の詳細
+        .exhibit__show-form-box
+          .exhibit__tk-form-group
+            .exhibit__select-wrap
+              = f.label :category_id, "カテゴリー" ,class: "exhibit__sell-up-load-head"
+              %span.exhibit__form-require
+                必須
+              .sell__about__right__wrap-box.parent
+                %select#parent
+                  %option{value: 0} ---
+              .child
+                %select#child
+              .grand_child
+                = f.collection_select(:category_id, [], :id, :name, {prompt: "---"}, {id: "grand_child"})
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
+              = f.label :ブランド
+              %span.exhibit__form-require2
+                任意
+            .exhibit__select-wrap
+              = f.text_field :brand, class: "brand-select", placeholder: "例）シャネル"
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
+              = f.label :status,"商品の状態"
+              %span.exhibit__form-require
+                必須
+            .exhibit__select-wrap
+              %i.icon-arrow-bottom
+                = f.select :condition,{}, class: "select-default",include_blank: '選択してください'
+              .exhibit__no-product.no-product4
+
+
+      /商品名と説明
+      .exhibit__item-name-detaildetail
+        %h3.show-sub-head
+          商品名と説明
+        .exhibit__form-group
+          .exhibit__sell-upload-head
+            = f.label :name,"商品名"
+            %span.exhibit__form-require
+              必須
+          = f.text_field :name ,class: "input-default" ,placeholder: "商品名（必須 40文字まで)"
+        .exhibit__no-product.no-product-name
+        .exhibit__form-group
+          .exhibit__sell-upload-head
+            = f.label :description, "商品の説明"
+            %span.exhibit__form-require
+              必須
+          = f.text_area :description, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+        .exhibit__no-product.no-product2
+
+
+      /配送方法
+      .exhibit__item-postage
+        %h3.show-sub-head
+          配送について
+        .exhibit__show-form-box
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
+              = f.label :send_price,"配送料の負担"
+              %apan.exhibit__form-require
+                必須
+            .exhibit__select-wrap
+              = f.select :send_price, class: "select-default",include_blank: '選択してください'
+              .exhibit__no-product.no-product5
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
+              発送元の地域
+              .exhibit__form-require
+                必須
+            .exhibit__select-wrap
+              %i.icon-arrow-bottom
+                = f.select :ship_day,{}, class: "select",include_blank: '選択してください'
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
+              = f.label :ship_day,"発送までの日数"
+              %span.exhibit__form-require
+                必須
+            .exhibit__select-wrap
+              = f.select :ship_day,{}, class: "select",include_blank: '選択してください'
+              .exhibit__no-product.no-product7
+
+
+      /販売価格
+      .exhibit__item-price
+        %p.tk-value
+          価格（¥300~9,999,999)
+        .exhibit__tk-selling-price
+          .exhibit__input-price
+            .exhibit__sell-upload-head2
+              = f.label :price,"販売価格"
+              %span.exhibit__form-require
+                必須
+            %span.doll-mark
+              ¥
+            .exhibit__enter-price
+              .exhibit__enter-price2
+                = f.number_field :price, placeholder: "0", class: "tk-price"
+                .exhibit__no-product.no-product2
+          .exhibit__commission
+            .exhibit__commision-box
+              .new_listing__commission-font{"data-test" => "fee-label"}
+                %div
+                  販売手数料（10%）
+              %span.money01{"data-test" => "fee-value"}
+          .exhibit__commission2
+            .exhibit__commision-box
+              .new_listing__commission-font{"data-test" => "fee-label"}
+                %div
+                  販売利益
+              %span.money02{"data-test" => "fee-value"}
+                
+
+        /送信フォーム
+        .exhibit__send-boxes
+          .exhibit__send-box
+            = f.submit "出品する", class: "send-btn"
+            %a.return-btn{:href => "#"}
+              もどる
+        %p.note
+          禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
