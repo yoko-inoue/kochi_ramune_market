@@ -18,12 +18,12 @@
 |------|----|-------|
 |first_name|string|null: false|
 |last_name|string|null: false|
-|first_name_kana||string|null: false|
-|last_name_kana||string|null: false|
-|birth_year||integer|null: false|
-|birth_month||integer|null: false|
-|birth_day||integer|null: false|
-|user_id||reference|null: false, foreign_key: true|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birth_year|integer|null: false|
+|birth_month|integer|null: false|
+|birth_day|integer|null: false|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to:user
@@ -33,15 +33,15 @@
 |------|----|-------|
 |destination_first_name|string|null: false|
 |destination_last_name|string|null: false|
-|destination_first_name_kana||string|null: false|
-|destination_last_name_kana||string|null: false|
+|destination_first_name_kana|string|null: false|
+|destination_last_name_kana|string|null: false|
 |post_code|integer(7)|null: false|
 |prefecture|integer|null: false|
-|city||string|null: false|
+|city|string|null: false|
 |house_number|string|null: false|
 |building_name|string||
 |phone_number|integer|unique: true|
-|user_id||reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to:user
@@ -53,7 +53,7 @@
 |expiration_year|integer|null: false|
 |expiration_month|integer|null: false|
 |security_code|integer|null: false|
-|user_id||reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -61,8 +61,8 @@
 ## user_Evaluationテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id||reference|null: false, foreign_key: true|
-|item_id||reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
 |review|text|null: false|
 
 ### Association
@@ -72,7 +72,7 @@
 ## TO_DO_listテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id||reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 |list|text||
 
 ### Association
