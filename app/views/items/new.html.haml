@@ -56,7 +56,7 @@
               = f.text_field :brand, class: "brand-select", placeholder: "例）S"
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
-              = f.label :status,"商品の状態"
+              = f.label :condition,"商品の状態"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
@@ -93,11 +93,11 @@
         .exhibit__show-form-box
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
-              = f.label :send_price,"配送料の負担"
+              = f.label :postage_payer,"配送料の負担"
               %apan.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :send_price,{}, class: "select-default",include_blank: '選択してください'
+              = f.select :postage_payer,{}, class: "select-default",include_blank: '選択してください'
               .exhibit__no-product.no-product5
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
@@ -114,14 +114,14 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :ship_day,{}, class: "select",include_blank: '選択してください'
+                = f.select :shipment_area,{}, class: "select",include_blank: '選択してください'
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
-              = f.label :ship_day,"発送までの日数"
+              = f.label :preparation_day,"発送までの日数"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :ship_day,{}, class: "select",include_blank: '選択してください'
+              = f.select :preparation_day,{}, class: "select",include_blank: '選択してください'
               .exhibit__no-product.no-product7
 
 
