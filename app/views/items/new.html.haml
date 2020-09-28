@@ -4,7 +4,6 @@
       .exhibit__single-head
         商品の情報を入力
       
-
       /商品画像フォーム
       .exhibit__item-images
         .exhibit__sell-upload-box
@@ -23,7 +22,6 @@
                     = i.file_field :name, value:"", style: "display:none", class: "sell-upload-drop-file"
                     %i.fa.fa-camera
         .exhibit__no-image
-
 
       /商品の説明
       .exhibit__item-detail
@@ -51,6 +49,13 @@
               = f.text_field :brand, class: "brand-select", placeholder: "例）シャネル"
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
+              = f.label :サイズ
+              %span.exhibit__form-require2
+                任意
+            .exhibit__select-wrap
+              = f.text_field :brand, class: "brand-select", placeholder: "例）S"
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
               = f.label :status,"商品の状態"
               %span.exhibit__form-require
                 必須
@@ -61,25 +66,26 @@
 
 
       /商品名と説明
-      .exhibit__item-name-detaildetail
+      .exhibit__item-name-detail
         %h3.show-sub-head
           商品名と説明
-        .exhibit__form-group
-          .exhibit__sell-upload-head
-            = f.label :name,"商品名"
-            %span.exhibit__form-require
-              必須
-          = f.text_field :name ,class: "input-default" ,placeholder: "商品名（必須 40文字まで)"
-        .exhibit__no-product.no-product-name
-        .exhibit__form-group
-          .exhibit__sell-upload-head
-            = f.label :description, "商品の説明"
-            %span.exhibit__form-require
-              必須
-          = f.text_area :description, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-        .exhibit__no-product.no-product2
-
-
+        .exhibit__show-form-box
+          .exhibit__form-group
+            .exhibit__select-wrap
+              = f.label :name, "商品名" ,class: "exhibit__sell-up-load-head"
+              %span.exhibit__form-require
+                必須
+              = f.text_field :name ,class: "input-default" ,placeholder: "商品名（必須 40文字まで)"
+              .exhibit__no-product.no-product5
+          .exhibit__form-group
+            .exhibit__sell-upload-head
+              説明
+              .exhibit__form-require
+                必須
+            .exhibit__select-wrap
+              %i.icon-arrow-bottom
+                = f.text_area :description, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+          .exhibit__no-product.no-product2
       /配送方法
       .exhibit__item-postage
         %h3.show-sub-head
@@ -91,8 +97,16 @@
               %apan.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :send_price, class: "select-default",include_blank: '選択してください'
+              = f.select :send_price,{}, class: "select-default",include_blank: '選択してください'
               .exhibit__no-product.no-product5
+          .exhibit__tk-form-group
+            .exhibit__sell-upload-head
+              配送の方法
+              .exhibit__form-require
+                必須
+            .exhibit__select-wrap
+              %i.icon-arrow-bottom
+                = f.select :postage_type,{}, class: "select",include_blank: '選択してください'
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               発送元の地域
@@ -113,7 +127,7 @@
 
       /販売価格
       .exhibit__item-price
-        %p.tk-value
+        %h3.show-sub-head
           価格（¥300~9,999,999)
         .exhibit__tk-selling-price
           .exhibit__input-price
