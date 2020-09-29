@@ -35,8 +35,6 @@ ActiveRecord::Schema.define(version: 2020_09_29_001547) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-ActiveRecord::Schema.define(version: 2020_09_28_094310) do
-
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
