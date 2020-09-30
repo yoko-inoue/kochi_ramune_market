@@ -33,12 +33,7 @@
               %span.exhibit__form-require
                 必須
               .sell__about__right__wrap-box.parent
-                %select#parent
-                  %option{value: 0} ---
-              .child
-                %select#child
-              .grand_child
-                = f.collection_select(:category_id, [], :id, :name, {prompt: "---"}, {id: "grand_child"})
+                = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "---"}, required: true, class: "select-category", id: "parent-category"
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :ブランド

@@ -70,6 +70,7 @@ end
 gem 'haml-rails'
 gem "font-awesome-sass"
 gem 'active_hash'
-
+gem 'fog-aws'
 gem 'devise'
 gem 'ancestry'
+gem 'pry-rails'
