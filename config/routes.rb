@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'sending_destinations', to: 'users/registrations#new_sending_destination'
     post 'sending_destinations', to: 'users/registrations#create_sending_destination'
   end
+  get '/users', to: redirect("/users/sign_up")
   root 'items#index'
   resources :items, only: [:new]
   # get  "/items/item_params" ,to: "items#item_params"
