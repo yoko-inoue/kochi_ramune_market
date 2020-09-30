@@ -1,0 +1,46 @@
+%h2 住所情報登録
+= form_for @sending_destination do |f|
+  = render "devise/shared/error_messages", resource: @sending_destination
+  .field
+    = f.label :destination_first_name
+    %br/
+    = f.text_field :destination_first_name
+  .field
+    = f.label :destination_last_name
+    %br/
+    = f.text_field :destination_last_name
+  .field
+    = f.label :destination_first_name_kana
+    %br/
+    = f.text_field :destination_first_name_kana
+  .field
+    = f.label :destination_last_name_kana
+    %br/
+    = f.text_field :destination_last_name_kana
+  .field
+    = f.label :post_code
+    %br/
+    = f.text_field :post_code
+  .field
+    = f.label :prefecture
+    %br/
+    = f.select :prefecture, SendingDestination.prefectures.keys, { include_blank: '選択してください'}, {class: 'hoge'}
+  .field
+    = f.label :city
+    %br/
+    = f.text_field :city
+  .field
+    = f.label :house_number
+    %br/
+    = f.text_field :house_number
+  .field
+    = f.label :building_name
+    %br/
+    = f.text_field :building_name
+  .field
+    = f.label :phone_number
+    %br/
+    = f.text_field :phone_number
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"

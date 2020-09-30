@@ -1,0 +1,106 @@
+.regist-display {
+  height: auto;
+  text-align: center;
+  .user_regist-header {
+    height: 128px;
+    .user_regist-header__title {
+      display: inline-block;
+      margin: 40px 20px 0px;
+    }
+    .user_regist-header__active {
+      display: inline-block;
+      padding: 35px 0px 0px 40px;
+      vertical-align: top;
+      li {
+        display: inline-block;
+        font-size: 12px;
+        margin: 0 40px 0 0;
+        position: relative;
+      }
+      span {
+        color: red;
+        font-weight: 600;
+      }
+      .active_list {
+        .circle-red {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: red;
+          margin: 8px auto 0px;
+        }
+        .after__red {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: red;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+        }
+        .circle-gray {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: gray;
+          margin: 8px auto 0px;
+        }
+        .before__gray {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: gray;
+          position: absolute;
+          bottom: 5px;
+          right: 50%;
+          z-index: -1;
+        }
+        .after__gray {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: gray;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+        }
+      }
+    }
+  }
+  .user_regist-main {
+    height: auto;
+    .user_regist-main__center {
+      width: 720px;
+      margin: 0 auto;
+      background-color: rgb(241, 219, 240);
+      .section__header {
+        height: 96px;
+        border-bottom: 1px solid gray;
+        font-size: 22px;
+        padding: 32px;
+      }
+      .new_user {
+        padding: 40px 40px 64px;
+        .field {
+          height: 70px;
+          margin-bottom: 40px;
+          
+          .red_flame {
+            background-color: red;
+            color: white;
+          }
+          .form_default {
+            height: 48px;
+            width: 344px;
+          }
+        }
+      }
+    }
+  }
+  .user_regist-footer {
+    height: 224px;
+  }
+}

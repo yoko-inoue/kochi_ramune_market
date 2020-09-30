@@ -1,0 +1,7 @@
+%h1 マイページ
+%p
+  名前 : #{@user.nickname}
+%p
+  メールアドレス : #{@user.email}
+%p
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
