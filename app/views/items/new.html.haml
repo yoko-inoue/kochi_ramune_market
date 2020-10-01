@@ -55,7 +55,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :condition,{}, class: "select-default",include_blank: '選択してください'
+                = f.collection_select :condition, ItemCondition.where.not(name: '未定'), :id, :name
               .exhibit__no-product.no-product4
       /商品名と説明
       .exhibit__item-name-detail
@@ -89,7 +89,7 @@
               %apan.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :postage_payer,{}, class: "select-default",include_blank: '選択してください'
+              = f.collection_select :postage_payer, PostagePayer.where.not(name: '未定'), :id, :name
               .exhibit__no-product.no-product5
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
@@ -98,7 +98,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :postage_type,{}, class: "select",include_blank: '選択してください'
+                = f.collection_select :postage_type, PostageType.all, :id, :name
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               発送元の地域
@@ -106,14 +106,14 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :shipment_area,{}, class: "select",include_blank: '選択してください'
+                = f.collection_select :prefecture_id, Prefecture.where.not(name: '未定'), :id, :name
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :preparation_day,"発送までの日数"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :preparation_day,{}, class: "select",include_blank: '選択してください'
+              = f.collection_select :preparation_day, PreparationDay.where.not(name: '未定'), :id, :name
               .exhibit__no-product.no-product7
 
 
