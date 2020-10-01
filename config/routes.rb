@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect("/users/sign_up")
 
   root 'items#index'
-  resources :items, only: [:new]
+  resources :items, only: [:new, :create,:show]
   namespace :api do
     resources :categories, only: :index, defaults: { format: 'json' }
   end
