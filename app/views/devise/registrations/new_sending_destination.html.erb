@@ -30,7 +30,7 @@
 
   <div class="field">
     <%= f.label :prefecture %><br />
-    <%= f.select :prefecture, SendingDestination.prefectures.keys, { include_blank: '選択してください'}, {class: 'hoge'} %>
+    <%= f.collection_select :prefecture, Prefecture.where.not(name: '未定'), :id, :name %>
   </div>
 
   <div class="field">

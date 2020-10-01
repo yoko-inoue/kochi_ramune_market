@@ -10,8 +10,12 @@ Rails.application.routes.draw do
     post 'sending_destinations', to: 'users/registrations#create_sending_destination'
   end
   get '/users', to: redirect("/users/sign_up")
+
   root 'items#index'
-  resources :items, only: [:new]
+  resources :items, only: [:new, :create,:show]
+  namespace :api do
+    resources :categories, only: :index, defaults: { format: 'json' }
+  end
   # get  "/items/item_params" ,to: "items#item_params"
   resources :users, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

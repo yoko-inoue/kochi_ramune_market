@@ -1,4 +1,6 @@
 .exhibit
+  =link_to image_tag("logo/logo.png", width: "300px", hight: "300px"), root_path
+
   .exhibit__single-container
     = form_with(model: @product, local: true) do |f|
       .exhibit__single-head
@@ -33,12 +35,7 @@
               %span.exhibit__form-require
                 必須
               .sell__about__right__wrap-box.parent
-                %select#parent
-                  %option{value: 0} ---
-              .child
-                %select#child
-              .grand_child
-                = f.collection_select(:category_id, [], :id, :name, {prompt: "---"}, {id: "grand_child"})
+                = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "---"}, required: true, class: "select-category", id: "parent-category"
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :ブランド
@@ -60,7 +57,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :condition,{}, class: "select-default",include_blank: '選択してください'
+                = f.collection_select :condition, ItemCondition.where.not(name: '未定'), :id, :name, {include_blank: "---"}
               .exhibit__no-product.no-product4
       /商品名と説明
       .exhibit__item-name-detail
@@ -94,7 +91,7 @@
               %apan.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :postage_payer,{}, class: "select-default",include_blank: '選択してください'
+              = f.collection_select :postage_payer, PostagePayer.where.not(name: '未定'), :id, :name, {include_blank: "---"}
               .exhibit__no-product.no-product5
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
@@ -103,7 +100,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :postage_type,{}, class: "select",include_blank: '選択してください'
+                = f.collection_select :postage_type, PostageType.all, :id, :name, {include_blank: "---"}
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               発送元の地域
@@ -111,14 +108,14 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.select :shipment_area,{}, class: "select",include_blank: '選択してください'
+                = f.collection_select :prefecture_id, Prefecture.where.not(name: '未定'), :id, :name, {include_blank: "---"}
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :preparation_day,"発送までの日数"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.select :preparation_day,{}, class: "select",include_blank: '選択してください'
+              = f.collection_select :preparation_day, PreparationDay.where.not(name: '未定'), :id, :name, {include_blank: "---"}
               .exhibit__no-product.no-product7
 
 
@@ -155,7 +152,6 @@
         .exhibit__send-boxes
           .exhibit__send-box
             = f.submit "出品する", class: "send-btn"
-            %a.return-btn{:href => "#"}
-              もどる
+            = link_to('戻る', root_path)
         %p.note
           禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
