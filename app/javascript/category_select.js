@@ -6,7 +6,6 @@ document.addEventListener('turbolinks:load', function () {
     }else{
       relation = "grand_child"
     }
-    console.log(relation);
     categories.forEach(function (category) { 
       options += `
                   <option value="${category.id}">${category.name}</option>
