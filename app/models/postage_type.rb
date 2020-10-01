@@ -1,6 +1,5 @@
 class PostageType < ActiveHash::Base
   self.data = [ 
-    {id: 0, name: '選択してください'},
     {id: 1, name: '未定'}, 
     {id: 2, name: 'ゆうメール'},
     {id: 3, name: 'レターパック'},

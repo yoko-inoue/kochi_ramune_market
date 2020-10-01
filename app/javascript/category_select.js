@@ -41,12 +41,9 @@ document.addEventListener('turbolinks:load', function () {
       },
       dataType: 'json',
     }).done(function (categories) {
-      console.log("success")
-      console.log(categories)
       if(categories.length != 0){
         existForm(categories);
         const html = buildCategoryForm(categories);
-        console.log(html);
         $(".select-category:last").after(html);
       }
     })
