@@ -1,0 +1,64 @@
+.regist-display
+  %header.user_regist-header
+    %h1.user_regist-header__title
+      = link_to root_path do
+        = image_tag "logo/logo.png", width: "185px", hight: "49px"
+    %nav.user_regist-header__active
+      %ol.active_list
+        %li
+          %span.active_page 会員情報
+          .circle-red
+          .after__gray
+        %li
+          プロフィール
+          .circle-gray
+          .before__gray
+          .after__gray
+        %li
+          商品お届け先住所
+          .circle-gray
+          .before__gray
+          .after__gray
+        %li
+          完了
+          .circle-gray
+          .before__gray
+  .user_regist-main
+    %section.user_regist-main__center
+      %h2.section__header
+        会員情報入力
+      = form_for(@user, url: user_registration_path) do |f|
+        = render "devise/shared/error_messages", resource: @user
+        .field_all
+          .field
+            = f.label "ニックネーム"
+            %span.red_flame 必須
+            %br/
+            = f.text_field :nickname, autofocus: true, placeholder: "例）フリマ星人", class: "form_default"
+          .field
+            = f.label "メールアドレス"
+            %span.red_flame 必須
+            %br/
+            = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "form_default"
+          .field
+            = f.label "パスワード"
+            %span.red_flame 必須
+            -# - if @minimum_password_length
+            -#   %em
+            -#     (半角 #{@minimum_password_length} 文字以上)
+            %br/
+            = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "form_default"
+          .field
+            = f.label "パスワード（確認用）"
+            %span.red_flame 必須
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度入力してください", class: "form_default"
+        .field_all
+          .actions
+            = f.submit "次へ進む", class: "submit_btn"
+          .user_info
+            %p
+              = link_to "#" do
+                本人情報の登録について
+                = icon('fas','angle-right')
+  = render "user_regist_footer"

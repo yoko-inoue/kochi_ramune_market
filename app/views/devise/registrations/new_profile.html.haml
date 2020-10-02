@@ -1,0 +1,58 @@
+.regist-display
+  %header.user_regist-header
+    %h1.user_regist-header__title
+      = link_to root_path do
+        = image_tag "logo/logo.png", width: "185px", hight: "49px"
+    %nav.user_regist-header__active
+      %ol.active_list
+        %li
+          会員情報
+          .circle-gray
+          .after__red
+        %li
+          %span.active_page プロフィール
+          .circle-red
+          .before__red
+          .after__gray
+        %li
+          商品お届け先住所
+          .circle-gray
+          .before__gray
+          .after__gray
+        %li
+          完了
+          .circle-gray
+          .before__gray
+  .user_regist-main
+    %section.user_regist-main__center
+      %h2.section__header
+        プロフィール
+      = form_for @profile do |f|
+        = render "devise/shared/error_messages", resource: @profile
+        .field_all
+          .field
+            = f.label "お名前（全角）"
+            %span.red_flame 必須
+            %br/
+            = f.text_field :first_name, autofocus: true, placeholder: "例）フリマ", class: "form_name"
+            = f.text_field :last_name, placeholder: "例）星人", class: "form_name"
+          .field
+            = f.label "お名前カナ（全角）"
+            %span.red_flame 必須
+            %br/
+            = f.text_field :first_name_kana, placeholder: "例）フリマ", class: "form_name"
+            = f.text_field :last_name_kana, placeholder: "例）セイジン", class: "form_name"
+          .field
+            = f.label "生年月日"
+            %span.red_flame 必須
+            %br/
+            != sprintf(f.date_select(:birth_date, with_css_classes:'form_birth', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+        .field_all
+          .actions
+            = f.submit "次へ進む", class: "submit_btn"
+          .user_info
+            %p
+              = link_to "#" do
+                本人情報の登録について
+                = icon('fas','angle-right')
+  = render "user_regist_footer"

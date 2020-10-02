@@ -1,0 +1,323 @@
+.regist-display {
+  height: auto;
+  background-color: #f5f5f5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .field_with_errors {      //バリデーションエラーによるビュー崩れを防ぐ（このクラスはrailsの機能）
+    display: contents;
+  }
+  a {
+    text-decoration: none;
+    color: #38aef0;
+  }
+  .user_regist-header {
+    height: 128px;
+    text-align: center;
+    .user_regist-header__title {
+      display: inline-block;
+      margin: 40px 20px 0px;
+    }
+    .user_regist-header__active {
+      display: inline-block;
+      padding: 35px 0px 0px 40px;
+      vertical-align: top;
+      li {
+        display: inline-block;
+        font-size: 12px;
+        margin: 0 40px 0 0;
+        position: relative;
+      }
+      .active_list {
+        .active_page {
+          color: red;
+          font-weight: 600;
+        }
+        .circle-red {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: red;
+          margin: 8px auto 0px;
+          position: relative;
+          z-index: 1;
+        }
+        .circle-gray {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background: gray;
+          margin: 8px auto 0px;
+          position: relative;
+          z-index: 1;
+        }
+        .before__red {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: red;
+          position: absolute;
+          bottom: 5px;
+          right: 50%;
+        }
+        .after__red {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: red;
+          position: absolute;
+          bottom: 5px;
+        }
+        .before__gray {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: gray;
+          position: absolute;
+          bottom: 5px;
+          right: 50%;
+        }
+        .after__gray {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 3px;
+          background-color: gray;
+          position: absolute;
+          bottom: 5px;
+        }
+      }
+    }
+  }
+  .user_regist-main_fin {
+    height: auto;
+    margin: auto;
+    .user_regist-main__center {
+      width: 720px;
+      margin: 0 auto;
+      background-color: white;
+      .section__header {
+        border-bottom: 1px solid lightgray;
+        font-size: 22px;
+        padding: 32px;
+        text-align: center;
+        background-color: white;
+        margin-bottom: 20px;
+        p {
+          font-size: 14px;
+          width: 344px;
+          margin: 0 auto;
+        }
+        a {
+          display: block;
+          background-color: #38aef0;
+          color: white;
+          font-size: 14px;
+          width: 344px;
+          margin: 0 auto;
+          border-radius: 2px;
+          line-height: 40px;
+        }
+      }
+    }
+  }
+  .user_regist-main {
+    height: auto;
+    .user_regist-main__center {
+      width: 720px;
+      margin: 0 auto;
+      background-color: white;
+      .section__header {
+        border-bottom: 1px solid lightgray;
+        font-size: 22px;
+        padding: 32px;
+        text-align: center;
+        background-color: white;
+        margin-bottom: 20px;
+        p {
+          font-size: 14px;
+          width: 344px;
+          margin: 0 auto;
+        }
+        a {
+          display: block;
+          background-color: #38aef0;
+          color: white;
+          font-size: 14px;
+          width: 344px;
+          margin: 0 auto;
+          border-radius: 2px;
+          line-height: 40px;
+        }
+      }
+      button {
+        display: block;
+        margin: 20px auto;
+        width: 344px;
+        line-height: 48px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #google_login {
+        background-color: white;
+        border: 1px gray solid;
+        margin-top: 40px;
+      }
+      #facebook_login {
+        background-color: #385185;
+        color: white;
+        border: 1px #385185 solid;
+      }
+      #apple_login {
+        background-color: #000;
+        color: white;
+        border: 1px  #000 solid;
+        margin-bottom: 40px;
+      }
+      .Notification {
+        color: #ea352d;
+        width: 344px;
+        margin: 0 auto;
+      }
+      form {     //formのクラス名
+        padding: 40px 40px 64px;
+        #error_explanation {
+          color: #ea352d;
+          width: 344px;
+          margin: 0 auto 40px;
+        }
+        .field_all {
+          max-width: 344px;
+          margin: 0px auto;
+          .field {
+            height: 70px;
+            margin-bottom: 40px;
+            .red_flame {
+              background-color: red;
+              color: white;
+              border-radius: 2px;
+            }
+            .gray_flame {
+              background-color: gray;
+              color: white;
+              border-radius: 2px;
+            }
+            .form_default {
+              height: 48px;
+              width: 344px;
+              border-radius: 5px;
+              padding: 10px;
+              margin-top: 10px;
+              border: 1px solid grey;
+            }
+            .form_default:focus {
+              border-color: blue;
+              outline: none;
+            }
+            .form_name {
+              height: 48px;
+              width: calc(50% - 6px);
+              border-radius: 5px;
+              padding: 10px;
+              margin-top: 10px;
+              border: 1px solid grey;
+            }
+            .form_name:focus {
+              border-color: blue;
+              outline: none;
+            }
+            .year {
+              height: 48px;
+              width: 85px;
+              border-radius: 5px;
+              padding: 10px;
+              margin: 10px 0px 0 0;
+              border: 1px solid grey;
+            }
+            .month {
+              height: 48px;
+              width: 85px;
+              border-radius: 5px;
+              padding: 10px;
+              margin: 10px 0px 0 0;
+              border: 1px solid grey;
+            }
+            .day {
+              height: 48px;
+              width: 85px;
+              border-radius: 5px;
+              padding: 10px;
+              margin: 10px 0px 0 0;
+              border: 1px solid grey;
+            }
+            .year:focus {
+              border-color: blue;
+              outline: none;
+            }
+            .month:focus {
+              border-color: blue;
+              outline: none;
+            }
+            .day:focus {
+              border-color: blue;
+              outline: none;
+            }
+          }
+          .actions {
+            margin: 70px 0px 40px;
+            .submit_btn {
+              color: white;
+              background-color: red;
+              height: 48px;
+              width: 344px;
+              border-radius: 5px;
+              border: none;
+              cursor: pointer;
+            }
+          }
+          .user_info {
+            font-size: 14px;
+            text-align: right;
+          }
+          .user_pass_forget {
+            font-size: 14px;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .user_regist-footer {
+    height: 224px;
+    width: 640px;
+    padding: 40px 0px;
+    margin: 0px auto;
+    text-align: center;
+    margin-top: auto;
+    li {
+      display: inline-block;
+      font-size: 12px;
+      color: #333;
+      margin: 0 20px 0 0;
+      a {
+        color: #333;
+      }
+    }
+    .user_regist-footer__top-redirect {
+      margin-top: 40px;
+      img {
+        width: 129px;
+        height: 35px;
+        filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
+      }
+    }
+    p {
+      margin: 5px;
+      font-size: 12px;
+    }
+  }
+}
