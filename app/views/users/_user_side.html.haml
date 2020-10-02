@@ -1,24 +1,49 @@
-.User__side
-  .User__side__menu
-    = link_to "トップページ", root_path, class: "link"
-  .User__side__menu
-    = link_to "マイページ", user_path(current_user.id), class: "link"
-  .User__side__menu
-    = link_to "お気に入り商品一覧","#", class: "link"
-  .User__side__menu
-    = link_to "出品する", new_item_path, data: {"turbolinks" => false} , class: "link"
-  .User__side__menu
-    = link_to "出品中の商品一覧","#", class: "link"
-  .User__side__menu
-    = link_to "売却済の商品一覧","#", class: "link"
-  .User__side__menu
-    = link_to "コメントがついた商品一覧","#", class: "link"
-  .User__side__subtitle 各種設定
-  .User__side__menu
-    = link_to "会員情報の編集", edit_user_registration_path, class: "link"
-  .User__side__menu
-    = link_to "お届先住所の編集","#", class: "link"
-  .User__side__menu
-    = link_to "お支払い情報の登録/確認/削除","#", data: {"turbolinks" => false}, class: "link"
-  .User__side__menu
-    = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
+.Left-contents
+  %nav.My-page-nav
+    %p マイページ
+    %ul.My-page-lists
+      %li
+        .Lists-info
+          = link_to new_item_path do
+            出品する
+        = icon('fas','angle-right')
+      %li
+        .Lists-info
+          = link_to "#" do
+            出品した商品
+        = icon('fas','angle-right')
+      %li
+        .Lists-info
+          = link_to "#" do
+            購入した商品
+        = icon('fas','angle-right')
+      %li
+        .Lists-info
+          = link_to "#" do
+            お問い合わせ
+        = icon('fas','angle-right')
+      %li
+        .Lists-info
+          =link_to "#" do
+            お知らせ
+        = icon('fas','angle-right')
+    %p 設定
+    %ul.Setting-lists
+
+      %li.List-setting
+        .List-setting__info
+          - card = Card.where(user_id: current_user.id)
+          - if card.blank?
+            = link_to new_card_path do
+              .Card-branch
+                クレジットカード登録
+          - else 
+            = link_to card_path(current_user) do
+              .Card-branch
+                クレジットカード詳細・削除
+        = icon('fas','angle-right')
+      %li.List-setting
+        .List-setting__info
+          =link_to edit_user_path(current_user) do
+            ログアウト
+        = icon('fas','angle-right')

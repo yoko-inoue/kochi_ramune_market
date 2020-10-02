@@ -1,27 +1,35 @@
 = render 'items/header'
+= render 'items/btn'
 - if user_signed_in?
-  .User
-    = render 'user_side'
-    .User__body
-      .User__body__bgc
-        .Userlisence
-          .Userlisence--title
-            Trading License
-          .Userlisence--name
-            #{current_user.nickname}様
-        .Prof
-          .Prof__data
-            登録日：#{current_user.created_at.strftime("%Y年%m月%d日")}
-          .Prof__data
-            現在の出品数：#{}
-          .Prof__data
-            コメントされた数：#{}
-          .Prof__data
-            コメントした数：#{}
-      .User__body__subtitle
-        最近出品した商品
-      .User__body__lists
-        
+  %nav.Bread-crumbs
+    %ul
+      %li 
+        = link_to root_path do
+          furima
+        = icon('fas','angle-right')
+  .Usergray
+    .User
+      = render 'user_side'
+      .User__body
+        .User__body__bgc
+          .Userlisence
+            .Userlisence--title
+              Trading License
+            .Userlisence--name
+              #{current_user.nickname}様
+          .Prof
+            .Prof__data
+              登録日：#{current_user.created_at.strftime("%Y年%m月%d日")}
+            .Prof__data
+              現在の出品数：#{}
+            .Prof__data
+              コメントされた数：#{}
+            .Prof__data
+              コメントした数：#{}
+        .User__body__subtitle
+          最近出品した商品
+        .User__body__lists
+          
 -else
   .Done#fullsize
     .Done__title
@@ -32,6 +40,4 @@
       = link_to 'ログイン', new_user_session_path, class: 'link'
     .Done__backlink
       = link_to 'トップページへ戻る', root_path, class: 'link'
-= render 'items/lower-photo'
 = render 'items/footer'
-= render 'items/btn'

@@ -1,0 +1,18 @@
+.Contents
+  %header.Main-header 
+    = render "items/header"
+    %nav.Bread-crumbs
+      %ul
+        %li 
+          = link_to root_path do
+            furima
+          = icon('fas','angle-right')
+        
+  %main.Defalut-container
+    .L-side 
+    .R-content
+      .From-logout-inner
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "Logout-btn"
+        
+= render 'items/lower-photo'
+= render 'items/footer'

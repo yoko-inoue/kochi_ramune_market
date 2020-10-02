@@ -1,0 +1,101 @@
+.Left-contents {
+  width: 280px;
+  height: 800px;
+  float: left;
+  margin-right: 50px;
+  padding-top: 30px;
+
+  nav {
+    p {
+      size: 15px;
+      font-weight: bold;
+      width: 280px;
+      height: 40px;
+      text-align: center;
+      color: black;
+    }
+    .My-page-lists {
+      width: 280px;
+      height: 300px;
+      
+
+      li {
+        display: flex;
+        border-bottom: 1px solid black;
+
+        .Lists-info {
+          width: 270px;
+         
+          font-size: 14px;
+          line-height: 50px;
+          height: 50px;
+          color: black;
+          padding-left: 10px;
+        }
+        
+        a {
+          text-decoration: none;
+          color: black;
+          
+        }
+        i {
+          width: 20px;
+          height: 50px;
+          line-height: 50px;
+          color: black;
+
+        }
+      }
+    }
+
+    p {
+      size: 15px;
+      font-weight: bold;
+      width: 280px;
+      height: 40px;
+      text-align: center;
+      color: black;
+    }
+
+    .Setting-lists {
+      width: 280px;
+      height: 200px;
+
+      .List-setting {
+        display: flex;
+        border-bottom: 1px solid black;
+
+        &__info {
+          font-size: 14px;
+          line-height: 50px;
+          height: 50px;
+          color: black;
+          padding-left: 10px;
+          width: 270px;
+        
+          a {
+            text-decoration: none;
+            color: black;
+
+            .Card-branch {
+              display: flex;
+
+              span {
+                display: block;
+                width: 261px;
+              }
+            }
+          }
+        }
+
+        i {
+          width: 20px;
+          height: 50px;
+          line-height: 50px;
+          color: black;
+
+        }
+      }
+    }
+  }
+}

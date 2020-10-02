@@ -1,0 +1,73 @@
+.Account__page
+  .Account__page__header
+    = link_to image_tag("logo/logo.png", alt: "logo"), root_path
+
+  .Account__page__main
+    = form_tag(pay_card_index_path, method: :post, id: 'charge-form') do
+      .Account__page__main__content
+        .Field__title
+          クレジット情報の登録
+        .Field__label
+          .Name
+            %label お取扱できるクレジットカード
+        .Field_label
+          = image_tag(image_path('credit_logo/credit-card_2@0.5.png'), class: 'credit_logo')
+          = image_tag(image_path('credit_logo/credit-card_1@0.5.png'), class: 'credit_logo')
+          = image_tag(image_path('credit_logo/credit-card_0@0.5.png'), class: 'credit_logo')
+          = image_tag(image_path('credit_logo/credit-card_5@0.5.png'), class: 'credit_logo')
+          = image_tag(image_path('credit_logo/credit-card_6@0.5.png'), class: 'credit_logo')
+          = image_tag(image_path('credit_logo/credit-card_27@0.5.png'), class: 'credit_logo')
+        .Field__label
+          .Name
+            %label カード番号
+          .Required
+            必須
+        .Field__input
+          = text_field_tag "number", "", class: "textbox", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+        .Field__label
+          .Name
+            %label 有効期限
+          .Required
+            必須
+        .Field_input
+          %select#exp_month{type: "text", class: "numberbox"}
+            %option{value: ""} --
+            %option{value: "1"}01
+            %option{value: "2"}02
+            %option{value: "3"}03
+            %option{value: "4"}04
+            %option{value: "5"}05
+            %option{value: "6"}06
+            %option{value: "7"}07
+            %option{value: "8"}08
+            %option{value: "9"}09
+            %option{value: "10"}10
+            %option{value: "11"}11
+            %option{value: "12"}12
+          %span 月/
+          %select#exp_year{type: "text", class: "numberbox"}
+            %option{value: ""} --
+            %option{value: "2020"}20
+            %option{value: "2021"}21
+            %option{value: "2022"}22
+            %option{value: "2023"}23
+            %option{value: "2024"}24
+            %option{value: "2025"}25
+            %option{value: "2026"}26
+            %option{value: "2027"}27
+            %option{value: "2028"}28
+            %option{value: "2029"}29
+            %option{value: "2030"}30
+          %span 年
+        .Field__label
+          .Name
+            %label セキュリティコード
+          .Required
+            必須
+        .Field__input
+          = text_field_tag "", "", class: "textbox", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+        #card_token
+          = submit_tag "クレジット情報を登録する", id: "token_submit", class: "submit-btn"
+        .Mypage_btn
+          = link_to user_path(current_user.id), class: "submit-btn" do
+            マイページへ戻る

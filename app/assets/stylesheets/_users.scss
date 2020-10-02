@@ -1,5 +1,8 @@
 @import 'mixin/flex_align-c';
 @import 'mixin/opacity';
+.Usergray{
+  background-color: #f5f5f5;
+}
 .User {
   width: 100%;
   max-width: 1040px;
@@ -8,7 +11,8 @@
   padding: 20px 0px;
   display: flex;
   box-sizing: border-box;
-  background-color: #f8f8f8;
+  background-color: white;
+
 
   &__side {
     width: 250px;
