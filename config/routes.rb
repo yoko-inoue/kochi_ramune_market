@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create,:show] do
     collection do
       get 'buycheck'
+      get 'get_category_child', to: 'items#get_category_child', defaults: { format: 'json' }
+      get 'get_category_grandchild', to: 'items#get_category_grandchild', defaults: { format: 'json' }
     end
   end
   namespace :api do
