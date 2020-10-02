@@ -51,7 +51,7 @@
             = f.label "都道府県"
             %span.red_flame 必須
             %br/
-            = f.select :prefecture, SendingDestination.prefectures.keys, { include_blank: '選択してください'}, {class: 'form_default'}
+            = f.collection_select :prefecture, Prefecture.where.not(name: "未定"), :id, :name, {include_blank: '選択してください'}, {class: 'form_default'}
           .field
             = f.label "市区町村"
             %span.red_flame 必須
