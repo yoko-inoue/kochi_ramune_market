@@ -1,2 +1,32 @@
-%h2 登録が完了しました
-= link_to "トップへ戻る", root_path
+.regist-display
+  %header.user_regist-header
+    %h1.user_regist-header__title
+      = link_to root_path do
+        = image_tag "logo/logo.png", width: "185px", hight: "49px"
+    %nav.user_regist-header__active
+      %ol.active_list
+        %li
+          会員情報
+          .circle-gray
+          .after__red
+        %li
+          プロフィール
+          .circle-gray
+          .before__red
+          .after__red
+        %li
+          商品お届け先住所
+          .circle-gray
+          .before__red
+          .after__red
+        %li
+          %span.active_page 完了
+          .circle-red
+          .before__red
+  .user_regist-main_fin
+    %section.user_regist-main__center
+      %h2.section__header
+        登録が完了しました
+        %br/
+        = link_to "トップへ戻る", root_path
+  = render "user_regist_footer"

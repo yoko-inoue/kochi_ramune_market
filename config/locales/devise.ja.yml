@@ -25,6 +25,24 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        nickname: ニックネーム
+      profile:
+        first_name: 姓
+        last_name: 名
+        first_name_kana: 姓のフリガナ
+        last_name_kana: 名のフリガナ
+        birth_date: 生年月日
+      sending_destination:
+        destination_first_name: 姓
+        destination_last_name: 名
+        destination_first_name_kana: 姓のフリガナ
+        destination_last_name_kana: 名のフリガナ
+        post_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        house_number: 番地
+        building_name: マンション・アパート名
+        phone_number: 電話番号
     models:
       user: ユーザ
   devise:

@@ -6,7 +6,7 @@
     %nav.user_regist-header__active
       %ol.active_list
         %li
-          %span 会員情報
+          %span.active_page 会員情報
           .circle-red
           .after__gray
         %li
@@ -15,7 +15,7 @@
           .before__gray
           .after__gray
         %li
-          商品届け先住所
+          商品お届け先住所
           .circle-gray
           .before__gray
           .after__gray
@@ -29,40 +29,36 @@
         会員情報入力
       = form_for(@user, url: user_registration_path) do |f|
         = render "devise/shared/error_messages", resource: @user
-        .field
-          = f.label "ニックネーム"
-          %span.red_flame 必須
-          %br/
-          = f.text_field :nickname, autofocus: true, placeholder: "例）フリマ星人", class: "form_default"
-        .field
-          = f.label "メールアドレス"
-          %span.red_flame 必須
-          %br/
-          = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "form_default"
-        .field
-          = f.label "パスワード"
-          %span.red_flame 必須
-          -# - if @minimum_password_length
-          -#   %em
-          -#     (半角 #{@minimum_password_length} 文字以上)
-          %br/
-          = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "form_default"
-        .field
-          = f.label "パスワード（確認用）"
-          %span.red_flame 必須
-          %br/
-          = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度入力してください", class: "form_default"
-        .actions
-          = f.submit "次へ進む"
-  %footer.user_regist-footer
-    %nav
-      %ul.user_regist-footer__policy
-        %li
-          = link_to "プライバシーポリシー", "#"
-        %li
-          = link_to "メルカリ利用規約", "#"
-        %li
-          = link_to "特定商取引に関する表記", "#"
-    .user_regist-footer__top-redirect
-      = link_to "メルカリ画像", "#"
-    %p @furima
+        .field_all
+          .field
+            = f.label "ニックネーム"
+            %span.red_flame 必須
+            %br/
+            = f.text_field :nickname, autofocus: true, placeholder: "例）フリマ星人", class: "form_default"
+          .field
+            = f.label "メールアドレス"
+            %span.red_flame 必須
+            %br/
+            = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "form_default"
+          .field
+            = f.label "パスワード"
+            %span.red_flame 必須
+            -# - if @minimum_password_length
+            -#   %em
+            -#     (半角 #{@minimum_password_length} 文字以上)
+            %br/
+            = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上の半角英数字", class: "form_default"
+          .field
+            = f.label "パスワード（確認用）"
+            %span.red_flame 必須
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "再度入力してください", class: "form_default"
+        .field_all
+          .actions
+            = f.submit "次へ進む", class: "submit_btn"
+          .user_info
+            %p
+              = link_to "#" do
+                本人情報の登録について
+                = icon('fas','angle-right')
+  = render "user_regist_footer"
