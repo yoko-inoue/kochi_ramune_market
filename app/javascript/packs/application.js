@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('jquery') 
+require("card")
 
 require("category_select")
 require("item")

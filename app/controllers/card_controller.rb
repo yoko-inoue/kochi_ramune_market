@@ -1,72 +1,33 @@
 class CardController < ApplicationController
-  before_action :move_to_root
-  before_action :set_card,    only: [:new, :show, :destroy, :buy, :pay]
-  before_action :set_item,    only: [:buy, :pay]
-  require "payjp"
+
+  def index
+    @card = Card.get_card(current_user.card.customer_token) if current_user.card
+  end
 
   def new
-    if user_signed_in?
-      card = Card.where(user_id: current_user.id)
-      redirect_to users_path(current_user.id) if card.present?
+    @card = Card.new
+  end
+
+  def create
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+
+    ustomer = Payjp::Customer.create(card: params[:payjp_token]) ## 顧客の作成
+
+    card = current_user.build_card(customer_token: customer.id)
+    if card.save
+      redirect_to cards_path
     else
-      redirect_to user_session_path
+      redirect_to new_card_path
     end
   end
 
-  def pay #payjpとCardのデータベース作成を実施します。
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    if params['payjp-token'].blank?
-      redirect_to action: "new"
+  def destroy
+    card = current_user.card
+
+    if card.destroy
+      redirect_to cards_path
     else
-      customer = Payjp::Customer.create(
-
-      card: params['payjp-token'],
-      metadata: {user_id: current_user.id}
-      ) #念の為metadataにuser_idを入れましたがなくてもOK
-      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save
-        redirect_to action: "show"
-      else
-        redirect_to action: "pay"
-      end
+      redirect_to cards_path
     end
-  end
-
-  def delete #PayjpとCardデータベースを削除します
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
-    else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-    end
-      redirect_to action: "new"
-  end 
-
-  def show #Cardのデータpayjpに送り情報を取り出します
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
-      redirect_to action: "new" 
-    else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.payjp_id)
-    end
-  end
-
-  
-
-  private
-  def move_to_root
-    redirect_to root_path unless user_signed_in?
-  end
-
-  def set_card
-    @set_card=Card.where(user_id: current_user.id)
-  end
-
-  def set_item
-    # @item=Item.find(params[:item_id])
   end
 end
