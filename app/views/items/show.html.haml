@@ -15,12 +15,13 @@
     .item_section__main.cf
       .item_photo
         .item_photo__top
-          = image_tag "icon/icon-01.png", class: "active_image"
+          = image_tag "icon/icon-01.png", class: "active_image", id: "bigimg"
         .item_photo__list
           %ul
-            - 7.times do
-              %li 
-                = image_tag "icon/icon-02.png", class: "passive_image"
+            %li
+              = image_tag "icon/icon-01.png", class: "passive_image", data: {image: "icon/icon-01.png"}
+              = image_tag "icon/icon-02.png", class: "passive_image", data: {image: "icon/icon-02.png"}
+              = image_tag "icon/icon-03.png", class: "passive_image", data: {image: "icon/icon-03.png"}
       %table.item_table
         %tr
           %th 出品者
