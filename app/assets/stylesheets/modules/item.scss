@@ -15,13 +15,12 @@
     background-color: white;
     margin: 0px auto 30px;
     padding: 30px;
-    /* micro clearfx */
-    .cf:before, .cf:after {     //floatによるビュー崩れを無くす
+    .cf:before, .cf:after {     //floatによるビュー崩れを無くす（clearfx）
       content:"";
       display:table
     }
     .cf:after { clear:both }
-    .cf { zoom:1 } /* For IE 6/7 */
+    .cf { zoom:1 }
     &__header {
       font-weight: bold;
       font-size: 24px;
@@ -158,16 +157,13 @@
           .passive_mage {
             height: 220px;
             width: 220px;
-            // background-color: lightcoral;
           }
           .items_user__info {
             height: 120px;
             width: 220px;
             padding: 16px;
-            // background-color: lightgreen;
             .items_user__text {
               height: 50px;
-              // background-color: lightcyan;
               overflow: hidden;
             }
             .items_user__price {
