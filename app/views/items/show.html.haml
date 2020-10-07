@@ -76,13 +76,14 @@
   .sns_link
     %ul
       %li 
-        = link_to "Facebook", "#"
+        = link_to "#" do
+          = icon("fab", "facebook-square", style: "color:royalblue;")
       %li 
-        = link_to "Twitter", "#"
+        = link_to "#" do
+          = icon("fab", "twitter-square", style: "color:#1DA1F2;")
       %li 
-        = link_to "Line", "#"
-      %li 
-        = link_to "Pinterest", "#"
+        = link_to "#" do
+          = icon("fab", "pinterest-square", style: "color:#BD081C;")
   .items_user
     %h2.items_user__name
       = link_to "フリマ星人さんの他の商品", "#", class: "font-color_blue"
@@ -100,7 +101,7 @@
                   ¥500
   .items_user
     %h2.items_user__name
-      = link_to "同じカテゴリーの商品", "#"
+      = link_to "同じカテゴリーの商品", "#", class: "font-color_blue"
     .items_user__list
       %ul
         - 4.times do
