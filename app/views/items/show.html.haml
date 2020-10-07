@@ -1,0 +1,124 @@
+= render "header"
+
+
+.detail_body
+  %section.item_section
+    %h2.item_section__header
+      サウンドトラック
+    %p.item_section__info
+      "item-name"は、
+      = link_to "user-name（リンク）", "#"
+      さんから出品されました。
+      = link_to "ブランド（リンク）", "#"
+      = link_to "孫カテゴリー（リンク）/親カテゴリー", "#"
+      の商品で、"prefecture"から"preparation_day"で発送されます。
+    .item_section__main.cf
+      .item_photo
+        .item_photo__top
+          = image_tag "icon/icon-01.png", class: "active_image", id: "bigimg"
+        .item_photo__list
+          %ul
+            %li
+              = image_tag "icon/icon-01.png", class: "passive_image", data: {image: "icon/icon-01.png"}
+              = image_tag "icon/icon-02.png", class: "passive_image", data: {image: "icon/icon-02.png"}
+              = image_tag "icon/icon-03.png", class: "passive_image", data: {image: "icon/icon-03.png"}
+      %table.item_table
+        %tr
+          %th 出品者
+          %td 
+            = link_to "フリマ星人", "#", class: "font-color_blue"
+        %tr
+          %th カテゴリー
+          %td 
+            = link_to "#", class: "font-color_blue" do
+              %div 親カテゴリー
+            = link_to "#", class: "font-color_blue" do
+              %div
+                = icon('fas','angle-right')
+                子カテゴリー
+            = link_to "#", class: "font-color_blue" do
+              %div
+                = icon('fas','angle-right')
+                孫カテゴリー
+        %tr
+          %th ブランド
+          %td 
+        %tr
+          %th 商品の状態
+          %td 新品、未使用
+        %tr
+          %th 配送料の負担
+          %td 送料込み
+        %tr
+          %th 配送の方法
+          %td 未定
+        %tr
+          %th 発送元地域
+          %td 東京
+        %tr
+          %th 発送日の目安
+          %td 1~2日で発送
+    .price_box 
+      %span.item-price ¥4000
+      %span.item-tax (税込)
+      %span.item-shipping-fee 送料込み
+    .buy_btn 
+      = link_to "購入画面に進む", "#"
+    .item_info
+      %p
+        即購入可
+        個装で発送します
+        フリマアプリ作成中
+    .item_container
+      .item_container__right
+        = link_to "あんしん・あんぜんへの取り組み", "#", class: "font-color_blue"
+
+  .sns_link
+    %ul
+      %li 
+        = link_to "#" do
+          = icon("fab", "facebook-square", style: "color:royalblue;")
+      %li 
+        = link_to "#" do
+          = icon("fab", "twitter-square", style: "color:#1DA1F2;")
+      %li 
+        = link_to "#" do
+          = icon("fab", "pinterest-square", style: "color:#BD081C;")
+  .items_user
+    %h2.items_user__name
+      = link_to "フリマ星人さんの他の商品", "#", class: "font-color_blue"
+    .items_user__list
+      %ul
+        - 6.times do
+          %li 
+            = link_to "#" do
+              = image_tag "icon/icon-02.png", class: "passive_mage"
+              .items_user__info
+                .items_user__text
+                  %h3
+                    ああああああああああああaaaaaaaaaaaaaaああああああああああああああああああああああああhhhhhhhhhhhhhh
+                .items_user__price
+                  ¥500
+  .items_user
+    %h2.items_user__name
+      = link_to "同じカテゴリーの商品", "#", class: "font-color_blue"
+    .items_user__list
+      %ul
+        - 4.times do
+          %li 
+            = link_to "#" do
+              = image_tag "icon/icon-02.png", class: "passive_mage"
+              .items_user__info
+                .items_user__text
+                  %h3
+                    ああああああああああああaaaaaaaaaaaaaaああああああああああああああああああああああああhhhhhhhhhhhhhh
+                .items_user__price
+                  ¥500
+  .item_info_bottom
+    = link_to "メルカリ", root_path
+    = icon('fas','angle-right')
+    %p スマーーーートフォン
+
+
+= render "lower-photo"
+= render "footer"

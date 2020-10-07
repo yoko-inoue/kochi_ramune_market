@@ -1,0 +1,189 @@
+.detail_body {
+  height: auto;
+  background-color: #f5f5f5;
+  padding-top: 40px;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .font-color_blue {
+    color: #38aef0;
+  }
+  .item_section {
+    height: auto;
+    width: 720px;
+    background-color: white;
+    margin: 0px auto 30px;
+    padding: 30px;
+    .cf:before, .cf:after {     //floatによるビュー崩れを無くす（clearfx）
+      content:"";
+      display:table
+    }
+    .cf:after { clear:both }
+    .cf { zoom:1 }
+    &__header {
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+      line-height: 1.4;
+    }
+    &__info {
+      font-size: 14px;
+      color: #888888;
+      line-height: 1.5;
+      margin-top: 8px;
+      a {
+        color: #888888;
+      }
+    }
+    &__main {
+      margin: 16px 0;
+      .item_photo {
+        background-color: #fafafa;
+        min-height: 375px;
+        max-width: 300px;
+        min-width: 300px;
+        float: left;
+        .active_image {
+          width: 300px;
+          height: 300px;
+        }
+        &__list {
+          height: auto;
+          width: 300px;
+          ul {
+            list-style-type: none;
+            font-size: 0;
+            li {
+              display: inline-block;
+              .passive_image {
+                height: 60px;
+                width: 60px;
+              }
+            }
+          }
+        }
+      }
+      table {
+        float: right;
+        height: 420px;
+        max-width: 330px;
+        min-width: 330px;
+        border-collapse: collapse;
+      }
+      table th, table td {
+        border: solid 1px #f5f5f5;
+        padding: 8px;
+        font-weight: 400;
+      }
+      table th {
+        width: 120px;
+        background-color: #f5f5f5;
+      }
+    }
+    .price_box {
+      text-align: center;
+      margin-top: 30px;
+      .item-price {
+        font-size: 50px;
+        margin-right: 16px;
+        font-weight: bold;
+      }
+      .item-tax{
+        font-size: 10px;
+      }
+      .item-shipping-fee {
+        font-size: 16px;
+      }
+    }
+    .buy_btn {
+      text-align: center;
+      background-color: red;
+      font-size: 25px;
+      line-height: 60px;
+      font-weight: bold;
+      margin-top: 20px;
+      a {
+        color: white;
+      }
+    }
+    .item_info {
+      margin-top: 20px;
+      p {
+        white-space: pre-wrap;
+      }
+    }
+    .item_container {
+      .item_container__right {
+        float: right;
+      }
+    }
+  }
+
+  .sns_link {
+    width: 720px;
+    background-color: white;
+    margin: 40px auto 30px;
+    padding: 30px;
+    text-align: center;
+    ul {
+      list-style-type: none;
+      li {
+        display: inline-block;
+        i {
+          font-size: 50px;
+        }
+      }
+    }
+  }
+
+  .items_user {
+    width: 720px;
+    margin: 40px auto 0px;
+    &__name {
+      font-size: 22px;
+      margin-bottom: 8px;
+      font-weight: 550;
+    }
+    &__list {
+      ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        li {
+          margin: 0 20px 20px 0;
+          background-color: white;
+          .passive_mage {
+            height: 220px;
+            width: 220px;
+          }
+          .items_user__info {
+            height: 120px;
+            width: 220px;
+            padding: 16px;
+            .items_user__text {
+              height: 50px;
+              overflow: hidden;
+            }
+            .items_user__price {
+              margin-top: 10px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .item_info_bottom {
+    border-top: 1px #eeeeee solid;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 16px 0px;
+    p {
+      display: inline-block;
+      font-weight: bold;
+    }
+  }
+}
