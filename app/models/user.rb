@@ -6,4 +6,6 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   has_one :profile
   has_one :sending_destination
+
+  has_one :card
 end

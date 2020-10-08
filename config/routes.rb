@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :categories, only: :index, defaults: { format: 'json' }
   end
   # get  "/items/item_params" ,to: "items#item_params"
-  resources :users, only: [:show]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: [:show, :edit]
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html 
+  resources :cards, only: [:index, :new, :create, :destroy] 
 end

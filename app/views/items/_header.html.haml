@@ -15,9 +15,11 @@
       %ul.List-left
         %li.List-left__category-list
           = link_to "#", class: "btn" do
+            = image_tag 'icon/icon_category.png', size: '16x16'
             カテゴリー
         %li.List-left__brand-list
           = link_to "#", class: "btn" do
+            = image_tag 'icon/icon_brand.png', size: '16x16'
             ブランド
       %ul.List-right
         - if user_signed_in?

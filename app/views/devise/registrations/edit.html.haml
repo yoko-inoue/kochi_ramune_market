@@ -1,40 +1,50 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
-      %br/
-      %em
-        = @minimum_password_length
-        characters minimum
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "Update"
-%h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+.Account__page
+  .Account__page__header
+    = link_to image_tag("logo/logo.png", alt: "logo"), root_path
+  .Account__page__main
+    = form_for(@user, url: user_registration_path) do |f|
+      .Account__page__main__content
+        .Account__page__main__content--error
+          = devise_error_messages!
+        .Field__title
+          会員情報の編集
+        .Field__label
+          .Name
+            = f.label :nickname
+          .Required
+            必須
+        .Field__input
+          = f.text_field :nickname, autofocus: true, placeholder: "例）フリマ太郎", class: "textbox"
+        .Field__label
+          .Name
+            = f.label :email
+          .Required
+            必須
+        .Field__input
+          = f.email_field :email, placeholder: "携帯・ＰＣどちらでも可", class: "textbox"
+        .Field__label
+          .Name
+            = f.label :password
+          .Required
+            必須
+        .Field__input
+          = f.password_field :password, autocomplete: "new-password", placeholder: "7文字以上", class: "textbox"
+        .Field__guide
+          ＊ ７文字以上で設定して下さい
+        .Field__label
+          .Name
+            = f.label :password_confirmation
+          .Required
+            必須
+        .Field__input
+          = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "もう一度入力して下さい", class: "textbox"
+        %p
+          = check_box_tag :passcheck
+          = f.label "パスワードを表示する", class: "field__guide"
+        .Field__subtitle
+          本人確認
+        .Field__guide
+          安心・安全にご利用いただくために、お客様の本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+          .Actions
+            = f.submit "次へ", class: "submit-btn"

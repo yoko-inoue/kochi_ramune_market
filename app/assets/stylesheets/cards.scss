@@ -1,0 +1,112 @@
+
+.Account__page{
+  background-color: #f5f5f5;
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+
+  &__header{
+    height: 60px;
+    width: 100%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+    img {
+      width: 150px;
+      cursor: pointer;
+    }
+  }
+  &__main{
+    width: 650px;
+    margin: 40px auto ;
+    padding: 30px 15px;
+    &__content{
+      width: 650px;
+      margin: 3px auto;
+      background-color: white;
+      height: auto;
+      .Field{
+        padding: 20px 0;
+        margin-top: 30px;
+        &__title {
+          font-size: 22px;
+          text-align: center;
+          font-weight: bold;
+        }
+        &__img{
+          margin-top: 20px;
+        }
+        &__label{
+          font-weight: bold;
+          text-align: center;
+
+          .Card__number{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          input[type="text"] {
+            width: 300px;
+            height: 40px;
+          }
+          .Card__limit{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          select {
+            width: 80px;
+            height: 40px;
+          }
+          .Card__cvc{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          input[type="text"] {
+            width: 300px;
+            height: 40px;
+          }
+
+          .Required{
+            background-color: red;
+            color: #ffffff;
+            font-size: 10px;
+            height: 20px;
+            width: 30px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 4px;
+          }
+        } 
+      }
+    }
+  }
+  .submit-btn {
+    height: 50px;
+    background-color: #3ccace;
+    color: #ffffff;
+    width: 400px;
+    display: block;
+    margin: 40px auto 0 auto;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 50px;
+    text-align: center;
+
+    a{
+      color: white;
+      text-decoration: none;
+    }
+    
+  }
+}

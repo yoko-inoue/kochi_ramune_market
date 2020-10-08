@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('jquery') 
+require("card")
 
 require("category_select")
 require("item")
@@ -17,3 +18,8 @@ require("item")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//= require activestorage
+//= require turbolinks
+//= require_tree .
+//= require jquery #追加
+//= require jquery_ujs #追加
