@@ -187,3 +187,53 @@
     }
   }
 }
+
+
+//// 購入確認画面のcss
+
+.buy-check_body {
+  height: auto;
+  .buy-check_section {
+    margin: 0 auto;
+    padding: 30px;
+    width: 720px;
+    background-color: lightsteelblue;
+    &__header {
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+      // line-height: 1.4;
+      padding: 32px;
+      border-bottom: 1px solid lightgray;
+      // background-color: lightyellow;
+    }
+    &__item-info {
+      padding: 32px;
+      border-bottom: 1px solid lightgray;
+      .item-info__image {
+        max-width: 1000px;
+        max-height: 200px;
+      }
+      .item_image {
+        max-height: 200px;
+        max-width: 200px;
+      }
+    }
+    &__item-fee {
+      padding: 32px;
+      border-bottom: 1px solid lightgray;
+    }
+    &__item-payment {
+      padding: 32px;
+      border-bottom: 1px solid lightgray;
+    }
+    &__address {
+      padding: 32px;
+      border-bottom: 1px solid lightgray;
+    }
+    &__buy-btn {
+      padding: 32px;
+      border-bottom: 1px solid lightgray;
+    }
+  }
+}
