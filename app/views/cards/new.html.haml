@@ -1,0 +1,46 @@
+= form_with model: @card, id: "card_form" do |f| 
+
+  .Account__page
+    .Account__page__header
+      = link_to image_tag("logo/logo.png", alt: "logo"), root_path
+    
+    .Acoount__page__main
+      .Account__page__main__content
+        .Field
+          .Field__title
+            クレジット情報の登録
+          .Field__label
+            .Field__img
+              = image_tag(image_path('credit_logo/credit-card_2@0.5.png'), class: 'credit_logo')
+              = image_tag(image_path('credit_logo/credit-card_1@0.5.png'), class: 'credit_logo')
+              = image_tag(image_path('credit_logo/credit-card_0@0.5.png'), class: 'credit_logo')
+              = image_tag(image_path('credit_logo/credit-card_5@0.5.png'), class: 'credit_logo')           
+              = image_tag(image_path('credit_logo/credit-card_6@0.5.png'), class: 'credit_logo')
+              = image_tag(image_path('credit_logo/credit-card_27@0.5.png'), class: 'credit_logo')
+            .Card__number
+              = f.label :number, "カード番号"
+              .Required
+                必須
+            %b
+            = f.text_field :number, required: true, maxlength: 16, id: "card_number_form", placeholder: "1234 5678 1234 5678"
+            .Card__limit   
+              = f.label :hoge, "有効期限"
+              .Required
+                必須
+            %b
+            = f.select :exp_month, 1..12, {include_blank: "---"}, id: "exp_month_form"
+            = f.select :exp_year, [[20, 2020], [21, 2021], [22, 2022], [23, 2023], [24, 2024], [25, 2025]], {include_blank: "---"}, id: "exp_year_form"
+            .Card__cvc
+              = f.label :cvc, "セキュリティコード"
+              .Required
+                必須
+            %b
+            = f.text_field :cvc, required: true,  id: "cvc_form", placeholder: "カード背面４桁もしくは３桁の番号"
+
+            #card_token
+              = f.submit "カード情報を登録する", id: "regist_card", class: "submit-btn"
+            .Mypage_btn
+              = link_to user_path(current_user.id), class: "submit-btn" do
+                マイページへ戻る
+= render "items/lower-photo"
+= render "items/footer"

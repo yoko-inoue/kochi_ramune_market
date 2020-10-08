@@ -19,12 +19,5 @@ Rails.application.routes.draw do
   # get  "/items/item_params" ,to: "items#item_params"
   resources :users, only: [:show, :edit]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html 
-  resources :card, only: [:index, :new, :create, :delete] do
-    collection do
-      post 'index', to: 'card#index'
-      post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
-      get 'require_make_card', to: 'cards#require_make_card'
-    end
-  end
+  resources :cards, only: [:index, :new, :create, :destroy] 
 end

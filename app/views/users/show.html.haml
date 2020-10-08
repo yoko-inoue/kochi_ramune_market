@@ -1,12 +1,6 @@
 = render 'items/header'
 = render 'items/btn'
 - if user_signed_in?
-  %nav.Bread-crumbs
-    %ul
-      %li 
-        = link_to root_path do
-          furima
-        = icon('fas','angle-right')
   .Usergray
     .User
       = render 'user_side'

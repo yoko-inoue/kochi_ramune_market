@@ -4,6 +4,7 @@
 @import 'mixin/flex_align-c';
 .Header{
   padding: 0 60px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   .HeaderInner{
     max-width: 1040px;
     width: 100%;
@@ -54,7 +55,7 @@
     }
     &__nav{
       display: flex;
-      margin: 10px 0 15px 0;
+      margin: 10px 0 3px 0;
       .List-left{
         position: relative;
         display: flex;
