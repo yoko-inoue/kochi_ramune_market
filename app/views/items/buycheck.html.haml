@@ -1,7 +1,5 @@
-= render "header"
-
-
 .buy-check_body
+  = render 'devise/registrations/user_regist_header'
   %section.buy-check_section
     %h2.buy-check_section__header
       購入内容の確認
@@ -16,13 +14,41 @@
           %span.item-info__tax（税込）
           %span.item-info__price ¥30000
     .buy-check_section__item-fee
-      ¥30000
-    .buy-check_section__item-payment
-      クレジットカード
+      .item-payment-amount
+        .item-payment-amount__left
+          支払い金額
+        .item-payment-amount__right
+          ¥30000
+      -# .item-point
+      -#   ポイント→→所持ポイントxxxxx
+    .buy-check_section__item-MethodOfPayment
+      .MethodOfPayment
+        支払い方法
+      .MethodOfPayment__select
+        お支払い方法を洗濯してください
     .buy-check_section__address
-      〒123-4567
+      .shipping-address
+        .shipping-address__left
+          配送先
+        .shipping-address__right
+          = link_to "#" do
+            変更する
+            = icon('fas','angle-right')
+      .shipping-address__info
+        %p.shipping-address__info__post_code
+          〒123-4567
+          // 仮置き）sending_destinations.post_code
+        %p.shipping-address__info__address
+          東京都千代田区XXXXXX
+          // 仮置き）sending_destinations.prefecture + sending_destinations.city + 
+          //sending_destinations.house_number + sending_destinations.building_name
+        %p.shipping-address__info__name
+          フリマ星人
+          // 仮置き）sending_destinations.destination_first_name + sending_destinations.destination_last_name
     .buy-check_section__buy-btn
-      購入する
+      %div.buy-btn__box
+        = link_to "#" do
+          %div.buy-btn
+            購入する
 
-
--# = render "devise/registrations/user_regist_footer"
+  = render "devise/registrations/user_regist_footer"

@@ -12,84 +12,76 @@
     text-decoration: none;
     color: #38aef0;
   }
-  .user_regist-header {
-    height: 128px;
-    text-align: center;
-    .user_regist-header__title {
+  .user_regist-header__active {
+    display: inline-block;
+    padding: 35px 0px 0px 40px;
+    vertical-align: top;
+    li {
       display: inline-block;
-      margin: 40px 20px 0px;
+      font-size: 12px;
+      margin: 0 40px 0 0;
+      position: relative;
     }
-    .user_regist-header__active {
-      display: inline-block;
-      padding: 35px 0px 0px 40px;
-      vertical-align: top;
-      li {
-        display: inline-block;
-        font-size: 12px;
-        margin: 0 40px 0 0;
-        position: relative;
+    .active_list {
+      .active_page {
+        color: red;
+        font-weight: 600;
       }
-      .active_list {
-        .active_page {
-          color: red;
-          font-weight: 600;
-        }
-        .circle-red {
-          width: 13px;
-          height: 13px;
-          border-radius: 50%;
-          background: red;
-          margin: 8px auto 0px;
-          position: relative;
-          z-index: 1;
-        }
-        .circle-gray {
-          width: 13px;
-          height: 13px;
-          border-radius: 50%;
-          background: gray;
-          margin: 8px auto 0px;
-          position: relative;
-          z-index: 1;
-        }
-        .before__red {
-          content: "";
-          display: inline-block;
-          width: 100%;
-          height: 3px;
-          background-color: red;
-          position: absolute;
-          bottom: 5px;
-          right: 50%;
-        }
-        .after__red {
-          content: "";
-          display: inline-block;
-          width: 100%;
-          height: 3px;
-          background-color: red;
-          position: absolute;
-          bottom: 5px;
-        }
-        .before__gray {
-          content: "";
-          display: inline-block;
-          width: 100%;
-          height: 3px;
-          background-color: gray;
-          position: absolute;
-          bottom: 5px;
-          right: 50%;
-        }
-        .after__gray {
-          content: "";
-          display: inline-block;
-          width: 100%;
-          height: 3px;
-          background-color: gray;
-          position: absolute;
-          bottom: 5px;
-        }
+      .circle-red {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: red;
+        margin: 8px auto 0px;
+        position: relative;
+        z-index: 1;
+      }
+      .circle-gray {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: gray;
+        margin: 8px auto 0px;
+        position: relative;
+        z-index: 1;
+      }
+      .before__red {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 3px;
+        background-color: red;
+        position: absolute;
+        bottom: 5px;
+        right: 50%;
+      }
+      .after__red {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 3px;
+        background-color: red;
+        position: absolute;
+        bottom: 5px;
+      }
+      .before__gray {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 3px;
+        background-color: gray;
+        position: absolute;
+        bottom: 5px;
+        right: 50%;
+      }
+      .after__gray {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 3px;
+        background-color: gray;
+        position: absolute;
+        bottom: 5px;
       }
     }
   }
@@ -289,35 +281,6 @@
           }
         }
       }
-    }
-  }
-  .user_regist-footer {
-    height: 224px;
-    width: 640px;
-    padding: 40px 0px;
-    margin: 0px auto;
-    text-align: center;
-    margin-top: auto;
-    li {
-      display: inline-block;
-      font-size: 12px;
-      color: #333;
-      margin: 0 20px 0 0;
-      a {
-        color: #333;
-      }
-    }
-    .user_regist-footer__top-redirect {
-      margin-top: 40px;
-      img {
-        width: 129px;
-        height: 35px;
-        filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
-      }
-    }
-    p {
-      margin: 5px;
-      font-size: 12px;
     }
   }
 }
