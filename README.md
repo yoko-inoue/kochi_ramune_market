@@ -50,6 +50,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
+|customer_token|string|null: false|
 
 ### Association
 - belongs_to :user
@@ -81,11 +82,12 @@
 |introduction|text|null: false|
 |price|integer|null: false|
 |category_id|reference|null:false,foreign_key: true|
-|size_id|reference|null:false,foreign_key: true|
-|brand_id|reference|null:false,foreign_key: true|
+|size|reference|null:false,foreign_key: true|
+|brand|reference|null:false,foreign_key: true|
 |item_condition_id|reference|null:false,foreign_key: true|
 |postage_payer_id|reference|null:false,foreign_key: true|
-|prefecture_code|integer|null: false|
+|prefecture_id|integer|null: false|
+|postage_type_id|integer|null: false|
 |preparation_day_id|reference|null:false,foreign_key: true|
 |seller_id|reference|null:false,foreign_key: true|
 |buyer_id|reference|foreign_key: true|
@@ -102,6 +104,7 @@
 - belongs_to :postage_type
 - belongs_to :seller
 - belongs_to :buyer
+- Gem :jp_prefecture
 
 ## item_imagesテーブル
 |Column|Type|Options|
@@ -112,58 +115,3 @@
 ### Association
 - belongs_to :items
 
-## Categoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-## Sizesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|size|string|null: false|
-
-### Association
-- has_many :items
-
-## Brandsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-## item_conditionテーブル
-|Column|Type|Options|
-|------|----|-------|
-|item_condition|string|null: false|
-
-### Association
-- has_many :items
-
-## Postage_payersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|postage_payer|string|null: false|
-
-### Association
-- has_many :items
-
-## Preparation_daysテーブル
-|Column|Type|Options|
-|------|----|-------|
-|preparation_day|string|null: false|
-
-### Association
-- has_many :items
-
-## Postage_typesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|postage_type|string|null: false|
-
-### Association
-- has_many :items
