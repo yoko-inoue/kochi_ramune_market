@@ -264,7 +264,16 @@
         margin-bottom: 20px;
       }
       .MethodOfPayment__select {
-        color: #38aef0;
+        &__card {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        &__card-info {
+          a {
+            text-decoration: none;
+            color: #38aef0;
+          }
+        }
       }
     }
     &__address {

@@ -19,13 +19,27 @@
           支払い金額
         .item-payment-amount__right
           ¥30000
-      -# .item-point
-      -#   ポイント→→所持ポイントxxxxx
     .buy-check_section__item-MethodOfPayment
       .MethodOfPayment
         支払い方法
       .MethodOfPayment__select
-        お支払い方法を洗濯してください
+        .MethodOfPayment__select__card
+          クレジットカード情報
+        .MethodOfPayment__select__card-info
+          .Field__label
+            - if @card
+              = "************" + @card[:last4]
+              %br
+              = @card[:exp_month]
+              \/
+              = @card[:exp_year]
+              %br
+              = @card[:brand]
+            - else
+              .submit-btn
+                クレジットカードの登録がまだの方は、
+                = link_to "こちら", new_card_path
+                から登録してください
     .buy-check_section__address
       .shipping-address
         .shipping-address__left
@@ -37,14 +51,10 @@
       .shipping-address__info
         %p.shipping-address__info__post_code
           〒123-4567
-          // 仮置き）sending_destinations.post_code
         %p.shipping-address__info__address
           東京都千代田区XXXXXX
-          // 仮置き）sending_destinations.prefecture + sending_destinations.city + 
-          //sending_destinations.house_number + sending_destinations.building_name
         %p.shipping-address__info__name
           フリマ星人
-          // 仮置き）sending_destinations.destination_first_name + sending_destinations.destination_last_name
     .buy-check_section__buy-btn
       %div.buy-btn__box
         = link_to "#" do
