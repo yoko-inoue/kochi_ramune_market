@@ -2,7 +2,7 @@ document.addEventListener('turbolinks:load', function () {
   function buildCategoryForm(categories) {
     let options = "";
     if(categories[0].ancestry.indexOf("/" , 0) == -1){
-      relation ="child";
+      relation = "child";
     }else{
       relation = "grand_child"
     }
@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', function () {
     });
     const html = `
                   <br class = "${relation}"> 
-                  <select required="required" class="select-category ${relation}" id="parent-category" name="item[category_id]">
+                  <select required="required" class="select-category ${relation}" id="parent-category" name="item[category_${relation}]">
                     <option value="${relation}">---</option>
                     ${options}
                   </select>
@@ -27,6 +27,15 @@ document.addEventListener('turbolinks:load', function () {
       $('.grand_child').remove();
     }else{
       $('.grand_child').remove();
+    }
+  }
+
+  function selectNoValue(categories) {
+    if(categories.initial == "parent"){
+      $('.child').remove();
+      $('.grandchild').remove();
+    } else if(categories.initial == "child"){
+      $('.grandchild').remove();
     }
   }
   
@@ -45,6 +54,7 @@ document.addEventListener('turbolinks:load', function () {
         const html = buildCategoryForm(categories);
         $(".select-category:last").after(html);
       }
+      selectNoValue(categories)
     })
     .fail(function () {
       alert('error');

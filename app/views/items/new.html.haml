@@ -1,7 +1,7 @@
 .exhibit
   =link_to image_tag("logo/logo.png", width: "300px", hight: "300px"), root_path
   .exhibit__single-container
-    = form_with(model: @item, local: true) do |f|
+    = form_with model:@item, local: true do |f|
       .exhibit__single-head
         商品の情報を入力
       
@@ -14,14 +14,24 @@
               必須
         .exhibit__p
           最大10枚までアップロードできます
-        #image-box-1
-          .item-box.item-num-0#image-box__container
-            = f.fields_for :images do |i|
-              .exhibit__sell-upload-items-container
-                %label
-                  .exhibit__sell-upload-drop-box
-                    = i.file_field :name, value:"", style: "display:none", class: "sell-upload-drop-file"
-                    %i.fa.fa-camera
+      #image-box
+        %label{for:"imageuploader"}
+        #previews
+          - if @item.persisted?
+            - @item.item_images.each_with_index do |image, i|
+              = image_tag image.image_url.url, data: { index: i }, width: "100", height: '100'
+        = f.fields_for :item_images do |image|
+          .js-file_group{"data-index" => "#{image.index}"}
+            = image.file_field :image_url, class: 'js-file',style:"display:none",id:"imageuploader"
+            %br/
+            %span.js-remove 削除
+          - if @item.persisted?
+            = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+        - if @item.persisted?
+          .js-file_group{"data-index" => "#{@item.item_images.count}"}
+            = file_field_tag :image_url, name: "item[item_images_attributes][#{@item.item_images.count}][image_url]", class: 'js-file'
+            .js-remove 削除
+            %i.fa.fa-camera
         .exhibit__no-image
       /商品の説明
       .exhibit__item-detail
@@ -56,7 +66,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :condition, ItemCondition.where.not(name: '未定'), :id, :name, {include_blank: "---"}
+                = f.collection_select :condition_id, Condition.all, :id, :name, {include_blank: "---"}
               .exhibit__no-product.no-product4
       /商品名と説明
       .exhibit__item-name-detail
@@ -86,11 +96,11 @@
         .exhibit__show-form-box
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
-              = f.label :postage_payer,"配送料の負担"
+              = f.label :postage_payer_id,"配送料の負担"
               %apan.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :postage_payer, PostagePayer.where.not(name: '未定'), :id, :name, {include_blank: "---"}
+              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {include_blank: "---"}
               .exhibit__no-product.no-product5
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
@@ -99,7 +109,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :postage_type, PostageType.all, :id, :name, {include_blank: "---"}
+                = f.collection_select :postage_type_id, PostageType.all, :id, :name, {include_blank: "---"}
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               発送元の地域
@@ -107,14 +117,14 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :prefecture_id, Prefecture.where.not(name: '未定'), :id, :name, {include_blank: "---"}
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :preparation_day,"発送までの日数"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :preparation_day, PreparationDay.where.not(name: '未定'), :id, :name, {include_blank: "---"}
+              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {include_blank: "---"}
               .exhibit__no-product.no-product7
 
 

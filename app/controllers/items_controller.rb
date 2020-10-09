@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.images.new
+    @image = @item.images.new
     @category_parent = Category.where(ancestry: nil)
 
     def get_category_child
@@ -28,17 +28,41 @@ class ItemsController < ApplicationController
     end
   end
   def create
+    createCategoryId()
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path, notice: "出品しました"
-    else
-      redirect_to new_item_path, notice: "出品できません。入力必須項目を確認してください"
+    binding.pry
+    if @item.valid? && @item.save
+      redirect_to root_path
+    else 
+      @item.images.new
+      return render new_item_path
     end
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :brand_name, :size, :item_condition, :postage_payer, :preparation_day, :postage_type, :category_id,:prefecture_id, :trading_status, :buyer_id, images_attributes: [:url, :id])
+    params.require(:item).permit(:name, :price, :introduction, :prefecture_id, 
+      :category_id, :condition_id, :postage_payer_id,:postage_type_id, :brand_name, :size,
+      :preparation_day_id, images_attributes: [:image_url]).merge(user_id: current_user.id)
+  end
+
+  def createCategoryId
+    if params[:item][:category_child] == nil || params[:item][:category_child] == "child"
+      @category_id = params[:item][:category_id]
+    elsif params[:item][:category_grandchild] == "grandchild"
+      @category_id = params[:item][:category_id_child]
+    else
+      @category_id = params[:item][:category_id_grandchild]
+    end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

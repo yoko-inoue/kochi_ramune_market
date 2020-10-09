@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect("/users/sign_up")
 
   root 'items#index'
-  resources :items, only: [:new, :create,:show] do
+  resources :items, only: [:index, :new, :create, :show] do
     collection do
       get 'buycheck'
       get 'get_category_child', to: 'items#get_category_child', defaults: { format: 'json' }

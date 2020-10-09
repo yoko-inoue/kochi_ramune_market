@@ -69,11 +69,11 @@
     line-height: 1.5;
   }
   
-  #image-box-1{
+  #image-box{
     flex-wrap: wrap;
-  }
-  .item-box{
     display: block;
+  }
+  .js-file_group{
     height: 100px;
     background-color: #C0C0C0;
     margin: 16px 0 0 0  ;
