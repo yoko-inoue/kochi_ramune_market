@@ -1,0 +1,29 @@
+.user_regist-footer {
+  height: 224px;
+  width: 640px;
+  padding: 40px 0px;
+  margin: 0px auto;
+  text-align: center;
+  margin-top: auto;
+  li {
+    display: inline-block;
+    font-size: 12px;
+    color: #333;
+    margin: 0 20px 0 0;
+    a {
+      color: #333;
+    }
+  }
+  .user_regist-footer__top-redirect {
+    margin-top: 40px;
+    img {
+      width: 129px;
+      height: 35px;
+      filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
+    }
+  }
+  p {
+    margin: 5px;
+    font-size: 12px;
+  }
+}

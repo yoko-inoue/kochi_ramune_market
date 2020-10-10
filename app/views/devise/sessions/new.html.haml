@@ -1,8 +1,5 @@
 .regist-display
-  %header.user_regist-header
-    %h1.user_regist-header__title
-      = link_to root_path do
-        = image_tag "logo/logo.png", width: "185px", hight: "49px"
+  = render 'devise/registrations/user_regist_header'
   .user_regist-main
     %section.user_regist-main__center
       %h2.section__header
