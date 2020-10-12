@@ -1,31 +1,86 @@
 *{
   box-sizing: border-box;
 }
-
 .exhibit{  
   text-align: center;
   background-color: #f5f5f5;
   width: 100vw;
-  height: 100%;
-  
+  height: auto;
+  margin-bottom: 40px;
+  &__image {
+    padding: 30px 50px 0px 50px;
+    &__title {
+      font-weight: bold;
+      padding-bottom: 10px;
+      display: flex;
+      .optional {
+        background-color: grey;
+      }
+    }
+    &__text {
+      font-size: 15px;
+      padding-bottom: 10px;
+    }
+    &__upload {
+      height: 170px;
+      width: 600px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      .previews {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        &__field {
+          padding: 0px 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: center;
+        }
+      }
+      .area{
+        width: 100%;
+        .field {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          .file {
+            width: 80px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 0px 15px;
+            position:relative;
+            &__image {
+              position:absolute;
+              top:0;
+              left:0;
+              display: none;
+            }
+            .icon {
+              height: 110px;
+              width: 110px;
+              color: aqua;
+              font-size: 50px;
+              text-align: center;
+              background-color: rgb(245, 245, 245);
+              border-style: solid;
+              border-radius: 5px;
+              padding: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
   &__single-container{
     background-color: white;
     width: 700px;
     height: 100%;
     margin: 0 auto;
-  }
-  &__item-images{
-    padding: 40px 40px 0 40px;
-    width: 100%;
-    
-  }
-  &__single-head{
-    padding: 32px 16px;
-    font-size: 22px;
-    text-align: center;
-    line-height: 1.5;
-    color: black;
-    border-bottom: 2px solid #C0C0C0;
   }
   &__sell-upload-head{
     font-size: 16px;
@@ -71,75 +126,6 @@
     margin: 8px 0 0;
     line-height: 1.5;
   }
-  
-  #image-box-1{
-    flex-wrap: wrap;
-  }
-  .item-box{
-    display: block;
-    height: 100px;
-    background-color: #C0C0C0;
-    margin: 16px 0 0 0  ;
-    border: 2px dotted #888888;
-    word-wrap: break-all;
-    text-align: center;
-    font-size: 30px;
-  }
-  .item-num-0{
-    width: 620px;
-  }
-  .item-num-1{
-    width: 491px;
-  }
-  .item-num-2{
-    width: 363px;
-  }
-  .item-num-3{
-    width: 234px;
-  }
-  .item-num-4{
-    width: 106px;
-  }
-  //下段のfile_field
-  .item-num-5{
-    width: 100%;
-  }
-  .item-num-6{
-    width: 491px;
-  }
-  .item-num-7{
-    width: 363px;
-  }
-  .item-num-8{
-    width: 234px;
-  }
-  .item-num-9{
-    width: 106px;
-  }
-  &__sell-upload-items-container{
-    width: 100%;
-    height: 100%;
-  }
-  &__sell-upload-drop-box{
-    height: 100%;
-    width: 100%;
-    margin-left: 0;
-    float: right;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    input{
-      touch-action: manipulation;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-      display: none;
-    }
-    pre{
-      text-align: center;
-      font-size: 14px;
-    }
-  }
   &__no-image{
     margin-top: 16px;
      color: red;
@@ -154,7 +140,6 @@
     height: 72px;
     input{
       height: 45px;
-      border-radius: 5px;
       width: 100%;
     }
     textarea{
@@ -199,6 +184,7 @@
     float: right;
   }
   &__select-wrap{
+    text-align: initial;
     margin: 8px 0 0;
     position: relative;
   }
@@ -210,6 +196,10 @@
     text-decoration: none;
   }
   .brand-select{
+    width: 100%;
+    height: 50px;
+  }
+  .size-select{
     width: 100%;
     height: 50px;
   }
@@ -227,15 +217,9 @@
    }
    &__item-price{
      width: 100%;
-     height: 550px;
-     padding: 10px 40px 64px;
+     height: 450px;
+     padding: 10px 40px ;
    }
-   .tk-value{
-     font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4em;
-    margin-bottom: 24px;
-  }
   &__tk-selling-price{
     width: 100%;
     height: 200px;
@@ -281,7 +265,7 @@
     box-sizing: content-box;
     height: 46px;
   }
-  &__commision-box{
+  &__commission-box{
     width: 100%;
     height: 100%;
     display: flex;
@@ -302,17 +286,15 @@
     font-size: 17px;
     min-height: 48px;
     padding-top: 10px;
-    background-color: red;
+    background-color: #3ccace;
     border-radius: 5px;
-    color: #fff;
-    margin-bottom: 15px;
+    color: black;
+    margin-bottom: 20px;
     display: block;
     text-align: center;
+    padding-bottom: 10px;
   }
   .note{
     font-size: 12px;
   }
-}
-.exhibit__sell-up-load-head {
-  font-weight: bold;
 }
