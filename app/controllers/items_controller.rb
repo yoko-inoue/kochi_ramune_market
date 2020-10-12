@@ -48,6 +48,18 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def purchase
+    @item = Item.find(params[:id]) #追加
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer_token = current_user.card.customer_token
+    Payjp::Charge.create(
+      amount: @item.price, # 商品の値段
+      customer: customer_token, # 顧客のトークン
+      currency: 'jpy'  # 通貨の種類
+    )
+    redirect_to item_path(@item)
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :price, :introduction, :prefecture_id, 
