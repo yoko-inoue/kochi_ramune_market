@@ -4,6 +4,29 @@
   @import 'mixin/flex_align-c';
   @import 'mixin/opacity';
   @import 'mixin/underline';
+  .items-box_photo__sold{
+    width: 0;
+    height: 0;
+    border-width: 120px 120px 0 0;
+    border-color: #ea352d transparent transparent transparent;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-style: solid;
+    &__inner{
+      top: -90px;
+      font-size: 30px;
+      position: absolute;
+      left: 0;
+      z-index: 2;
+      color: #fff;
+      transform: rotate(-45deg);
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+  }
   .Main{
     width: 100%;
     height: 100%;
@@ -274,4 +297,109 @@
       }
     }
   }
+  .itemLists {
+    display: flex;
+    width: auto;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    justify-content: center;
+    margin: 20px 300px;
+
+    .itemContent {
+      margin: 10px 0 10px;
+      display: block;
+      margin: 24px 0 8px;
+      color: #3CCACE;
+      text-decoration: none;
+      position: relative;
+      &__image {
+        height: 150px;
+        margin: 0;
+        z-index: auto;
+          img {
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+      &__info {
+        background-color: white;
+        color: #333;
+        padding: 16px;
+          .shipping {
+            font-size: 13px;
+            color: gray;
+          }
+      }
+    }
+
+    .itemContent:hover{
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+  }
+}
+    
+  .akaiba{
+    height: 60vh;
+    width: 100%;
+    background-color: #f8f8f8;
+    padding-top: 20px;
+      .head{
+        font-size: 28px;
+        line-height: 1.4;
+        font-weight: bold;
+        text-align: center;
+      }
+      .title{
+        font-size: 25px;
+        font-weight: bold;
+        color: #3CCACE;
+        text-align: center;
+      }
+  
+  .itemLists {
+    display: flex;
+    width: auto;
+    background-color: white;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    justify-content: center;
+    margin: 20px 300px;
+
+
+    .itemContent {
+      margin: 10px 0 10px;
+      display: block;
+      margin: 24px 0 8px;
+      text-decoration: none;
+      &__image {
+        height: 150px;
+        overflow: hidden;
+        margin: 0;
+        z-index: auto;
+          img {
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+      &__info {
+        background-color: white;
+        color: #333;
+        padding: 16px
+          
+      }
+    }
+    .itemContent:hover{
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
 }
