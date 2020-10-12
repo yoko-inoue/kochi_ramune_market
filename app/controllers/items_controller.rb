@@ -36,17 +36,6 @@ class ItemsController < ApplicationController
       @item.images.new
       return render new_item_path
     end
-    # respond_to do |format|
-    #   if @item.save!
-    #     params[:i]['image_url'].each do |image|
-    #       @item.images.create(image: image_url, item_id: @item.id)
-    #     end
-    #     format.html{redirect_to root_path}
-    #   else
-    #     @item.images.build
-    #     format.html{render action: 'new'}
-    #   end
-    # end
   end
 
   def destroy
