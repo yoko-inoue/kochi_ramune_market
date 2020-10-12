@@ -14,7 +14,7 @@
           .previews
             - if @item.persisted?
               = @item.images.each_with_index do |image, i|
-                = image_tag image.image_url.url, data: { index: i }, width: "100", height: '100'
+                = image_tag image.image_url.url, data: { index: i }, width: "150", height: '150'
           .area
             = f.fields_for :images do |i|
               .field

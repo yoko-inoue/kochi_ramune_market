@@ -76,8 +76,42 @@
     .Main__category__box
       .Main__category__box__head
         = link_to "新規投稿商品", "#", class: "title"
+      .itemLists
+        - @new_items.each do |item|
+          .itemContent
+            %figure.itemContent__image
+              = link_to image_tag(item.images[0].image_url.url, class:"img"), item_path(item.id)
+                -if item.buyer_id.present? 
+                .items-box_photo__sold
+                  .items-box_photo__sold__inner SOLD
+            .itemContent__info
+              %h3.name
+                = item.name
+              %ul
+                %li 
+                  = item.price 
+                  円
+              %p.shipping 
+                = item.postage_payer.name
   .Main__category
     %h2 ピックアップブランド
     .Main__category__box
       .Main__category__box__head
         = link_to "アーカイバ", "#", class: "title"
+      .itemLists
+        - @new_items.each do |item|
+          .itemContent
+            %figure.itemContent__image
+              = link_to image_tag(item.images[0].image_url.url, class:"img"), item_path(item.id)
+                -if item.buyer_id.present? 
+                .items-box_photo__sold
+                  .items-box_photo__sold__inner SOLD
+            .itemContent__info
+              %h3.name
+                = item.name
+              %ul
+                %li 
+                  = item.price 
+                  円
+              %p.shipping 
+                = item.postage_payer.name

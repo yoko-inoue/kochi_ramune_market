@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   def index
     @items_category = Item.where("buyer_id IS NULL AND trading_status = 0 AND category_id < 200").order(created_at: "DESC")
     @items_brand = Item.where("buyer_id IS NULL AND  trading_status = 0 AND brand_id = 1").order(created_at: "DESC")
+    @new_items = Item.last(5)
   end
 
   def new
