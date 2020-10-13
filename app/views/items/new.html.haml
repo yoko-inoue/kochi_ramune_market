@@ -6,8 +6,8 @@
         .exhibit__image__title
           .exhibit__select-wrap
             = f.label :image_id, "出品画像" ,class: "exhibit__sell-up-load-head"
-          .exhibit__form-require
-            必須
+            %span.exhibit__form-require
+              必須
         .exhibit__image__text
           最大5枚までアップロードできます
         .exhibit__image__upload
@@ -29,12 +29,12 @@
           商品の詳細
         .exhibit__show-form-box
           .exhibit__tk-form-group
-            .exhibit__select-wrap
-              = f.label :category_id, "カテゴリー" ,class: "exhibit__sell-up-load-head"
+            .exhibit__sell-upload-head
+              = f.label :category_id, "カテゴリー"
               %span.exhibit__form-require
                 必須
-              .sell__about__right__wrap-box.parent
-                = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "---"}, required: true, class: "select-category", id: "parent-category"
+            .exhibit__select-wrap
+              = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "選択してください"}, required: true, class: "select-category", id: "parent-category"
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :ブランド
@@ -56,7 +56,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :condition_id, Condition.all, :id, :name, {include_blank: "---"}
+                = f.collection_select :condition_id, Condition.all, :id, :name, {include_blank: "選択してください"}
               .exhibit__no-product.no-product4
       /商品名と説明
       .exhibit__item-name-detail
@@ -64,10 +64,11 @@
           商品名と説明
         .exhibit__show-form-box
           .exhibit__form-group
-            .exhibit__select-wrap
-              = f.label :name, "商品名" ,class: "exhibit__sell-up-load-head"
+            .exhibit__sell-upload-head
+              = f.label :name, "商品名" 
               %span.exhibit__form-require
                 必須
+            .exhibit__select-wrap
               = f.text_field :name ,class: "input-default" ,placeholder: "商品名（必須 40文字まで)"
               .exhibit__no-product.no-product5
           .exhibit__form-group
@@ -77,7 +78,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.text_area :introduction, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe
+                = f.text_area :introduction, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe
           .exhibit__no-product.no-product2
       /配送方法
       .exhibit__item-postage
@@ -87,10 +88,10 @@
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :postage_payer_id,"配送料の負担"
-              %apan.exhibit__form-require
+              %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {include_blank: "---"}
+              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {include_blank: "選択してください"}
               .exhibit__no-product.no-product5
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
@@ -99,7 +100,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :postage_type_id, PostageType.all, :id, :name, {include_blank: "---"}
+                = f.collection_select :postage_type_id, PostageType.all, :id, :name, {include_blank: "選択してください"}
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               発送元の地域
@@ -107,14 +108,14 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"}
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :preparation_day,"発送までの日数"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {include_blank: "---"}
+              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {include_blank: "選択してください"}
               .exhibit__no-product.no-product7
 
 
@@ -154,3 +155,4 @@
             = link_to('戻る', root_path)
         %p.note
           禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
+  = render "devise/registrations/user_regist_footer"
