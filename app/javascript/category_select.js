@@ -39,7 +39,7 @@ document.addEventListener('turbolinks:load', function () {
     }
   }
   
-  $(".sell__about__right__wrap-box.parent").on("change", ".select-category", function () { 
+  $(".exhibit__select-wrap").on("change", ".select-category", function () { 
     const category_id = $(this).val();
     $.ajax({
       url: '/api/categories', 

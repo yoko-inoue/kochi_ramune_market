@@ -1,5 +1,4 @@
 * {
-  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
   box-sizing: border-box;
   @import 'mixin/flex_align-c';
   @import 'mixin/opacity';
@@ -28,6 +27,7 @@
     }
   }
   .Main{
+    min-width: 1200px;
     width: 100%;
     height: 100%;
     padding-bottom: 80px;
@@ -314,35 +314,47 @@
       color: #3CCACE;
       text-decoration: none;
       position: relative;
-      &__image {
-        height: 150px;
-        margin: 0;
-        z-index: auto;
-          img {
-          z-index: auto;
+        &__image {
           height: 150px;
-          object-fit: cover;
+          margin: 0;
+          z-index: auto;
+            img {
+            z-index: auto;
+            height: 150px;
+            object-fit: cover;
+          }
         }
+      .itemContent a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-indent:-999px;
+        z-index: 2;
+        text-decoration: none;
       }
-      &__info {
-        background-color: white;
-        color: #333;
-        padding: 16px;
+        &__info {
+          background-color: white;
+          color: #333;
+          padding: 16px;
           .shipping {
             font-size: 13px;
             color: gray;
           }
-      }
+        }
     }
-
     .itemContent:hover{
       opacity: 0.5;
       cursor: pointer;
     }
-
   }
 }
     
+
+
+
+
   .akaiba{
     height: 60vh;
     width: 100%;
@@ -372,7 +384,6 @@
     justify-content: center;
     margin: 20px 300px;
 
-
     .itemContent {
       margin: 10px 0 10px;
       display: block;
@@ -389,15 +400,24 @@
           object-fit: cover;
         }
       }
+      a{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-indent:-999px;
+        z-index: 2;
+        text-decoration: none;
+      }
       &__info {
         background-color: white;
         color: #333;
-        padding: 16px
-          
+        padding: 16px;
       }
     }
     .itemContent:hover{
-      opacity: 0.5;
+      opacity: 0.1;
       cursor: pointer;
     }
   }

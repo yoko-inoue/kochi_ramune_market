@@ -31,11 +31,19 @@ class ItemsController < ApplicationController
   def create
     createCategoryId()
     @item = Item.new(item_params)
-    if @item.valid? && @item.save
+    if params[:item][:images_attributes] != nil
+      if !@item.save
+        flash.now[:alert] = '入力必須項目に入力してください'
+        if @item[:price] < 1
+          flash.now[:alert] = '金額は1以上を入力してください'
+        end
+        render new_item_path
+      end
       redirect_to root_path
-    else 
-      @item.images.new
-      return render new_item_path
+    else
+      flash.now[:alert] = '画像を追加してください'
+      @item.images.build
+      render new_item_path
     end
   end
 
