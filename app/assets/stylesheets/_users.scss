@@ -13,34 +13,6 @@
   box-sizing: border-box;
   background-color: white;
 
-
-  &__side {
-    width: 250px;
-    height: 100%;
-    &__menu{
-      width: 100%;
-      height: 40px;
-      margin-top: 8px;
-      border: none;
-      cursor: pointer;
-      background-color: #ffffff;
-      .link {
-        text-decoration: none;
-        color: #000000;
-        font-size: 18px;
-        line-height: 40px;
-        font-size: 14px;
-        display: block;
-        padding-left: 10px;
-        border-radius: 4px;
-        
-        &:hover {
-          background-color: #3ccace;
-          color: #fff;
-        }
-      }
-    }
-  }
   &__body {
     width: calc(100% - 250px);
     background-color: #ffffff;
@@ -87,14 +59,18 @@
         }
       }
     }
-
+    .User__body
+    &__subtitle{
+      font-weight: bold;
+      font-size: 20px;
+    }
     &__lists {
       margin: 10px auto;
       display: flex;
       justify-content: center;
       padding-left: 20px;
   
-      &__list{
+      .itemList{
         width: 220px;
         height: 230px;
         display: inline-block;

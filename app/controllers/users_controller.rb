@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @new_items = Item.last(5)
   end
 
   def edit
