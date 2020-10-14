@@ -1,5 +1,5 @@
 .detail_body {
-  height: auto;
+    height: auto;
   background-color: #f5f5f5;
   padding-top: 40px;
   a {
@@ -18,10 +18,6 @@
     .cf:before, .cf:after {     //floatによるビュー崩れを無くす（clearfx）
       content:"";
       display:table
-    }
-    .img1{
-      height: 200px;
-      width: 300px;
     }
     .cf:after { clear:both }
     .cf { zoom:1 }
@@ -44,7 +40,7 @@
       margin: 16px 0;
       .item_photo {
         background-color: #fafafa;
-        min-height: 234px;
+        min-height: 375px;
         max-width: 300px;
         min-width: 300px;
         float: left;
@@ -203,6 +199,54 @@
   }
 }
 
+
+
+
+.itemLists {
+  display: flex;
+  width:autp;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+  justify-content: center;
+  margin: 20px 300px;
+
+  .itemContent {
+    margin: 10px 0 10px;
+    display: block;
+    margin: 24px 0 8px;
+    color: #3CCACE;
+    text-decoration: none;
+    position: relative;
+    a{
+      text-decoration: none;
+    }
+      &__image {
+        height: 150px;
+        margin: 0;
+        z-index: auto;
+          img {
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+      &__info {
+        background-color: white;
+        color: #333;
+        padding: 16px;
+        .shipping {
+          font-size: 13px;
+          color: gray;
+        }
+      }
+  }
+  .itemContent:hover{
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
 
 //// 購入確認画面のcss
 

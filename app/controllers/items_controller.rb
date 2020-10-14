@@ -28,14 +28,17 @@ class ItemsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+
   def create
     createCategoryId()
     @item = Item.new(item_params)
+    binding.pry
     if params[:item][:images_attributes] != nil
-      redirect_to root_path
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
-        if @item[:price] < 1
+        if @item[:price] == nil
+          flash.now[:alert] = '金額を入力してください'
+        elsif @item[:price] < 1
           flash.now[:alert] = '金額は300以上を入力してください'
         end
           render new_item_path
@@ -50,19 +53,11 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @category_id = @item.category_id
-    # if @category_id_grandchild != nil
-    #   @category_parent = Category.find(@category_id).parent.parent
-    # end
-    # if @category_id_child != nil
-    #   @category_child = Category.find(@category_id).parent
-    # end
-    # if
-    #   @category_grandchild = Category.find(@category_id)
-    # end
-    @category_parent = Category.find(@category_id).parent.parent
+    @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
     @new_items = Item.last(3)
+    @items = Item.category_sorce(@item.category,@item.id).last(3)
   end
 
   def destroy
@@ -82,19 +77,17 @@ class ItemsController < ApplicationController
   end
 
   def createCategoryId
-
-    if params[:item][:category_grand_child] != nil
+    if params[:item][:category_grand_child] != "grand_child"
       @category_id_grandchild = params[:item][:category_grand_child]
       @category_id = @category_id_grandchild
-    elsif params[:item][:category_grand_child] == "grand_child"
+    elsif params[:item][:category_child] != "child"
       @category_id_child = params[:item][:category_child]
       @category_id = @category_id_child
     else
       @category_id_parent = params[:item][:category_id]
       @category_id = @category_id_parent
     end
-
-    
   end
 
+  
 end

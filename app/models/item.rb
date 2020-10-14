@@ -28,5 +28,47 @@ class Item < ApplicationRecord
       errors.add(:images, "画像は５枚まで添付可能です")
     end
   end
+
+  def self.parentCategory(item)
+    if item.ancestry == nil then
+      ancestryNumber = item.id
+    else
+      if item.ancestry.count("/") == 0 then
+        ancestryNumber = item.parent_id
+      else
+        ancestryNumber = item.parent.parent_id
+      end
+    end
+    return ancestryNumber
+  end
+
+
+  def self.category_sorce(item,currentItemId)
+    ancestryNumber = self.parentCategory(item)
+
+    items = Item.all
+    itembox = []
+
+    items.each do |iteminformation|
+      if iteminformation.category.ancestry == nil then
+        if iteminformation.category.id == ancestryNumber then
+          itembox << iteminformation
+        end
+      elsif iteminformation.category.ancestry.count("/") == 0 then
+        if iteminformation.category.parent_id == ancestryNumber then
+          itembox << iteminformation
+        end
+      else
+        if iteminformation.category.parent.parent_id == ancestryNumber then
+          itembox << iteminformation
+        end
+      end
+    end
+    itembox.delete_if{|item|
+      item.id == currentItemId
+    }
+    return itembox
+  end
+  
 end
 
