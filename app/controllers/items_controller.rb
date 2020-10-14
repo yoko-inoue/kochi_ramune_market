@@ -32,19 +32,37 @@ class ItemsController < ApplicationController
     createCategoryId()
     @item = Item.new(item_params)
     if params[:item][:images_attributes] != nil
+      redirect_to root_path
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
         if @item[:price] < 1
-          flash.now[:alert] = '金額は1以上を入力してください'
+          flash.now[:alert] = '金額は300以上を入力してください'
         end
-        render new_item_path
+          render new_item_path
       end
-      redirect_to root_path
     else
       flash.now[:alert] = '画像を追加してください'
       @item.images.build
       render new_item_path
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
+    @category_id = @item.category_id
+    # if @category_id_grandchild != nil
+    #   @category_parent = Category.find(@category_id).parent.parent
+    # end
+    # if @category_id_child != nil
+    #   @category_child = Category.find(@category_id).parent
+    # end
+    # if
+    #   @category_grandchild = Category.find(@category_id)
+    # end
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
+    @new_items = Item.last(3)
   end
 
   def destroy
@@ -59,18 +77,24 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :price, :introduction, :prefecture_id, 
-      :category_id, :condition_id, :postage_payer_id,:postage_type_id, :brand_name, :size,
-      :preparation_day_id, images_attributes: [:image_url, :id, :_destroy ]).merge(user_id: current_user.id)
+      :condition_id, :postage_payer_id,:postage_type_id, :brand_name, :size,
+      :preparation_day_id, images_attributes: [:image_url, :id, :_destroy ]).merge(category_id: @category_id, user_id: current_user.id)
   end
 
   def createCategoryId
-    if params[:item][:category_child] == nil || params[:item][:category_child] == "child"
-      @category_id = params[:item][:category_id]
-    elsif params[:item][:category_grandchild] == "grandchild"
-      @category_id = params[:item][:category_id_child]
+
+    if params[:item][:category_grand_child] != nil
+      @category_id_grandchild = params[:item][:category_grand_child]
+      @category_id = @category_id_grandchild
+    elsif params[:item][:category_grand_child] == "grand_child"
+      @category_id_child = params[:item][:category_child]
+      @category_id = @category_id_child
     else
-      @category_id = params[:item][:category_id_grandchild]
+      @category_id_parent = params[:item][:category_id]
+      @category_id = @category_id_parent
     end
+
+    
   end
 
 end

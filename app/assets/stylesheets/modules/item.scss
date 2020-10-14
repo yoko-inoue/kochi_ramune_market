@@ -19,6 +19,10 @@
       content:"";
       display:table
     }
+    .img1{
+      height: 200px;
+      width: 300px;
+    }
     .cf:after { clear:both }
     .cf { zoom:1 }
     &__header {
@@ -40,7 +44,7 @@
       margin: 16px 0;
       .item_photo {
         background-color: #fafafa;
-        min-height: 375px;
+        min-height: 234px;
         max-width: 300px;
         min-width: 300px;
         float: left;
@@ -99,6 +103,17 @@
     .buy_btn {
       text-align: center;
       background-color: red;
+      font-size: 25px;
+      line-height: 60px;
+      font-weight: bold;
+      margin-top: 20px;
+      a {
+        color: white;
+      }
+    }
+    .buy_btn2 {
+      text-align: center;
+      background-color: rgb(147, 218, 40);
       font-size: 25px;
       line-height: 60px;
       font-weight: bold;
