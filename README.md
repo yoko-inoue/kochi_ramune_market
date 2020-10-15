@@ -55,26 +55,6 @@
 ### Association
 - belongs_to :user
 
-## user_Evaluationテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|reference|null: false, foreign_key: true|
-|item_id|reference|null: false, foreign_key: true|
-|review|text|null: false|
-
-### Association
-- belongs_to :user
-- belongs_to :item
-
-## TO_DO_listテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|reference|null: false, foreign_key: true|
-|list|text||
-
-### Association
-- belongs_to :user
-
 ## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
