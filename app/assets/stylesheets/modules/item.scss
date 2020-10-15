@@ -9,6 +9,19 @@
   .font-color_blue {
     color: #38aef0;
   }
+  .font-color_blue:hover{
+    opacity: 0.7;
+    cursor: pointer;
+    text-decoration: underline;
+    border-bottom: 2px solid #38aef0
+  }
+  .font-color_blue1 {
+    color: #38aef0;
+  }
+  .font-color_blue1:hover{
+    opacity: 0.7;
+    cursor: pointer;
+  }
   .item_section {
     height: auto;
     width: 720px;
@@ -104,6 +117,7 @@
       font-weight: bold;
       margin-top: 20px;
       a {
+        display:block;
         color: white;
       }
     }
@@ -115,6 +129,19 @@
       font-weight: bold;
       margin-top: 20px;
       a {
+        display:block;
+        color: white;
+      }
+    }
+    .buy_btn3 {
+      text-align: center;
+      background-color: rgb(128, 128, 128);
+      font-size: 25px;
+      line-height: 60px;
+      font-weight: bold;
+      margin-top: 20px;
+      a {
+        display:block;
         color: white;
       }
     }
@@ -146,6 +173,10 @@
         }
       }
     }
+  }
+  .icon-hover:hover{
+    opacity: 0.7;
+    cursor: pointer;
   }
 
   .items_user {

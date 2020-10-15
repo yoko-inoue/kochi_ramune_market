@@ -34,7 +34,7 @@
         %tr
           %th 出品者
           %td 
-            = @item.user.nickname
+            = link_to "#{@item.user.nickname}","#", class: "font-color_blue1"
         %tr
           %th カテゴリー
           %td 
@@ -65,7 +65,7 @@
         %tr
           %th ブランド
           %td 
-            = @item.brand_name
+            =link_to "#{@item.brand_name}", "#"
         %tr
           %th サイズ
           %td 
@@ -98,10 +98,18 @@
       %span.item-shipping-fee 
         =@item.postage_payer.name
     -if user_signed_in?
-      -if @item.user.id != current_user.id
-        .buy_btn 
-          = link_to "購入画面に進む", buycheck_items_path
-      -else 
+      -if @item.buyer_id != nil
+        .buy_btn3
+          = link_to "売り切れました",root_path
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
+      -elsif @item.user.id == current_user.id
         .buy_btn2
           = link_to "商品の情報を編集する","#", data: {"turbolinks" => false}
         .item_info
@@ -109,46 +117,56 @@
             =@item.introduction
         .item_container
           .item_container__right
-            = link_to "あんしん・あんぜんへの取り組み", "#", class: "font-color_blue"
-    -else
-      .buy_btn 
-        = link_to "購入画面に進む", buycheck_items_path
+            = link_to "#", class: "font-color_blue1" do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
+      -else
+        .buy_btn 
+          = link_to "購入画面に進む", buycheck_items_path
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
 
   .sns_link
     %ul
       %li 
-        = link_to "#" do
+        = link_to "#", class:"icon-hover" do
           = icon("fab", "facebook-square", style: "color:royalblue;")
       %li 
-        = link_to "#" do
+        = link_to "#", class:"icon-hover" do
           = icon("fab", "twitter-square", style: "color:#1DA1F2;")
       %li 
-        = link_to "#" do
+        = link_to "#", class:"icon-hover" do
           = icon("fab", "pinterest-square", style: "color:#BD081C;")
+  -# .items_user
+  -#   %h2.items_user__name
+  -#     = link_to "#{@item.user.nickname}さんのその他の商品", "#", class: "font-color_blue"
+  -#   .itemLists
+  -#     - @new_items.each do |item|
+  -#       .itemContent
+  -#         =link_to item_path(item.id) , data: {"turbolinks" => false} do
+  -#           -if item.buyer_id.present? 
+  -#             .items-box_photo__sold
+  -#               .items-box_photo__sold__inner SOLD
+  -#           %figure.itemContent__image
+  -#             =image_tag item.images[0].image_url.url, class:"img"
+  -#           .itemContent__info
+  -#             %h3.name
+  -#               = item.name
+  -#             %ul
+  -#               %li 
+  -#                 = item.price 
+  -#                 円
+  -#             %p.shipping 
+  -#               = item.postage_payer.name
   .items_user
     %h2.items_user__name
-      = link_to "#{@item.user.nickname}さんの商品", "#", class: "font-color_blue"
-    .itemLists
-      - @new_items.each do |item|
-        .itemContent
-          =link_to item_path(item.id) , data: {"turbolinks" => false} do
-            -if item.buyer_id.present? 
-              .items-box_photo__sold
-                .items-box_photo__sold__inner SOLD
-            %figure.itemContent__image
-              =image_tag item.images[0].image_url.url, class:"img"
-            .itemContent__info
-              %h3.name
-                = item.name
-              %ul
-                %li 
-                  = item.price 
-                  円
-              %p.shipping 
-                = item.postage_payer.name
-  .items_user
-    %h2.items_user__name
-      = link_to "#{@category_parent.name}をもっと見る", "#", class: "font-color_blue"
+      = link_to "#{@category_parent.name} その他の出品", "#", class: "font-color_blue"
     .itemLists
       - @items.each do |item|
         .itemContent

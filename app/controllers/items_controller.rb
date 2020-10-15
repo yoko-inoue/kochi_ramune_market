@@ -56,6 +56,7 @@ class ItemsController < ApplicationController
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
+    @new_items_user = Item.find(current_user.id)
     @new_items = Item.last(3)
     @items = Item.category_sorce(@item.category,@item.id).last(3)
   end
