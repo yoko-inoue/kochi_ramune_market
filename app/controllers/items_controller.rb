@@ -32,7 +32,6 @@ class ItemsController < ApplicationController
   def create
     createCategoryId()
     @item = Item.new(item_params)
-    binding.pry
     if params[:item][:images_attributes] != nil
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
