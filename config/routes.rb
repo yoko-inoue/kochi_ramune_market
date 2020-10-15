@@ -13,8 +13,13 @@ Rails.application.routes.draw do
 
   root 'items#index'
   resources :items, only: [:index, :new, :create, :show] do
-    collection do
+    member do
+      # get "purchase_confirmation"
       get 'buycheck'
+      post "purchase"
+    end
+    collection do
+      # get 'buycheck'
       get 'get_category_child', to: 'items#get_category_child', defaults: { format: 'json' }
       get 'get_category_grandchild', to: 'items#get_category_grandchild', defaults: { format: 'json' }
     end

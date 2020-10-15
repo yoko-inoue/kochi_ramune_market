@@ -4,7 +4,13 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = Card.new
+    if signed_in?
+      @card = Card.new
+      card = Card.where(user_id: current_user.id)
+      redirect_to action: "index" if card.present?
+    else 
+      redirect_to root_path
+    end
   end
 
   def create
@@ -22,11 +28,15 @@ class CardsController < ApplicationController
 
   def destroy
     card = current_user.card
-  
     if card.destroy
       redirect_to cards_path
     else
       redirect_to cards_path
     end
+  end
+
+  private
+  def set_card
+    @card = Card.find_by(user_id: current_user.id)
   end
 end

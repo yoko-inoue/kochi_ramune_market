@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :buycheck, :buy, :purchase]
   def index
     @new_items = Item.last(5)
   end
@@ -59,7 +60,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @category_id = @item.category_id
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
@@ -74,7 +74,18 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @item = Item.find(params[:id])
+  end
+
+  def purchase
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer_token = current_user.card.customer_token
+    Payjp::Charge.create(
+      amount: @item.price, # 商品の値段
+      customer: customer_token, # 顧客のトークン
+      currency: 'jpy'  # 通貨の種類
+    )
+    @item_buyer_id= Item.find(params[:id])
+    @item_buyer_id.update( buyer_id: current_user.id)
   end
 
   private
@@ -96,4 +107,10 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
+  private
+  def set_item
+    @items = Item.find(params[:id])
+  end
+
+  
 end

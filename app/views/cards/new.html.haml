@@ -29,7 +29,7 @@
                 必須
             %b
             = f.select :exp_month, 1..12, {include_blank: "---"}, id: "exp_month_form"
-            = f.select :exp_year, [[20, 2020], [21, 2021], [22, 2022], [23, 2023], [24, 2024], [25, 2025]], {include_blank: "---"}, id: "exp_year_form"
+            = f.select :exp_year, [[20, 2020], [21, 2021], [22, 2022], [23, 2023], [24, 2024], [25, 2025], [26, 2026], [27, 2027], [28, 2028], [29, 2029], [30, 2030]], {include_blank: "---"}, id: "exp_year_form"
             .Card__cvc
               = f.label :cvc, "セキュリティコード"
               .Required
