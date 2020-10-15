@@ -4,7 +4,13 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = Card.new
+    if signed_in?
+      @card = Card.new
+      card = Card.where(user_id: current_user.id)
+      redirect_to action: "index" if card.exists?
+    else 
+      redirect_to root_path
+    end
   end
 
   def create

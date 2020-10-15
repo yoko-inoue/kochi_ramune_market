@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @new_items = Item.last(5)
+    @new_items = Item.last(3)
   end
 
   def edit

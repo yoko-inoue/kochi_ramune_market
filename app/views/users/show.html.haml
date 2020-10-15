@@ -1,5 +1,5 @@
 = render 'items/header'
-= render 'items/btn'
+
 - if user_signed_in?
   .Usergray
     .User
@@ -23,23 +23,24 @@
         .User__body__subtitle
           最近出品した商品
         .User__body__lists
-          .itemLists
+          .item-Lists
             - @new_items.each do |item|
               .itemContent
-                %figure.itemContent__image
-                  = link_to image_tag(item.images[0].image_url.url, class:"img"), item_path(item.id)
-                    -if item.buyer_id.present? 
+                =link_to item_path(item.id) , data: {"turbolinks" => false} do
+                  -if item.buyer_id.present? 
                     .items-box_photo__sold
                       .items-box_photo__sold__inner SOLD
-                .itemContent__info
-                  %h3.name
-                    = item.name
-                  %ul
-                    %li 
-                      = item.price 
-                      円
-                  %p.shipping 
-                    = item.postage_payer.name          
+                  %figure.item-Content__image
+                    =image_tag item.images[0].image_url.url, class:"img"
+                  .itemContent__info
+                    %h3.name
+                      = item.name
+                    %ul
+                      %li 
+                        = item.price 
+                        円
+                    %p.shipping 
+                      = item.postage_payer.name
 -else
   .Done#fullsize
     .Done__title
@@ -51,3 +52,4 @@
     .Done__backlink
       = link_to 'トップページへ戻る', root_path, class: 'link'
 = render 'items/footer'
+= render 'items/btn'

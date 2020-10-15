@@ -6,7 +6,7 @@
 .User {
   width: 100%;
   max-width: 1040px;
-  height: 90vh;
+  height: 100%;
   margin: 0 auto;
   padding: 20px 0px;
   display: flex;
@@ -59,38 +59,36 @@
         }
       }
     }
-    .User__body
     &__subtitle{
       font-weight: bold;
       font-size: 20px;
     }
     &__lists {
-      margin: 10px auto;
       display: flex;
-      justify-content: center;
-      padding-left: 20px;
-  
-      .itemList{
+      justify-content: flex-start;
+      a{
+      text-decoration: none;
+      }
+      .item-Lists{
         width: 220px;
         height: 230px;
         display: inline-block;
-        @include opacity();
         position: relative;
         margin-right: 20px;
-        
-        a{
+        display: flex;
+
+        .itemContent{
           background-color: #fff;
           display: inline-block;
-          text-decoration: none;
           position: relative;
-  
+
           figure{
-            width: 220px;
+            width: 200px;
             height: 150px;
             position: relative;
             overflow: hidden;
-            margin: 0;
             z-index: auto;
+            margin: 0;
   
             img{
               position: absolute;
@@ -105,7 +103,11 @@
             }
           }
         }
-        .List__body{
+        .itemContent:hover{
+          opacity: 0.5;
+          cursor: pointer;
+        }
+        .itemContent__info{
           color:#333;
           padding: 16px;
           height: 80px;
@@ -118,54 +120,43 @@
             text-align: left;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-weight: bold;
           }
         }
-        .List__price{
+        ul{
+          @include flex_align-c();
+          justify-content: space-between;
+          list-style: none;
           font-size: 16px;
           color: #333333;
-          ul{
-            @include flex_align-c();
-            justify-content: space-between;
-            list-style: none;
-            li{
-              color: #333333;
-              .fas{
-                display: inline-block;
-                font-size: inherit;
-                text-rendering: auto;
-                -webkit-font-smoothing: antialiased;
-                font: normal normal normal 14px/1 "Font Awesome 5 Free";
-                &::before{
-                  content: "\f005";
-                }
-              }
-            }
-          }
-          p{
-            font-size: 10px;
-            text-align: left;
-            color: #333333;
-            font-weight: normal;
-          }
         }
-        .List__sold{
+        p{
+          font-size: 10px;
+          text-align: left;
+          color: #333333;
+          font-weight: normal;
+        }
+        .items-box_photo__sold{
           width: 0;
           height: 0;
-          border-top: 40px solid #3ccace;
-          border-right: 40px solid transparent;
-          border-bottom: 40px solid transparent;
-          border-left: 40px solid #3ccace;
-          z-index:100;
+          border-width: 120px 120px 0 0;
+          border-color: #ea352d transparent transparent transparent;
+          display: block;
           position: absolute;
-          top: 0px;
-          left: 0px;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          border-style: solid;
           &__inner{
+            top: -90px;
+            font-size: 30px;
+            position: absolute;
+            left: 0;
+            z-index: 2;
             color: #fff;
             transform: rotate(-45deg);
-            font-size: 20px;
-            margin:-16px 0px 0px -32px;
             letter-spacing: 2px;
-            font-weight: bold;
+            font-weight: 600;
           }
         }
       }

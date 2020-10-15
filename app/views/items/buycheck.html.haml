@@ -8,17 +8,21 @@
         = image_tag "icon/icon-01.png", class: "item_image"
       .item-info__detial
         .item-info__detial__name
-          ルイヴィトン
+          .field
+            = @item.name
         .item-info__detial__fee
           %span.item-info__shipping 送料込み
           %span.item-info__tax（税込）
-          %span.item-info__price ¥30000
+          %span.item-info__price 
+            .field
+              ¥#{@item.price}
     .buy-check_section__item-fee
       .item-payment-amount
         .item-payment-amount__left
           支払い金額
         .item-payment-amount__right
-          ¥30000
+          .field
+            ¥#{@item.price}
     .buy-check_section__item-MethodOfPayment
       .MethodOfPayment
         支払い方法
@@ -57,7 +61,7 @@
           フリマ星人
     .buy-check_section__buy-btn
       %div.buy-btn__box
-        = link_to "#" do
+        = link_to purchase_item_path(@item), method: :post do
           %div.buy-btn
             購入する
 
