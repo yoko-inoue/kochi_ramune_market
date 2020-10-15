@@ -21,48 +21,53 @@
     .item_section__main.cf
       .item_photo
         .item_photo__top
-          =image_tag @item.images[0].image_url.url, class: "active_image", id: "bigimg", data: {"turbolinks" => false}
+          -if @item.buyer_id.present? 
+            .item_photo__sold
+              .item_photo__sold__inner SOLD
+            =image_tag @item.images[0].image_url.url, class: "active_image", id: "bigimg", data: {"turbolinks" => false}
+          - else
+            =image_tag @item.images[0].image_url.url, class: "active_image", id: "bigimg", data: {"turbolinks" => false}
         .item_photo__list
           %ul
             - @item.images.each do |image|
               %li
-                = image_tag image.image_url.url, class: "passive_image"
+                = image_tag image.image_url.url, class: "passive_image", data: {"turbolinks" => false}
       %table.item_table
         %tr
           %th 出品者
           %td 
-            = link_to "#{@item.user.nickname}","#", class: "font-color_blue1"
+            = link_to "#{@item.user.nickname}","#", class: "font-color_blue1", data: {"turbolinks" => false}
         %tr
           %th カテゴリー
           %td 
             -if @category_parent == @category_grandchild
-              = link_to "#", class: "font-color_blue" do
+              = link_to "#", class: "font-color_blue" , data: {"turbolinks" => false}do
                 %div 
                   = @category_parent.name
             -elsif @category_parent == @category_child
-              = link_to "#", class: "font-color_blue" do
+              = link_to "#", class: "font-color_blue" , data: {"turbolinks" => false}do
                 %div 
                   = @category_parent.name
-              = link_to "#", class: "font-color_blue" do
+              = link_to "#", class: "font-color_blue" , data: {"turbolinks" => false}do
                 %div
                   = icon('fas','angle-right')
                   = @category_grandchild.name
             -else
-              = link_to "#", class: "font-color_blue" do
+              = link_to "#", class: "font-color_blue" , data: {"turbolinks" => false}do
                 %div 
                   = @category_parent.name
-              = link_to "#", class: "font-color_blue" do
+              = link_to "#", class: "font-color_blue" , data: {"turbolinks" => false}do
                 %div
                   = icon('fas','angle-right')
                   = @category_child.name
-              = link_to "#", class: "font-color_blue" do
+              = link_to "#", class: "font-color_blue" , data: {"turbolinks" => false}do
                 %div
                   = icon('fas','angle-right')
                   = @category_grandchild.name
         %tr
           %th ブランド
           %td 
-            =link_to "#{@item.brand_name}", "#"
+            =link_to "#{@item.brand_name}", "#", data: {"turbolinks" => false}
         %tr
           %th サイズ
           %td 
@@ -88,22 +93,21 @@
           %td 
             =@item.preparation_day.name
     .price_box 
-      %span.item-price 
-        ¥
-        =@item.price
+      %span.item-price
+        ="#{@item.price.to_s(:delimited, delimiter: ',')}円"
       %span.item-tax (税込)
       %span.item-shipping-fee 
         =@item.postage_payer.name
     -if user_signed_in?
       -if @item.buyer_id != nil
         .buy_btn3
-          = link_to "売り切れました",root_path
+          = link_to "売り切れました",root_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction
         .item_container
           .item_container__right
-            = link_to "#", class: "font-color_blue1" do
+            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
               = icon('fas','lock')
               あんしん・あんぜんへの取り組み
       -elsif @item.user.id == current_user.id
@@ -114,35 +118,58 @@
             =@item.introduction
         .item_container
           .item_container__right
-            = link_to "#", class: "font-color_blue1" do
+            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
               = icon('fas','lock')
               あんしん・あんぜんへの取り組み
       -else
         .buy_btn 
-          = link_to "購入画面に進む", buycheck_items_path
+          = link_to "購入画面に進む", buycheck_items_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction
         .item_container
           .item_container__right
-            = link_to "#", class: "font-color_blue1" do
+            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
+    -else
+      -if @item.buyer_id != nil
+        .buy_btn3
+          = link_to "売り切れました",root_path, data: {"turbolinks" => false}
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
+      - else
+        .buy_btn 
+          = link_to "購入画面に進む", buycheck_items_path, data: {"turbolinks" => false}
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
               = icon('fas','lock')
               あんしん・あんぜんへの取り組み
 
   .sns_link
     %ul
       %li 
-        = link_to "#", class:"icon-hover" do
+        = link_to "#", class:"icon-hover" , data: {"turbolinks" => false}do
           = icon("fab", "facebook-square", style: "color:royalblue;")
       %li 
-        = link_to "#", class:"icon-hover" do
+        = link_to "#", class:"icon-hover" , data: {"turbolinks" => false}do
           = icon("fab", "twitter-square", style: "color:#1DA1F2;")
       %li 
-        = link_to "#", class:"icon-hover" do
+        = link_to "#", class:"icon-hover" , data: {"turbolinks" => false}do
           = icon("fab", "pinterest-square", style: "color:#BD081C;")
   .items_user
     %h2.items_user__name
-      = link_to "#{@category_parent.name} その他の出品", "#", class: "font-color_blue"
+      = link_to "#{@category_parent.name} その他の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
     .itemLists
       - @items.each do |item|
         .itemContent
@@ -157,7 +184,7 @@
                 = item.name
               %ul
                 %li 
-                  = item.price 
+                  = item.price .to_s(:delimited)
                   円
               %p.shipping 
                 = item.postage_payer.name

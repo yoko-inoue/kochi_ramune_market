@@ -1,24 +1,27 @@
 class ItemsController < ApplicationController
   def index
-    @items_category = Item.where("buyer_id IS NULL AND trading_status = 0 AND category_id < 200").order(created_at: "DESC")
-    @items_brand = Item.where("buyer_id IS NULL AND  trading_status = 0 AND brand_id = 1").order(created_at: "DESC")
     @new_items = Item.last(5)
   end
 
   def new
-    @item = Item.new
-    @image = @item.images.new
-    @category_parent = Category.where(ancestry: nil)
-    
-    def get_category_child
-      @category_child = Category.find(params[:parent_id]).children
-      render json: @category_child
+    if signed_in?
+      @item = Item.new
+      @image = @item.images.new
+      @category_parent = Category.where(ancestry: nil)
+      
+      def get_category_child
+        @category_child = Category.find(params[:parent_id]).children
+        render json: @category_child
+      end
+
+      def get_category_grandchild
+        @category_grandchild = Category.find("#{params[:child_id]}").children
+        render json: @category_grandchild
+      end
+    else
+      redirect_to root_path
     end
 
-    def get_category_grandchild
-      @category_grandchild = Category.find("#{params[:child_id]}").children
-      render json: @category_grandchild
-    end
   end
 
   def buycheck
@@ -37,15 +40,21 @@ class ItemsController < ApplicationController
         flash.now[:alert] = '入力必須項目に入力してください'
         if @item[:price] == nil
           flash.now[:alert] = '金額を入力してください'
-        elsif @item[:price] < 1
+        elsif @item[:price] < 300
           flash.now[:alert] = '金額は300以上を入力してください'
-        end
+        elsif @item[:price] > 9999999
+          flash.now[:alert] = '金額は9,999,999以下を入力してください'
+        end 
+          @item = Item.new(item_params)
           render new_item_path
       end
     else
       flash.now[:alert] = '画像を追加してください'
       @item.images.build
       render new_item_path
+    end
+    if @item.save
+    redirect_to root_path
     end
   end
 
@@ -55,7 +64,6 @@ class ItemsController < ApplicationController
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-    @new_items_user = Item.find(current_user.id)
     @new_items = Item.last(3)
     @items = Item.category_sorce(@item.category,@item.id).last(3)
   end
@@ -88,6 +96,4 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
-
-  
 end

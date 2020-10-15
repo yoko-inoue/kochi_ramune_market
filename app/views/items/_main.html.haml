@@ -90,10 +90,10 @@
                   = item.name
                 %ul
                   %li 
-                    = item.price 
+                    = item.price.to_s(:delimited)
                     円
                 %p.shipping 
-                  = item.postage_payer.name
+                  (税込)
   .Main__category
     %h2 ピックアップブランド
     .Main__category__box
@@ -113,7 +113,7 @@
                   = item.name
                 %ul
                   %li 
-                    = item.price 
+                    = item.price.to_s(:delimited) 
                     円
                 %p.shipping 
-                  = item.postage_payer.name
+                  (税込)
