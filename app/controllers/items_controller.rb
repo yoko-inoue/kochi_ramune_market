@@ -96,6 +96,4 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
-
-  
 end
