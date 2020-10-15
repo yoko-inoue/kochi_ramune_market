@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :buycheck, :buy, :purchase]
   def index
     @new_items = Item.last(5)
   end
@@ -27,7 +28,6 @@ class ItemsController < ApplicationController
   def buycheck
     if signed_in?
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
-      @item = Item.find(params[:id])
     else
       redirect_to new_user_session_path
     end
@@ -60,7 +60,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @category_id = @item.category_id
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
@@ -75,11 +74,9 @@ class ItemsController < ApplicationController
   end
 
   def buy
-    @item = Item.find(params[:id])
   end
 
   def purchase
-    @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer_token = current_user.card.customer_token
     Payjp::Charge.create(
@@ -110,4 +107,10 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
+  private
+  def set_item
+    @items = Item.find(params[:id])
+  end
+
+  
 end
