@@ -13,7 +13,6 @@ document.addEventListener('turbolinks:load', function () {
       exp_month: document.querySelector('select[name="card[exp_month]"]').value,
       exp_year: document.querySelector('select[name="card[exp_year]"]').value
     };
-    console.log(card);  
 
     Payjp.createToken(card, (status, response) => { //cardをpayjpに送信して登録する。
 
@@ -31,7 +30,6 @@ document.addEventListener('turbolinks:load', function () {
         $('#card_form')[0].submit();
       } else { //失敗した場合
         alert("カード情報が正しくありません。");
-        console.log(response.error.message);
         regist_button.prop('disabled', false);
       }
 

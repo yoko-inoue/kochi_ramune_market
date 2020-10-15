@@ -21,9 +21,6 @@
     .item_section__main.cf
       .item_photo
         .item_photo__top
-          -# -if @item.buyer_id.present? 
-          -#   .items-box_photo__sold
-          -#     .items-box_photo__sold__inner SOLD
           =image_tag @item.images[0].image_url.url, class: "active_image", id: "bigimg", data: {"turbolinks" => false}
         .item_photo__list
           %ul
@@ -143,27 +140,6 @@
       %li 
         = link_to "#", class:"icon-hover" do
           = icon("fab", "pinterest-square", style: "color:#BD081C;")
-  -# .items_user
-  -#   %h2.items_user__name
-  -#     = link_to "#{@item.user.nickname}さんのその他の商品", "#", class: "font-color_blue"
-  -#   .itemLists
-  -#     - @new_items.each do |item|
-  -#       .itemContent
-  -#         =link_to item_path(item.id) , data: {"turbolinks" => false} do
-  -#           -if item.buyer_id.present? 
-  -#             .items-box_photo__sold
-  -#               .items-box_photo__sold__inner SOLD
-  -#           %figure.itemContent__image
-  -#             =image_tag item.images[0].image_url.url, class:"img"
-  -#           .itemContent__info
-  -#             %h3.name
-  -#               = item.name
-  -#             %ul
-  -#               %li 
-  -#                 = item.price 
-  -#                 円
-  -#             %p.shipping 
-  -#               = item.postage_payer.name
   .items_user
     %h2.items_user__name
       = link_to "#{@category_parent.name} その他の出品", "#", class: "font-color_blue"

@@ -1,7 +1,6 @@
 window.addEventListener("load", function() {
   const passive_images = document.querySelectorAll(".passive_image");
   //cssセレクタの '.passive_image'を取得して定数passive_imagesに代入
-    // console.log(passive_images);  //一旦コンソールで値が格納されているか確認しておきます
   passive_images.forEach(function(item, index){
     item.onmouseover = function(){
       document.getElementById("bigimg").src = this.src;
