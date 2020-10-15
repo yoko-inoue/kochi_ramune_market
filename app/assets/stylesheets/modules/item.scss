@@ -1,5 +1,5 @@
 .detail_body {
-  height: auto;
+    height: auto;
   background-color: #f5f5f5;
   padding-top: 40px;
   a {
@@ -8,6 +8,19 @@
   }
   .font-color_blue {
     color: #38aef0;
+  }
+  .font-color_blue:hover{
+    opacity: 0.7;
+    cursor: pointer;
+    text-decoration: underline;
+    border-bottom: 2px solid #38aef0
+  }
+  .font-color_blue1 {
+    color: #38aef0;
+  }
+  .font-color_blue1:hover{
+    opacity: 0.7;
+    cursor: pointer;
   }
   .item_section {
     height: auto;
@@ -104,6 +117,31 @@
       font-weight: bold;
       margin-top: 20px;
       a {
+        display:block;
+        color: white;
+      }
+    }
+    .buy_btn2 {
+      text-align: center;
+      background-color: rgb(147, 218, 40);
+      font-size: 25px;
+      line-height: 60px;
+      font-weight: bold;
+      margin-top: 20px;
+      a {
+        display:block;
+        color: white;
+      }
+    }
+    .buy_btn3 {
+      text-align: center;
+      background-color: rgb(128, 128, 128);
+      font-size: 25px;
+      line-height: 60px;
+      font-weight: bold;
+      margin-top: 20px;
+      a {
+        display:block;
         color: white;
       }
     }
@@ -135,6 +173,10 @@
         }
       }
     }
+  }
+  .icon-hover:hover{
+    opacity: 0.7;
+    cursor: pointer;
   }
 
   .items_user {
@@ -188,6 +230,54 @@
   }
 }
 
+
+
+
+.itemLists {
+  display: flex;
+  width:autp;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+  justify-content: center;
+  margin: 20px 300px;
+
+  .itemContent {
+    margin: 10px 0 10px;
+    display: block;
+    margin: 24px 0 8px;
+    color: #3CCACE;
+    text-decoration: none;
+    position: relative;
+    a{
+      text-decoration: none;
+    }
+      &__image {
+        height: 150px;
+        margin: 0;
+        z-index: auto;
+          img {
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+      &__info {
+        background-color: white;
+        color: #333;
+        padding: 16px;
+        .shipping {
+          font-size: 13px;
+          color: gray;
+        }
+      }
+  }
+  .itemContent:hover{
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
 
 //// 購入確認画面のcss
 

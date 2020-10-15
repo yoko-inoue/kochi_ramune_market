@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', function () {
     const html = `
                   <br class = "${relation}"> 
                   <select required="required" class="select-category ${relation}" id="parent-category" name="item[category_${relation}]">
-                    <option value="${relation}">---</option>
+                    <option value="${relation}">選択してください</option>
                     ${options}
                   </select>
                  `;

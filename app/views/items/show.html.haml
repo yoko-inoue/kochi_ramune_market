@@ -3,116 +3,164 @@
 .detail_body
   %section.item_section
     %h2.item_section__header
-      サウンドトラック
+      =@item.name
     %p.item_section__info
-      "item-name"は、
-      = link_to "user-name（リンク）", "#"
+      =@item.name 
+      は
+      =@item.user.nickname
       さんから出品されました。
-      = link_to "ブランド（リンク）", "#"
-      = link_to "孫カテゴリー（リンク）/親カテゴリー", "#"
-      の商品で、"prefecture"から"preparation_day"で発送されます。
+      =@item.brand_name
+      = @category_grandchild.name
+      ="/"
+      = @category_parent.name
+      の商品で、
+      =@item.prefecture.name
+      から
+      =@item.preparation_day.name
+      されます。
     .item_section__main.cf
       .item_photo
         .item_photo__top
-          = image_tag "icon/icon-01.png", class: "active_image", id: "bigimg"
+          =image_tag @item.images[0].image_url.url, class: "active_image", id: "bigimg", data: {"turbolinks" => false}
         .item_photo__list
           %ul
-            %li
-              = image_tag "icon/icon-01.png", class: "passive_image", data: {image: "icon/icon-01.png"}
-              = image_tag "icon/icon-02.png", class: "passive_image", data: {image: "icon/icon-02.png"}
-              = image_tag "icon/icon-03.png", class: "passive_image", data: {image: "icon/icon-03.png"}
+            - @item.images.each do |image|
+              %li
+                = image_tag image.image_url.url, class: "passive_image"
       %table.item_table
         %tr
           %th 出品者
           %td 
-            = link_to "フリマ星人", "#", class: "font-color_blue"
+            = link_to "#{@item.user.nickname}","#", class: "font-color_blue1"
         %tr
           %th カテゴリー
           %td 
-            = link_to "#", class: "font-color_blue" do
-              %div 親カテゴリー
-            = link_to "#", class: "font-color_blue" do
-              %div
-                = icon('fas','angle-right')
-                子カテゴリー
-            = link_to "#", class: "font-color_blue" do
-              %div
-                = icon('fas','angle-right')
-                孫カテゴリー
+            -if @category_parent == @category_grandchild
+              = link_to "#", class: "font-color_blue" do
+                %div 
+                  = @category_parent.name
+            -elsif @category_parent == @category_child
+              = link_to "#", class: "font-color_blue" do
+                %div 
+                  = @category_parent.name
+              = link_to "#", class: "font-color_blue" do
+                %div
+                  = icon('fas','angle-right')
+                  = @category_grandchild.name
+            -else
+              = link_to "#", class: "font-color_blue" do
+                %div 
+                  = @category_parent.name
+              = link_to "#", class: "font-color_blue" do
+                %div
+                  = icon('fas','angle-right')
+                  = @category_child.name
+              = link_to "#", class: "font-color_blue" do
+                %div
+                  = icon('fas','angle-right')
+                  = @category_grandchild.name
         %tr
           %th ブランド
           %td 
+            =link_to "#{@item.brand_name}", "#"
+        %tr
+          %th サイズ
+          %td 
+            = @item.size
         %tr
           %th 商品の状態
-          %td 新品、未使用
+          %td 
+            =@item.condition.name
         %tr
           %th 配送料の負担
-          %td 送料込み
+          %td 
+            = @item.postage_payer.name
         %tr
           %th 配送の方法
-          %td 未定
+          %td 
+            = @item.postage_type.name
         %tr
           %th 発送元地域
-          %td 東京
+          %td 
+            = @item.prefecture.name
         %tr
           %th 発送日の目安
-          %td 1~2日で発送
+          %td 
+            =@item.preparation_day.name
     .price_box 
-      %span.item-price ¥4000
+      %span.item-price 
+        ¥
+        =@item.price
       %span.item-tax (税込)
-      %span.item-shipping-fee 送料込み
-    .buy_btn 
-      = link_to "購入画面に進む", buycheck_items_path
-    .item_info
-      %p
-        即購入可
-        個装で発送します
-        フリマアプリ作成中
-    .item_container
-      .item_container__right
-        = link_to "あんしん・あんぜんへの取り組み", "#", class: "font-color_blue"
+      %span.item-shipping-fee 
+        =@item.postage_payer.name
+    -if user_signed_in?
+      -if @item.buyer_id != nil
+        .buy_btn3
+          = link_to "売り切れました",root_path
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
+      -elsif @item.user.id == current_user.id
+        .buy_btn2
+          = link_to "商品の情報を編集する","#", data: {"turbolinks" => false}
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
+      -else
+        .buy_btn 
+          = link_to "購入画面に進む", buycheck_items_path
+        .item_info
+          %p
+            =@item.introduction
+        .item_container
+          .item_container__right
+            = link_to "#", class: "font-color_blue1" do
+              = icon('fas','lock')
+              あんしん・あんぜんへの取り組み
 
   .sns_link
     %ul
       %li 
-        = link_to "#" do
+        = link_to "#", class:"icon-hover" do
           = icon("fab", "facebook-square", style: "color:royalblue;")
       %li 
-        = link_to "#" do
+        = link_to "#", class:"icon-hover" do
           = icon("fab", "twitter-square", style: "color:#1DA1F2;")
       %li 
-        = link_to "#" do
+        = link_to "#", class:"icon-hover" do
           = icon("fab", "pinterest-square", style: "color:#BD081C;")
   .items_user
     %h2.items_user__name
-      = link_to "フリマ星人さんの他の商品", "#", class: "font-color_blue"
-    .items_user__list
-      %ul
-        - 6.times do
-          %li 
-            = link_to "#" do
-              = image_tag "icon/icon-02.png", class: "passive_mage"
-              .items_user__info
-                .items_user__text
-                  %h3
-                    ああああああああああああaaaaaaaaaaaaaaああああああああああああああああああああああああhhhhhhhhhhhhhh
-                .items_user__price
-                  ¥500
-  .items_user
-    %h2.items_user__name
-      = link_to "同じカテゴリーの商品", "#", class: "font-color_blue"
-    .items_user__list
-      %ul
-        - 4.times do
-          %li 
-            = link_to "#" do
-              = image_tag "icon/icon-02.png", class: "passive_mage"
-              .items_user__info
-                .items_user__text
-                  %h3
-                    ああああああああああああaaaaaaaaaaaaaaああああああああああああああああああああああああhhhhhhhhhhhhhh
-                .items_user__price
-                  ¥500
+      = link_to "#{@category_parent.name} その他の出品", "#", class: "font-color_blue"
+    .itemLists
+      - @items.each do |item|
+        .itemContent
+          =link_to item_path(item.id) , data: {"turbolinks" => false} do
+            -if item.buyer_id.present? 
+              .items-box_photo__sold
+                .items-box_photo__sold__inner SOLD
+            %figure.itemContent__image
+              =image_tag item.images[0].image_url.url, class:"img"
+            .itemContent__info
+              %h3.name
+                = item.name
+              %ul
+                %li 
+                  = item.price 
+                  円
+              %p.shipping 
+                = item.postage_payer.name
   .item_info_bottom
     = link_to "メルカリ", root_path
     = icon('fas','angle-right')

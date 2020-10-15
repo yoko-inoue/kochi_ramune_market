@@ -1,5 +1,5 @@
 .exhibit
-  =link_to image_tag("logo/logo.png", width: "300px", hight: "300px"), root_path
+  = render 'devise/registrations/user_regist_header'
   .exhibit__single-container
     = form_with model:@item, local: true do |f|
       .exhibit__image
