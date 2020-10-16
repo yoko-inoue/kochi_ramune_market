@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :buycheck, :buy, :purchase]
+  before_action :set_item, only: [:show, :buycheck, :buy, :purchase, :destroy]
   def index
     @new_items = Item.last(5)
   end
@@ -71,8 +71,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to root_path
+    if @item.user_id == current_user.id
+      if @item.destroy
+        render "items/delete"
+      else
+        render "items/show"
+      end
+    end
   end
 
   def buy
@@ -109,7 +114,6 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
-
   
   def set_item
     @item = Item.find(params[:id])

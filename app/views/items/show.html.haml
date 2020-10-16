@@ -113,6 +113,8 @@
       -elsif @item.user.id == current_user.id
         .buy_btn2
           = link_to "商品の情報を編集する","#", data: {"turbolinks" => false}
+        .buy_btn3
+          = link_to "この商品を削除する", item_path(@item.id), method: :delete, data: { confirm: "本当に削除しますか？" }
         .item_info
           %p
             =@item.introduction
@@ -123,7 +125,7 @@
               あんしん・あんぜんへの取り組み
       -else
         .buy_btn 
-          = link_to "購入画面に進む", buycheck_items_path, data: {"turbolinks" => false}
+          = link_to "購入画面に進む", buycheck_item_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction
@@ -146,7 +148,7 @@
               あんしん・あんぜんへの取り組み
       - else
         .buy_btn 
-          = link_to "購入画面に進む", buycheck_items_path, data: {"turbolinks" => false}
+          = link_to "購入画面に進む", items_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction

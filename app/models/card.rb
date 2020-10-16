@@ -6,5 +6,5 @@ class Card < ApplicationRecord
     card_data = customer.cards.first
   end
 
-  belongs_to :user  
+  belongs_to :user
 end
