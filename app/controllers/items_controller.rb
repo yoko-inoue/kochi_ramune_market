@@ -47,9 +47,11 @@ class ItemsController < ApplicationController
           flash.now[:alert] = '金額は9,999,999以下を入力してください'
         end 
           @item = Item.new(item_params)
-          render new_item_path
+          #redirect_to new_item_path, flash: {warning:flash.now[:alert]}
+          return render :new
       end
     else
+      
       flash.now[:alert] = '画像を追加してください'
       @item.images.build
       render new_item_path
@@ -90,9 +92,9 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :price, :introduction, :prefecture_id, 
+    params.require(:item).permit(:name, :price, :introduction, :prefecture_id, :category_id,
       :condition_id, :postage_payer_id,:postage_type_id, :brand_name, :size,
-      :preparation_day_id, images_attributes: [:image_url, :id, :_destroy ]).merge(category_id: @category_id, user_id: current_user.id)
+      :preparation_day_id, images_attributes: [:image_url, :id, :_destroy ]).merge(user_id: current_user.id)
   end
 
   def createCategoryId
@@ -107,10 +109,9 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
-  private
-  def set_item
-    @items = Item.find(params[:id])
-  end
 
   
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
