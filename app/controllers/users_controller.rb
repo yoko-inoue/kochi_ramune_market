@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @new_items = Item.last(3)
+    @new_items = Item.where(user_id:current_user.id)
+    @new_items1 = @new_items.order(created_at: :desc).limit(3)
   end
 
   def edit

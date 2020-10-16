@@ -27,8 +27,13 @@ class ItemsController < ApplicationController
 
   def buycheck
     if signed_in?
+      if @item.buyer_id == nil
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
+      else
+        redirect_to root_path
+      end
     else
+      flash.now[:alert] = 'ログインまたは新規登録を行ってください'
       redirect_to new_user_session_path
     end
   end

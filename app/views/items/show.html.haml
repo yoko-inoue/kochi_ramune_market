@@ -148,7 +148,7 @@
               あんしん・あんぜんへの取り組み
       - else
         .buy_btn 
-          = link_to "購入画面に進む", items_path, data: {"turbolinks" => false}
+          = link_to "購入画面に進む", buycheck_item_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction
