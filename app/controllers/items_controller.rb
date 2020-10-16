@@ -109,6 +109,7 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
+
   
   def set_item
     @item = Item.find(params[:id])
