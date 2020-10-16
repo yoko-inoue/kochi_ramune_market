@@ -12,14 +12,30 @@
           最大5枚までアップロードできます
         .exhibit__image__upload
           .previews
+            - if @item.persisted?
+              - @item.images.each_with_index do |image, i|
+                .previews__field.count-box{data: {aa: i, index: i}}
+                  = image_tag image.image_url.url, data: { index: i }, width: "100", height: '100'
+                  .edit-remove_btn-box{data: {index: i}}
+                    %span.edit{data: {index: i}} 編集
+                    %span.remove{data: {index: i}} 削除
+                  %br/
 
           .area
             = f.fields_for :images do |image|
               .field
                 .file{"data-index" => "#{image.index}"}   
                   = image.file_field :image_url, class: 'file__image'
-            %label{for: "item_images_attributes_#{@item.images.length - 1}_image_url", class: 'label'}
-              %i.fas.fa-camera.icon
+                  - if @item.persisted? 
+                    = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+
+          - if @item.persisted?
+            .file{"data-index" => "#{@item.images.count}"}
+              = file_field_tag :image_url, id: "item_images_attributes_#{@item.images.count}_image_url", name: "item[images_attributes][#{@item.images.count}][imege_url]", class: 'file__image'
+
+
+        %label{for: "item_images_attributes_#{@item.images.length}_image_url", class: 'label'}
+          %i.fas.fa-camera.icon
 
         .exhibit__no-image
       /商品の説明
@@ -150,7 +166,7 @@
         /送信フォーム
         .exhibit__send-boxes
           .exhibit__send-box
-            = f.submit "出品する", class: "send-btn"
+            = f.submit "変更する", class: "send-btn"
             = link_to('戻る', root_path)
         %p.note
           禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。

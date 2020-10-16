@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :buycheck, :buy, :purchase, :destroy]
+  before_action :set_item, only: [:show, :buycheck, :buy, :purchase, :edit, :update, :destroy]
   def index
     @new_items = Item.last(5)
   end
@@ -63,6 +63,18 @@ class ItemsController < ApplicationController
     end
     if @item.save
     redirect_to root_path
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    # binding.pry
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 
