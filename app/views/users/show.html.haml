@@ -1,4 +1,7 @@
 = render 'items/header'
+.second-header
+  - breadcrumb :mypage
+  = render "items/breadcrumbs"
 
 - if user_signed_in?
   .Usergray
