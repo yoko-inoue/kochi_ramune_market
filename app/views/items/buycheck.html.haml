@@ -5,7 +5,7 @@
       購入内容の確認
     .buy-check_section__item-info
       .item-info__image
-        = image_tag "icon/icon-01.png", class: "item_image"
+        = image_tag @item.images[0].image_url.url, class: "item_image"
       .item-info__detial
         .item-info__detial__name
           .field
@@ -15,14 +15,16 @@
           %span.item-info__tax（税込）
           %span.item-info__price 
             .field
-              ¥#{@item.price}
+              =@item.price.to_s(:delimited)
+              円
     .buy-check_section__item-fee
       .item-payment-amount
         .item-payment-amount__left
           支払い金額
         .item-payment-amount__right
           .field
-            ¥#{@item.price}
+            =@item.price.to_s(:delimited)
+            円
     .buy-check_section__item-MethodOfPayment
       .MethodOfPayment
         支払い方法

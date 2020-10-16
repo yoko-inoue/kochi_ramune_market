@@ -24,7 +24,7 @@
           最近出品した商品
         .User__body__lists
           .item-Lists
-            - @new_items.each do |item|
+            - @new_items1.each do |item|
               .itemContent
                 =link_to item_path(item.id) , data: {"turbolinks" => false} do
                   -if item.buyer_id.present? 
