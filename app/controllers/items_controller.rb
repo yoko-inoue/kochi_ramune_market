@@ -115,6 +115,8 @@ class ItemsController < ApplicationController
 
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order(created_at: :desc)
+    @new_items_user = Item.where(user_id:current_user.id)
+    @new_items = @new_items_user.order(created_at: :desc).limit(3)
   end
 
   def destroy

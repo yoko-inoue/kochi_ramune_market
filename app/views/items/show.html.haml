@@ -185,7 +185,28 @@
           = icon("fab", "pinterest-square", style: "color:#BD081C;")
   .items_user
     %h2.items_user__name
-      = link_to "#{@category_parent.name} その他の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
+      = link_to "#{@item.user.nickname}さんのその他の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
+    .itemLists
+      - @new_items.each do |item|
+        .itemContent
+          =link_to item_path(item.id) , data: {"turbolinks" => false} do
+            -if item.buyer_id.present? 
+              .items-box_photo__sold
+                .items-box_photo__sold__inner SOLD
+            %figure.itemContent__image
+              =image_tag item.images[0].image_url.url, class:"img"
+            .itemContent__info
+              %h3.name
+                = item.name
+              %ul
+                %li 
+                  = item.price .to_s(:delimited)
+                  円
+              %p.shipping 
+                = item.postage_payer.name
+  .items_user
+    %h2.items_user__name
+      = link_to "#{@category_parent.name}その他の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
     .itemLists
       - @items.each do |item|
         .itemContent
