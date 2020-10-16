@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect("/users/sign_up")
 
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show] do
+  resources :items, only: [:index, :new, :create, :show, :destroy] do
     member do
       # get "purchase_confirmation"
       get 'buycheck'

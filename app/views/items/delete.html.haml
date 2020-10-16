@@ -1,0 +1,12 @@
+= render "items/header"
+.Done#fullsize
+  .Done__title
+    商品を削除しました
+  .Done__backlink
+    = link_to 'トップページへ戻る', root_path, class: 'link'
+  .Done__backlink
+    = link_to 'マイページに戻る', user_path(id: current_user), class: 'link'
+
+= render "items/lower-photo"
+= render "items/footer"
+= render "items/btn"

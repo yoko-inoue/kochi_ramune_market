@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :buycheck, :buy, :purchase]
+  before_action :set_item, only: [:show, :buycheck, :buy, :purchase, :destroy]
   def index
     @new_items = Item.last(5)
   end
@@ -28,7 +28,6 @@ class ItemsController < ApplicationController
   def buycheck
     if signed_in?
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
-      @item = Item.find(params[:id])
     else
       redirect_to new_user_session_path
     end
@@ -72,11 +71,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to  delete_done_items_path
-    else
-      flash.now[:alert] = '削除できませんでした'
-      render :show
+    if @item.user_id == current_user.id
+      if @item.destroy
+        render "items/delete"
+      else
+        render "items/show"
+      end
     end
   end
 
@@ -84,19 +84,6 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    customer_token = current_user.card.customer_token
-    Payjp::Charge.create(
-      amount: @item.price, # 商品の値段
-      customer: customer_token, # 顧客のトークン
-      currency: 'jpy'  # 通貨の種類
-    )
-    @item_buyer_id= Item.find(params[:id])
-    @item_buyer_id.update( buyer_id: current_user.id)
-  end
-
-  def purchase
-    @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer_token = current_user.card.customer_token
     Payjp::Charge.create(
@@ -127,9 +114,6 @@ class ItemsController < ApplicationController
       @category_id = @category_id_parent
     end
   end
-
-
-
   
   def set_item
     @item = Item.find(params[:id])
