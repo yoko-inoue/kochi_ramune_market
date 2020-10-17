@@ -81,7 +81,41 @@
           margin-left: 20px;
           font-size: 14px;
         }
+        .right-btn:hover{
+          color: #FFB340;
+        }
       }
+    }
+  }
+}
+
+.second-header {
+  width: 100%;
+  border-top:1px solid #eee;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  position: relative;
+  padding: 0 60px;
+
+  
+  .breadcrumbs-list {
+    max-width: 1040px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 48px;
+
+    a {
+      color: #333333;
+      margin: 0 10px;
+
+      &:hover {
+        color: gray;
+        text-decoration: underline;
+      }
+    }
+
+    .current {
+      margin-left: 10px;
+      font-weight: bold;
     }
   }
 }

@@ -1,6 +1,10 @@
 .Account__page
   .Account__page__header
     = link_to image_tag("logo/logo.png", alt: "logo"), root_path
+
+    .second-header
+      - breadcrumb :payment_method
+      = render "items/breadcrumbs"
   .Account__page__main
     .Account__page__main__content
       .Field
