@@ -70,10 +70,10 @@ class ItemsController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @item.update(item_params)
       redirect_to root_path
     else
+      flash.now[:alert] = '画像を追加してください'
       render :edit
     end
   end
@@ -116,7 +116,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :price, :introduction, :prefecture_id, :category_id,
       :condition_id, :postage_payer_id,:postage_type_id, :brand_name, :size,
-      :preparation_day_id, images_attributes: [:image_url, :id, :_destroy ]).merge(user_id: current_user.id)
+      :preparation_day_id, :category_id, images_attributes: [:image_url, :id, :_destroy ]).merge(user_id: current_user.id)
   end
 
   def createCategoryId

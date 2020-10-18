@@ -11,9 +11,9 @@ $(document).on('turbolinks:load', ()=> {
 
 
   function buildImg(index, url) {
-    const html = `<div data-index="${index}" class="previews__field previews__field${index} count-box" data-count="${index}">
-                    <img data-index="${index}" src="${url}" width="110px" height="100px">
-                    <div class="previews__field__button edit-remove_btn-box" data-index="${index}">
+    const html = `<div data-index="${index}" class="previews__field count-box" data-count="${index}">
+                    <img data-index="${index}" src="${url}" width="100px" height="100px">
+                    <div class="edit-remove_btn-box" data-index="${index}">
                       <span class="edit">編集</span>
                       <span class="remove">削除</span>
                     </div>
@@ -43,6 +43,12 @@ $(document).on('turbolinks:load', ()=> {
     $(`.fa-camera`).hide();
   }
 
+    //編集時画像を0枚にした時バリデーションかかる、その時の削除されるがrenderでプレビューが保持されていたのでdestroy-check入ってたらプレビュー消す
+  $(function(){
+    $('.hidden-destroy:checked').each(function(index){
+      $(`div[data-index="${index}"].previews__field`).remove();
+    });
+  });
 
 
 
@@ -60,7 +66,7 @@ $(document).on('turbolinks:load', ()=> {
 
       // existCount.push(targetIndex);
       $('.previews').append(buildImg(targetIndex, blobUrl));
-      $('.field').append(buildFileField(existCount[0]));
+      $('.exhibit__image__upload').append(buildFileField(existCount[0]));
       existCount.shift();
 
       existCount.push(existCount[existCount.length - 1] + 1);
@@ -79,7 +85,7 @@ $(document).on('turbolinks:load', ()=> {
   });
 
   $('.exhibit__image__upload').on('click', '.remove', function() {
-    $(this).parent().parent().remove();
+    // $(this).parent().parent().remove();
 
     let targetIndex = $(this).parent().data('index');
 

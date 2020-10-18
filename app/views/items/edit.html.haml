@@ -14,28 +14,27 @@
           .previews
             - if @item.persisted?
               - @item.images.each_with_index do |image, i|
-                .previews__field.count-box{data: {aa: i, index: i}}
+                .previews__field.count-box{data: {count: i, index: i}}
                   = image_tag image.image_url.url, data: { index: i }, width: "100", height: '100'
                   .edit-remove_btn-box{data: {index: i}}
-                    %span.edit{data: {index: i}} 編集
-                    %span.remove{data: {index: i}} 削除
+                    %span.edit 編集
+                    %span.remove 削除
                   %br/
 
-          .area
-            = f.fields_for :images do |image|
-              .field
-                .file{"data-index" => "#{image.index}"}   
-                  = image.file_field :image_url, class: 'file__image'
-                  - if @item.persisted? 
-                    = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-
+          -# .area
+          = f.fields_for :images do |image|
+            .file{"data-index" => "#{image.index}"}   
+              = image.file_field :image_url, class: 'file__image'
+              - if image.object.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                
           - if @item.persisted?
             .file{"data-index" => "#{@item.images.count}"}
-              = file_field_tag :image_url, id: "item_images_attributes_#{@item.images.count}_image_url", name: "item[images_attributes][#{@item.images.count}][imege_url]", class: 'file__image'
+              = file_field_tag :image_url, id: "item_images_attributes_#{@item.images.count}_image_url", name: "item[images_attributes][#{@item.images.count}][image_url]", class: 'file__image'
 
 
-        %label{for: "item_images_attributes_#{@item.images.length}_image_url", class: 'label'}
-          %i.fas.fa-camera.icon
+          %label{for: "item_images_attributes_#{@item.images.length}_image_url", class: 'label'}
+            %i.fas.fa-camera.icon
 
         .exhibit__no-image
       /商品の説明
@@ -49,7 +48,13 @@
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "選択してください"}, required: true, class: "select-category", id: "parent-category"
+              = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category", id: "parent-category"
+            .exhibit__select-wrap
+              = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.parent_id}, class: "select-category", id: "parent-category"
+            .exhibit__select-wrap
+              = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category", id: "parent-category"
+          
+
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :ブランド
@@ -71,7 +76,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :condition_id, Condition.all, :id, :name, {include_blank: "選択してください"}
+                = f.collection_select :condition_id, Condition.all, :id, :name, {include_blank: "選択してください"}, required: true
               .exhibit__no-product.no-product4
       /商品名と説明
       .exhibit__item-name-detail
@@ -84,7 +89,7 @@
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.text_field :name ,class: "input-default" ,placeholder: "商品名（必須 40文字まで)"
+              = f.text_field :name ,class: "input-default" ,placeholder: "商品名（必須 40文字まで)", required: true
               .exhibit__no-product.no-product5
           .exhibit__form-group
             .exhibit__sell-upload-head
@@ -93,7 +98,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.text_area :introduction, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe
+                = f.text_area :introduction, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe, required: true
           .exhibit__no-product.no-product2
       /配送方法
       .exhibit__item-postage
@@ -106,7 +111,7 @@
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {include_blank: "選択してください"}
+              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {include_blank: "選択してください"}, required: true
               .exhibit__no-product.no-product5
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
@@ -115,7 +120,7 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :postage_type_id, PostageType.all, :id, :name, {include_blank: "選択してください"}
+                = f.collection_select :postage_type_id, PostageType.all, :id, :name, {include_blank: "選択してください"}, required: true
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               発送元の地域
@@ -123,14 +128,14 @@
                 必須
             .exhibit__select-wrap
               %i.icon-arrow-bottom
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"}
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"}, required: true
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :preparation_day,"発送までの日数"
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {include_blank: "選択してください"}
+              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {include_blank: "選択してください"}, required: true
               .exhibit__no-product.no-product7
 
 
@@ -148,7 +153,7 @@
               ¥
             .exhibit__enter-price
               .exhibit__enter-price2
-                = f.number_field :price, placeholder: "0", class: "tk-price"
+                = f.number_field :price, placeholder: "0", class: "tk-price", required: true
                 .exhibit__no-product.no-product2
           .exhibit__commission
             .exhibit__commission-box
