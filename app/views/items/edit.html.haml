@@ -48,11 +48,14 @@
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category", id: "parent-category"
+              - if @item.category.path_ids.length == 1
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
               - if @item.category.path_ids.length == 2
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category", name: ""
                 = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category child", id: "parent-category"
               - if @item.category.path_ids.length >= 3
-                = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.parent_id}, class: "select-category child", id: "parent-category"
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category", name: ""
+                = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.parent_id}, class: "select-category child", id: "parent-category", name: ""
                 = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category grand_child", id: "parent-category"
           
 
