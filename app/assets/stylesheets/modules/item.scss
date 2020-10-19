@@ -61,6 +61,8 @@
         .active_image {
           width: 300px;
           height: 300px;
+          object-fit: scale-down;
+          border: solid 1px silver;
         }
         &__list {
           height: auto;
@@ -73,6 +75,7 @@
               .passive_image {
                 height: 60px;
                 width: 60px;
+                object-fit: cover;
               }
             }
           }

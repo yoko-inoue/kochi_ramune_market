@@ -22,9 +22,18 @@ class Item < ApplicationRecord
 
   def image_lists_validation
     image_validation = images
-    if image_validation.length == nil then
+
+    count = 0
+    images.each do |image|
+      if image.marked_for_destruction?
+      else
+        count += +1
+      end
+    end
+
+    if count == 0 then
       errors.add(:images, "画像を１枚以上添付してください")
-    elsif image_validation.length > 5
+    elsif count > 5
       errors.add(:images, "画像は５枚まで添付可能です")
     end
   end

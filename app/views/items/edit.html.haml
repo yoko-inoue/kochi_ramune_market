@@ -24,7 +24,15 @@
           = f.fields_for :images do |image|
             .file{"data-index" => "#{image.index}"}   
               = image.file_field :image_url, class: 'file__image'
-          %label{for: "item_images_attributes_#{@item.images.length - 1}_image_url", class: 'label'}
+              - if image.object.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                
+          - if @item.persisted?
+            .file{"data-index" => "#{@item.images.count}"}
+              = file_field_tag :image_url, id: "item_images_attributes_#{@item.images.count}_image_url", name: "item[images_attributes][#{@item.images.count}][image_url]", class: 'file__image'
+
+
+          %label{for: "item_images_attributes_#{@item.images.length}_image_url", class: 'label'}
             %i.fas.fa-camera.icon
 
         .exhibit__no-image
@@ -39,7 +47,17 @@
               %span.exhibit__form-require
                 必須
             .exhibit__select-wrap
-              = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "選択してください"}, required: true, class: "select-category", id: "parent-category"
+              - if @item.category.path_ids.length == 1
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
+              - if @item.category.path_ids.length == 2
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
+                = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category child", id: "parent-category"
+              - if @item.category.path_ids.length == 3
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
+                = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.parent_id}, class: "select-category child", id: "parent-category"
+                = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category grand_child", id: "parent-category"
+          
+
           .exhibit__tk-form-group
             .exhibit__sell-upload-head
               = f.label :ブランド
@@ -156,7 +174,7 @@
         /送信フォーム
         .exhibit__send-boxes
           .exhibit__send-box
-            = f.submit "出品する", class: "send-btn"
+            = f.submit "変更する", class: "send-btn"
             = link_to('戻る', root_path)
         %p.note
           禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。

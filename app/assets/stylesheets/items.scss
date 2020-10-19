@@ -23,55 +23,47 @@
       height: 170px;
       width: 600px;
       display: flex;
-      justify-content: start;
-      align-items: center;
       .previews {
         display: flex;
-        justify-content: start;
-        align-items: center;
         &__field {
           padding: 0px 5px;
-          display: flex;
-          flex-direction: column;
-          justify-content: start;
-          align-items: center;
-        }
-      }
-      .area{
-        width: 100%;
-        .field {
-          display: flex;
-          justify-content: start;
-          align-items: center;
-          .file {
-            width: 80px;
-            text-align: center;
-            font-weight: bold;
-            color: white;
-            border-radius: 5px;
-            padding: 5px;
-            margin: 0px 15px;
-            position:relative;
-            &__image {
-              position:absolute;
-              top:0;
-              left:0;
-              display: none;
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+          }
+          .edit-remove_btn-box {
+            display: flex;
+            justify-content: space-around;
+            .edit {
+              border: dashed 1px silver;
+              cursor: pointer;
+              font-size: 15px;
+              padding: 2px;
             }
-            .icon {
-              height: 110px;
-              width: 110px;
-              color: aqua;
-              font-size: 50px;
-              text-align: center;
-              background-color: rgb(245, 245, 245);
-              border-style: solid;
-              border-radius: 5px;
-              padding: 25px;
+            .remove {
+              border: dashed 1px silver;
+              cursor: pointer;
+              font-size: 15px;
+              padding: 2px;
             }
           }
         }
       }
+      .file {
+        display: none;
+      }
+    }
+    .icon {
+      height: 110px;
+      width: 110px;
+      color: aqua;
+      font-size: 50px;
+      text-align: center;
+      background-color: rgb(245, 245, 245);
+      border-style: solid;
+      border-radius: 5px;
+      padding: 25px;
     }
   }
   &__single-container{
@@ -176,6 +168,9 @@
     text-align: initial;
     margin: 8px 0 0;
     position: relative;
+    .select-category {
+      margin-top: 8px;
+    }
   }
   select{
     width: 100%;
