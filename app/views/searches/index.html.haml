@@ -1,0 +1,36 @@
+=render "items/header"
+.search
+  .search-container
+    .search-left
+      = render 'users/user_side'
+    .search-right
+      %section.items-box-container
+        -if @search.present?
+          %h2.search-result-head
+            =@search
+            %span.search-result-head-text
+              の検索結果
+          .search-result-number
+            .itemLists
+              - @items.each do |item|
+                .itemContent
+                  =link_to item_path(item.id) , data: {"turbolinks" => false} do
+                    -if item.buyer_id.present? 
+                      .items-box_photo__sold
+                        .items-box_photo__sold__inner SOLD
+                    %figure.itemContent__image
+                      =image_tag item.images[0].image_url.url, class:"img"
+                    .itemContent__info
+                      %h3.name
+                        = item.name
+                      %ul
+                        %li 
+                          = item.price .to_s(:delimited)
+                          円
+                      %p.shipping 
+                        = item.postage_payer.name
+        -else
+          %h2.search-result-nil
+            新着商品
+        .items-box-content
+
