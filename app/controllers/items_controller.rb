@@ -98,7 +98,7 @@ class ItemsController < ApplicationController
     changeCategoryId()
     if @item.update(item_params)
       @item.update(category_id: @category_id)
-      redirect_to root_path
+      redirect_to item_path
     else
       flash.now[:alert] = '画像を追加してください'
       render :edit
@@ -106,6 +106,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @id = Item.find_by(id: params[:id])
+    if @id == nil
+      redirect_to root_path
+    end
+    
     @category_id = @item.category_id
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent

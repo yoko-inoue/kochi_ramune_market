@@ -5,7 +5,7 @@
       .exhibit__image
         .exhibit__image__title
           .exhibit__select-wrap
-            = f.label :image_id, "出品画像" 
+            = f.label :image_id, "出品画像" ,class: "exhibit__sell-up-load-head"
             %span.exhibit__form-require
               必須
         .exhibit__image__text
@@ -28,7 +28,6 @@
               = image.file_field :image_url, class: 'file__image', required: true
           %label{for: "item_images_attributes_#{@item.images.length - 1}_image_url", class: 'label'}
             %i.fas.fa-camera.icon
-
         .exhibit__no-image
       /商品の説明
       .exhibit__item-detail
