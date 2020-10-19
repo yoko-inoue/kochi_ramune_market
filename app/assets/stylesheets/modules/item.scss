@@ -179,8 +179,17 @@
       }
     }
     .item_container {
-      .item_container__right {
-        float: right;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      .item_container__left {
+        .bookmark-on {
+          font-weight: bold;
+          color: lightsalmon;
+        }
+        .follower_count {
+          font-weight: bold;
+        }
       }
     }
   }

@@ -18,6 +18,7 @@
       から
       =@item.preparation_day.name
       されます。
+    
     .item_section__main.cf
       .item_photo
         .item_photo__top
@@ -105,11 +106,6 @@
         .item_info
           %p
             =@item.introduction
-        .item_container
-          .item_container__right
-            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
-              = icon('fas','lock')
-              あんしん・あんぜんへの取り組み
       -elsif @item.user.id == current_user.id
         .buy_btn2
           = link_to "商品の情報を編集する", edit_item_path, data: {"turbolinks" => false}
@@ -118,22 +114,12 @@
         .item_info
           %p
             =@item.introduction
-        .item_container
-          .item_container__right
-            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
-              = icon('fas','lock')
-              あんしん・あんぜんへの取り組み
       -else
         .buy_btn 
           = link_to "購入画面に進む", buycheck_item_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction
-        .item_container
-          .item_container__right
-            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
-              = icon('fas','lock')
-              あんしん・あんぜんへの取り組み
     -else
       -if @item.buyer_id != nil
         .buy_btn3
@@ -141,22 +127,23 @@
         .item_info
           %p
             =@item.introduction
-        .item_container
-          .item_container__right
-            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
-              = icon('fas','lock')
-              あんしん・あんぜんへの取り組み
       - else
         .buy_btn 
           = link_to "購入画面に進む", buycheck_item_path, data: {"turbolinks" => false}
         .item_info
           %p
             =@item.introduction
-        .item_container
-          .item_container__right
-            = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
-              = icon('fas','lock')
-              あんしん・あんぜんへの取り組み
+
+    .item_container
+      .item_container__left
+        #bookmark{ id: @item.id }
+          = render partial: "bookmarks/bookmark", locals: { item: @item }
+
+      .item_container__right
+        = link_to "#", class: "font-color_blue1" , data: {"turbolinks" => false}do
+          = icon('fas','lock')
+          あんしん・あんぜんへの取り組み
+
 
   .sns_link
     %ul

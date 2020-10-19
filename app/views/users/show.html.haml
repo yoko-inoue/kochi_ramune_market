@@ -44,6 +44,29 @@
                         円
                     %p.shipping 
                       = item.postage_payer.name
+        .User__body__subtitle
+          ブックマークした商品
+        .User__body__lists
+          .item-Lists
+            - if @bookmark_list.present?
+              - @bookmark_list.each do |item|
+                .itemContent
+                  =link_to item_path(item.id) , data: {"turbolinks" => false} do
+                    -if item.buyer_id.present? 
+                      .items-box_photo__sold
+                        .items-box_photo__sold__inner SOLD
+                    %figure.item-Content__image
+                      =image_tag item.images[0].image_url.url, class:"img"
+                    .itemContent__info
+                      %h3.name
+                        = item.name
+                      %ul
+                        %li 
+                          = item.price 
+                          円
+                      %p.shipping 
+                        = item.postage_payer.name
+
 -else
   .Done#fullsize
     .Done__title
