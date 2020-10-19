@@ -5,27 +5,32 @@
       %li
         .Lists-info
           = link_to new_item_path do
-            出品する
+            .Card-branch
+              出品する
         = icon('fas','angle-right')
       %li
         .Lists-info
           = link_to "#" do
-            出品した商品
+            .Card-branch
+              出品した商品
         = icon('fas','angle-right')
       %li
         .Lists-info
           = link_to "#" do
-            購入した商品
+            .Card-branch
+              購入した商品
         = icon('fas','angle-right')
       %li
         .Lists-info
           = link_to "#" do
-            お問い合わせ
+            .Card-branch
+              お問い合わせ
         = icon('fas','angle-right')
       %li
         .Lists-info
           =link_to "#" do
-            お知らせ
+            .Card-branch
+              お知らせ
         = icon('fas','angle-right')
     %p 設定
     %ul.Setting-lists
@@ -45,5 +50,6 @@
       %li.List-setting
         .List-setting__info
           =link_to edit_user_path(current_user) do
-            ログアウト
+            .Card-branch
+              ログアウト
         = icon('fas','angle-right')

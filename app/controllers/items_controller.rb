@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    createCategoryId()
+    createCategoryId
     @item = Item.new(item_params)
     @item.category_id = @category_id
     if params[:item][:images_attributes] != nil
@@ -77,7 +77,7 @@ class ItemsController < ApplicationController
           flash.now[:alert] = '金額は9,999,999以下を入力してください'
         end 
           @item = Item.new(item_params)
-          #redirect_to new_item_path, flash: {warning:flash.now[:alert]}
+          # redirect_to new_item_path, flash: {warning:flash.now[:alert]}
           return render :new
       end
     else
@@ -110,7 +110,6 @@ class ItemsController < ApplicationController
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-    @new_items = Item.last(3)
     @items = Item.category_sorce(@item.category,@item.id).last(3)
 
     @comment = Comment.new

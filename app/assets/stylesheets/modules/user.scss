@@ -191,12 +191,19 @@
             .red_flame {
               background-color: red;
               color: white;
+              font-size: 12px;
+              padding: 4px 4px;
               border-radius: 2px;
+              vertical-align: top;
             }
             .gray_flame {
-              background-color: gray;
+              background-color: #C0C0C0;
               color: white;
+              margin: 0 0 0 8px;
+              font-size: 12px;
+              padding: 2px 4px;
               border-radius: 2px;
+              vertical-align: top;
             }
             .form_default {
               height: 48px;

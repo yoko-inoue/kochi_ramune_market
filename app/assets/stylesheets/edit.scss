@@ -33,15 +33,16 @@ $color-item2: whitesmoke;
           text-align: center;
  
         .Logout-btn { 
-            background-color: turquoise;
-            display : block;
-            color: $color-item1;
-            font-size: 20px;
-            width: 280px;
-            height: 40px;
-            padding-top: 10px;
-            margin-top: 50px;
-            text-decoration: none; 
+          text-align: center;
+          background-color: turquoise;
+          display : block;
+          color: $color-item1;
+          font-size: 20px;
+          width: 280px;
+          height: 40px;
+          padding-top: 10px;
+          margin-top: 50px;
+          text-decoration: none; 
         }
       }
     }
