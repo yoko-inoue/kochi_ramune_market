@@ -41,6 +41,7 @@ class ItemsController < ApplicationController
   def create
     createCategoryId()
     @item = Item.new(item_params)
+    @item.category_id = @category_id
     if params[:item][:images_attributes] != nil
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
@@ -70,7 +71,9 @@ class ItemsController < ApplicationController
   end
 
   def update
+    changeCategoryId()
     if @item.update(item_params)
+      @item.update(category_id: @category_id)
       redirect_to root_path
     else
       flash.now[:alert] = '画像を追加してください'
@@ -120,19 +123,28 @@ class ItemsController < ApplicationController
   end
 
   def createCategoryId
-    if params[:item][:category_grand_child] != "grand_child"
-      @category_id_grandchild = params[:item][:category_grand_child]
-      @category_id = @category_id_grandchild
-    elsif params[:item][:category_child] != "child"
-      @category_id_child = params[:item][:category_child]
-      @category_id = @category_id_child
+    if params[:item][:category_child] == nil || params[:item][:category_child] == "child"
+      @category_id = params[:item][:category_id]
+    elsif params[:item][:category_grand_child] == "grand_child"
+      @category_id = params[:item][:category_child]
     else
-      @category_id_parent = params[:item][:category_id]
-      @category_id = @category_id_parent
+      @category_id = params[:item][:category_grand_child]
     end
   end
-  
+
+  def changeCategoryId
+    if params[:item][:category_child] == "child"
+      @category_id = params[:item][:category_id]
+    elsif params[:item][:category_grand_child] == "grand_child"
+      @category_id = params[:item][:category_child]
+    else
+      @category_id = params[:item][:category_grand_child]
+    end
+  end
+
+  private
   def set_item
     @item = Item.find(params[:id])
   end
+
 end

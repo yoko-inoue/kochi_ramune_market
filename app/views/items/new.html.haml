@@ -21,8 +21,6 @@
                     %span.remove 削除
                   %br/
 
-
-          -# .area
           = f.fields_for :images do |image|
             .file{"data-index" => "#{image.index}"}   
               = image.file_field :image_url, class: 'file__image'

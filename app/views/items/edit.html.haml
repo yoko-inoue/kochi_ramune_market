@@ -21,7 +21,6 @@
                     %span.remove 削除
                   %br/
 
-          -# .area
           = f.fields_for :images do |image|
             .file{"data-index" => "#{image.index}"}   
               = image.file_field :image_url, class: 'file__image'
@@ -51,11 +50,11 @@
               - if @item.category.path_ids.length == 1
                 = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
               - if @item.category.path_ids.length == 2
-                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category", name: ""
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
                 = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category child", id: "parent-category"
-              - if @item.category.path_ids.length >= 3
-                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category", name: ""
-                = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.parent_id}, class: "select-category child", id: "parent-category", name: ""
+              - if @item.category.path_ids.length == 3
+                = f.collection_select :category_id, @item.category.root.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.root_id}, required: true, class: "select-category parent", id: "parent-category"
+                = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {include_blank: "選択してください", selected: @item.category.parent_id}, class: "select-category child", id: "parent-category"
                 = f.collection_select :category_id, @item.category.siblings, :id, :name, {include_blank: "選択してください"}, class: "select-category grand_child", id: "parent-category"
           
 

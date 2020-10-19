@@ -23,39 +23,25 @@
       height: 170px;
       width: 600px;
       display: flex;
-      // justify-content: start;
-      // align-items: center;
       .previews {
         display: flex;
-        // justify-content: start;
-        // align-items: center;
         &__field {
           padding: 0px 5px;
-          // border: dashed 1px silver;
-          // display: flex;
-          // flex-direction: column;
-          // justify-content: start;
-          // align-items: center;
           img {
-            // border: dashed 1px silver;
             width: 100px;
             height: 100px;
-            // object-fit: scale-down;
             object-fit: cover;
-            // margin-bottom: 10px;
           }
           .edit-remove_btn-box {
             display: flex;
             justify-content: space-around;
             .edit {
-              // border: solid 2px lawngreen;
               border: dashed 1px silver;
               cursor: pointer;
               font-size: 15px;
               padding: 2px;
             }
             .remove {
-              // border: solid 2px lawngreen;
               border: dashed 1px silver;
               cursor: pointer;
               font-size: 15px;
@@ -64,30 +50,6 @@
           }
         }
       }
-      // .area{
-      //   width: 100%;
-      //   .field {
-      //     display: flex;
-      //     justify-content: start;
-      //     align-items: center;
-      //     .file {
-      //       width: 80px;
-      //       text-align: center;
-      //       font-weight: bold;
-      //       color: white;
-      //       border-radius: 5px;
-      //       padding: 5px;
-      //       margin: 0px 15px;
-      //       position:relative;
-      //       &__image {
-      //         position:absolute;
-      //         top:0;
-      //         left:0;
-      //         display: none;
-      //       }
-      //     }
-      //   }
-      // }
       .file {
         display: none;
       }
