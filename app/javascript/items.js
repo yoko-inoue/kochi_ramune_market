@@ -105,8 +105,6 @@ $(document).on('turbolinks:load', ()=> {
 
   $('.exhibit__image__upload').on('click', '.edit', function() {
     const targetIndex = $(this).parent().data('index')
-    console.log(targetIndex)
-    console.log(this)
     $(`input[id="item_images_attributes_${targetIndex}_image_url"]`).on('click', function(e){
       e.stopPropagation();
     });
