@@ -4,22 +4,30 @@
   @import 'mixin/opacity';
   @import 'mixin/underline';
   .search{
+    min-width: 1000px;
     &-right{
       margin-left: 280px;
     }
+    &-result-number{
+      min-width: calc(100vw - 500px);
+    }
   }
-  .itemLists {
+  .searchLists {
     text-align: right;
-    display: flex;
     width: auto;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 40px;
-    margin-inline-end: 40px;
     justify-content: center;
-    margin: 20px 300px;
+    display: grid;
+    grid-template-columns: 270px 270px 270px;
+    grid-template-rows: auto;
+    justify-content: space-around;
+    align-content: space-around;
+    justify-items: center;
+    align-items: center;
+    justify-self: baseline;
 
-    .itemContent {
+    .searchContent {
       width: 240px;
       margin: 10px 0 10px;
       display: block;
@@ -27,10 +35,11 @@
       color: #3CCACE;
       text-decoration: none;
       position: relative;
+      margin-right: 30px;
       a{
         text-decoration: none;
       }
-      .itemContent a {
+      .searchContent a {
         position: absolute;
         top: 0;
         left: 0;
@@ -55,13 +64,14 @@
           background-color: white;
           color: #333;
           padding: 16px;
+          text-align: left;
           .shipping {
             font-size: 13px;
             color: gray;
           }
         }
     }
-    .itemContent:hover{
+    .searchContent:hover{
       opacity: 0.5;
       cursor: pointer;
     }
