@@ -1,9 +1,18 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :buycheck, :buy, :purchase, :edit, :update, :destroy]
+  before_action :set_ransack, expect: [:search]
+
   def index
     @new_items = Item.last(5)
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
   end
 
+  def search
+    @q = Item.search(search_params)
+    @items = @q.result(distinct: true)
+  end
+  
   def new
     if signed_in?
       @item = Item.new
@@ -147,6 +156,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def search_params
+    params.require(:q).permit!
   end
 
 end

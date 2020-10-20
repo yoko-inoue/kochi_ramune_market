@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  
   private
 
   def configure_permitted_parameters
@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     root_path
+  end
+
+  def set_ransack
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
   end
 
 end

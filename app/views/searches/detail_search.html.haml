@@ -32,24 +32,5 @@
         -else
           %h2.search-result-nil
             新着商品
-          .search-result-number
-            .searchLists
-              - @items.each do |item|
-                .searchContent
-                  =link_to item_path(item.id) , data: {"turbolinks" => false} do
-                    -if item.buyer_id.present? 
-                      .items-box_photo__sold
-                        .items-box_photo__sold__inner SOLD
-                    %figure.searchContent__image
-                      =image_tag item.images[0].image_url.url, class:"img"
-                    .searchContent__info
-                      %h3.name
-                        = item.name
-                      %ul
-                        %li 
-                          = item.price .to_s(:delimited)
-                          円
-                      %p.shipping 
-                        (税込)
-= render "items/btn"
+          .items-box-content
 
