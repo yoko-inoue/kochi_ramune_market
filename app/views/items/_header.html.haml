@@ -6,7 +6,7 @@
           = image_tag "logo/logo.png", width: "140px", hight: "40px"
       .HeaderInner__mainHeader__search-box
         .HeaderInner__mainHeader__search-box__form
-          = form_with url: "#", local: true, method: :get, class:"form" do |f|
+          = form_with url: searches_path, local: true, method: :get, class:"form" do |f|
             = f.text_field :keyword, class: 'input-text', placeholder: 'キーワードから探す'
             %button{ type: "submit", class:"submit-btn" }
               .SearchBox__icon

@@ -178,9 +178,7 @@
               %p.shipping 
                 = item.postage_payer.name
   .item_info_bottom
-    = link_to "メルカリ", root_path
-    = icon('fas','angle-right')
-    %p スマーーーートフォン
+    = render "breadcrumbs"
 
 
 = render "lower-photo"
