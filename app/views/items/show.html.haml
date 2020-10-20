@@ -1,5 +1,9 @@
 = render "header"
 
+.second-header
+  - breadcrumb :item_name, @item
+  = render "items/breadcrumbs"
+
 .detail_body
   %section.item_section
     %h2.item_section__header

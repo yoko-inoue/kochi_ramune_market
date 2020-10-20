@@ -15,3 +15,7 @@ crumb :new_payment_card do
   link "クレジットカード情報入力", new_card_path
   parent :mypage
 end
+
+crumb :item_name do |item|
+  link "#{item.name}"
+end
