@@ -164,11 +164,13 @@
         .comments__list
           - if @comments
             - @comments.each do |comment|
-              %p
+              .comment-info
                 %strong
                   = comment.user.nickname
                   ：
-                = comment.text
+                  = comment.text
+                %div
+                  = comment.created_at.strftime("%m月%d日 %H時%M分")
 
   .sns_link
     %ul

@@ -222,6 +222,7 @@
           background-color: #38aef0;
           border: solid 1px #38aef0;
           border-radius: 40px;
+          outline: 0;
         }
       }
     }
@@ -232,8 +233,10 @@
         max-height: 200px;
         margin-top: 10px;
         overflow: auto;
-        p {
+        .comment-info {
           margin: 10px 10px;
+          display: flex;
+          justify-content: space-between;
         }
       }
     }

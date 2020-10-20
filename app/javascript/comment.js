@@ -1,12 +1,15 @@
 $(function(){
   function buildHTML(comment){
-    let html = `<p>
+    let html = `<div class="comment-info">
                   <strong>
                     ${comment.user_name}
                     ：
+                    ${comment.text}
                   </strong>
-                  ${comment.text}
-                </p>`
+                  <div>
+                    ${comment.created_at}
+                  </div>
+                </div>`
     return html;
   }
 
@@ -25,7 +28,7 @@ $(function(){
 
     .done(function(data){
       let html = buildHTML(data);
-      $('.comments__list').append(html);
+      $('.comments__list').prepend(html);
       $('.textbox').val('');
       $('.form__submit').prop('disabled', false);
     })

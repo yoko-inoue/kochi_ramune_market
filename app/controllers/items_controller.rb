@@ -90,8 +90,7 @@ class ItemsController < ApplicationController
     @items = Item.category_sorce(@item.category,@item.id).last(3)
 
     @comment = Comment.new
-    # @comments = @item.comments.order(created_at: :desc)
-    @comments = @item.comments.includes(:user)
+    @comments = @item.comments.includes(:user).order(created_at: :desc)
   end
 
   def destroy
