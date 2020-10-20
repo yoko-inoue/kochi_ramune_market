@@ -196,6 +196,53 @@
     }
   }
 
+  .comment-box {
+    width: 720px;
+    background-color: white;
+    margin: 40px auto 30px;
+    padding: 30px;
+    .container-header {
+      .comment-notice {
+        color: red;
+      }
+    }
+    #new_comment {
+      .textbox {
+        width: 660px;
+        height: 50px;
+        resize: none;
+      }
+      .send-btn {
+        margin: 15px auto;
+        width: 300px;
+        .form__submit {
+          width: 100%;
+          height: 50px;
+          color: white;
+          background-color: #38aef0;
+          border: solid 1px #38aef0;
+          border-radius: 40px;
+          outline: 0;
+        }
+      }
+    }
+    .comments {
+      margin-top: 10px;
+      &__list {
+        background-color: #f5f5f5;
+        max-height: 200px;
+        margin-top: 10px;
+        overflow: auto;
+        .comment-info {
+          margin: 10px 10px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+
+  }
+
   .sns_link {
     width: 720px;
     background-color: white;

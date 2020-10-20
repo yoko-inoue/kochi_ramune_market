@@ -149,6 +149,29 @@
           あんしん・あんぜんへの取り組み
 
 
+  .comment-box
+    .container
+      - if current_user
+        = form_with(model: [@item, @comment], local: true, id: "new_comment") do |form|
+          = form.text_area :text, placeholder: "コメントを記入してください", rows: "2", class: "textbox"
+          .send-btn
+            = form.submit "コメント送信", class: "form__submit"
+      - else
+        %strong.container-header
+          %p.comment-notice ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
+      .comments
+        %h4 ＜コメント一覧＞
+        .comments__list
+          - if @comments
+            - @comments.each do |comment|
+              .comment-info
+                %strong
+                  = comment.user.nickname
+                  ：
+                  = comment.text
+                %div
+                  = comment.created_at.strftime("%m月%d日 %H時%M分")
+
   .sns_link
     %ul
       %li 

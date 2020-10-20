@@ -88,6 +88,9 @@ class ItemsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
     @new_items = Item.last(3)
     @items = Item.category_sorce(@item.category,@item.id).last(3)
+
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user).order(created_at: :desc)
   end
 
   def destroy

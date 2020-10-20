@@ -13,6 +13,7 @@ require("card")
 require("category_select")
 require("item")
 require("items")
+require("comment")
 // = require turbolinks
 // = require jquery
 // = require jquery_ujs

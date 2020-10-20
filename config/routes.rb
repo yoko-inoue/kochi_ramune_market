@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get 'get_category_grandchild', to: 'items#get_category_grandchild', defaults: { format: 'json' }
     end
     resource :bookmarks, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
   namespace :api do
     resources :categories, only: :index, defaults: { format: 'json' }
