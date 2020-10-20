@@ -1,0 +1,15 @@
+-# #bookmark{ id: @item.id }
+- if !Bookmark.exists?(user: current_user, item_id: @item.id)   # お気に入り未登録の時
+  = link_to item_bookmarks_path(@item), method: :post, remote: true, class: "bookmark-btn bookmark-post" do
+    .i
+      = icon('far','star')
+      %span.bookmark-off ブックマークする
+      %span.follower_count
+        = @item.bookmarks.length   # お気に入り登録数
+- else    # お気に入り登録済みの時
+  = link_to item_bookmarks_path(@item), method: :delete, remote: true, class: "bookmark-btn bookmark-delete" do
+    .i
+      = icon('fas','star')
+      %span.bookmark-on ブックマーク済み
+      %span.follower_count
+        = @item.bookmarks.length   # お気に入り登録数

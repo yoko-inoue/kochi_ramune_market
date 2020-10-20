@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_one :sending_destination
 
   has_one :card
+
+  has_many :bookmarks, dependent: :destroy
+  has_many :items, through: :bookmarks
 end

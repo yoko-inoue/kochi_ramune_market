@@ -11,6 +11,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage_type
   accepts_nested_attributes_for :images, allow_destroy: true
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :users, through: :bookmarks
+
   validates :name, :price, :introduction, :prefecture_id,
   :category_id, :condition, :postage_payer,
   :preparation_day, :user_id, presence: true

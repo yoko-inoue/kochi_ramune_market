@@ -1,0 +1,2 @@
+$("#bookmark_<%= @item.id %>").html("<%= j(render partial: 'bookmarks/bookmark', locals: { item: @item }) %>");
+  <!-- ｊ メソッドで、JSとして認識してくれて、非同期で更新してくれる -->
