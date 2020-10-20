@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', ()=> {
+$(window).on('load', ()=> {
 
   function buildFileField(index) {
     const html = `<div class="file" data-index="${index}">

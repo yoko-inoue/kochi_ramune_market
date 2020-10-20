@@ -13,7 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
     session["devise.regist_data"] = {user: @user.attributes}
@@ -26,7 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(session["devise.regist_data"]["user"])
     @profile = Profile.new(profile_params)
     unless @profile.valid?
-      flash.now[:alert] = @profile.errors.full_messages
       render :new_profile and return
     end
     session["devise.regist_data2"] = {profile: @profile.attributes}
@@ -40,7 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @sending_destination = SendingDestination.new(sending_destination_params)
     @sending_destination.phone_number = nil unless @sending_destination.phone_number.present?
     unless @sending_destination.valid?
-      flash.now[:alert] = @sending_destination.errors.full_messages
       render :new_sending_destination and return
     end
     @user.build_profile(@profile.attributes)

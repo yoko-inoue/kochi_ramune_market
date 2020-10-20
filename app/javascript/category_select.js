@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () {
+window.addEventListener('load', function () {
   function buildCategoryForm(categories) {
     let options = "";
     if(categories[0].ancestry.indexOf("/" , 0) == -1){
