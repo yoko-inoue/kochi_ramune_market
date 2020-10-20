@@ -149,6 +149,15 @@
           あんしん・あんぜんへの取り組み
 
 
+
+  .container
+    = form_with(model: [@item, @comment], local: true, id: "new_comment") do |form|
+      = form.text_area :text, placeholder: "コメントする", rows: "2", class: "textbox"
+      = form.submit "SEND", class: "form__submit"
+
+
+
+
   .sns_link
     %ul
       %li 
