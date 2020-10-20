@@ -13,6 +13,8 @@ class Item < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :users, through: :bookmarks
+  
+  has_many :comments, dependent: :destroy
 
   validates :name, :price, :introduction, :prefecture_id,
   :category_id, :condition, :postage_payer,
