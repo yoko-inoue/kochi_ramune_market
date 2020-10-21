@@ -9,7 +9,9 @@
             %span.exhibit__form-require
               必須
         .exhibit__image__text
-          最大5枚までアップロードできます
+          最大5枚までアップロードできます(
+          %span.color-red 必ず1枚は添付してください
+          )
         .exhibit__image__upload
           .previews
             - if @item.persisted?
@@ -29,7 +31,7 @@
                 
           - if @item.persisted?
             .file{"data-index" => "#{@item.images.count}"}
-              = file_field_tag :image_url, id: "item_images_attributes_#{@item.images.count}_image_url", name: "item[images_attributes][#{@item.images.count}][image_url]", class: 'file__image'
+              = file_field_tag :image_url, id: "item_images_attributes_#{@item.images.count}_image_url", name: "item[images_attributes][#{@item.images.count}][image_url]", class: 'file__image', required: true
 
 
           %label{for: "item_images_attributes_#{@item.images.length}_image_url", class: 'label'}
@@ -156,7 +158,7 @@
               ¥
             .exhibit__enter-price
               .exhibit__enter-price2
-                = f.number_field :price, placeholder: "0", class: "tk-price", required: true
+                = f.number_field :price, placeholder: "0", class: "tk-price", required: true, min:"300", max:"9999999"
                 .exhibit__no-product.no-product2
           .exhibit__commission
             .exhibit__commission-box

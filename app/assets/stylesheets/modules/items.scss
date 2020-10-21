@@ -18,6 +18,9 @@
     &__text {
       font-size: 15px;
       padding-bottom: 10px;
+      .color-red {
+        color: red;
+      }
     }
     &__upload {
       height: 170px;

@@ -9,7 +9,9 @@
             %span.exhibit__form-require
               必須
         .exhibit__image__text
-          最大5枚までアップロードできます
+          最大5枚までアップロードできます(
+          %span.color-red 必ず1枚は添付してください
+          )
         .exhibit__image__upload
           .previews
             - if @item.persisted?
@@ -23,7 +25,7 @@
 
           = f.fields_for :images do |image|
             .file{"data-index" => "#{image.index}"}   
-              = image.file_field :image_url, class: 'file__image'
+              = image.file_field :image_url, class: 'file__image', required: true
           %label{for: "item_images_attributes_#{@item.images.length - 1}_image_url", class: 'label'}
             %i.fas.fa-camera.icon
 
@@ -138,7 +140,7 @@
               ¥
             .exhibit__enter-price
               .exhibit__enter-price2
-                = f.number_field :price, placeholder: "0", class: "tk-price", required: true
+                = f.number_field :price, placeholder: "0", class: "tk-price", required: true, min:"300", max:"9999999"
                 .exhibit__no-product.no-product2
           .exhibit__commission
             .exhibit__commission-box
