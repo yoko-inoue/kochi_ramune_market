@@ -13,7 +13,6 @@
     text-align: center;
     padding-top: 8px;
     box-sizing: border-box;
-    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
     img {
       width: 150px;
       cursor: pointer;
@@ -25,7 +24,7 @@
     padding: 30px 15px;
     &__content{
       width: 650px;
-      margin: 3px auto;
+      margin: 80px auto;
       background-color: white;
       height: auto;
       .Field{
