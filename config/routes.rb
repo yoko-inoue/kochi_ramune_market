@@ -40,4 +40,3 @@ Rails.application.routes.draw do
   resources :cards, only: [:index, :new, :create, :destroy] 
   get '*path', to: 'application#render_404'
 end
-
