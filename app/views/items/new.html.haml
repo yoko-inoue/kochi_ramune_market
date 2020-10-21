@@ -140,20 +140,6 @@
             .exhibit__enter-price
               .exhibit__enter-price2
                 = f.number_field :price, placeholder: "0", class: "tk-price", required: true, min:"300", max:"9999999"
-                .exhibit__no-product.no-product2
-          .exhibit__commission
-            .exhibit__commission-box
-              .new_listing__commission-font{"data-test" => "fee-label"}
-                %div 
-                  販売手数料（10%）
-              %span.money01{"data-test" => "fee-value"}
-          .exhibit__commission2
-            .exhibit__commission-box
-              .new_listing__commission-font{"data-test" => "fee-label"}
-                %div
-                  販売利益
-              %span.money02{"data-test" => "fee-value"}
-                
         /送信フォーム
         .exhibit__send-boxes
           .exhibit__send-box
