@@ -203,7 +203,7 @@
                   = item.price .to_s(:delimited)
                   円
               %p.shipping 
-                = item.postage_payer.name
+                (税込)
   .items_user
     %h2.items_user__name
       = link_to "#{@category_parent.name}その他の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
@@ -224,7 +224,7 @@
                   = item.price .to_s(:delimited)
                   円
               %p.shipping 
-                = item.postage_payer.name
+                (税込)
   .item_info_bottom
     = render "breadcrumbs"
 
