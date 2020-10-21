@@ -3,7 +3,7 @@ $(window).on('load', ()=> {
   function buildFileField(index) {
     const html = `<div class="file" data-index="${index}">
                     <input id="item_images_attributes_${index}_image_url" class="file__image" type="file"
-                    name="item[images_attributes][${index}][image_url]" data-index="${index}" required="required">
+                    name="item[images_attributes][${index}][image_url]" data-index="${index}">
                   </div>`;
     return html;
   }
