@@ -110,13 +110,11 @@ class ItemsController < ApplicationController
     if @id == nil
       redirect_to root_path
     end
-    
     @category_id = @item.category_id
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
     @items = Item.category_sorce(@item.category,@item.id).last(3)
-
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order(created_at: :desc)
     @new_items_user = Item.where(user_id:@item.user_id)
