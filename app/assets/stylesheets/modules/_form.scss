@@ -1,0 +1,77 @@
+
+.sc-side__sort{
+  padding-top: 20px;
+}
+.price-range__input{
+width: 92px;
+border: 1px solid #ccc;
+border-radius: 4px;
+height: 48px;
+}
+.price-range__swang {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.detail_search__title{
+  margin-top: 20px;
+}
+.detail_search__btn--grey{
+  display: flex;
+}
+.detail_search__btns{
+  justify-content: center;
+  display: flex;
+  margin-top: 20px;
+  .reset{
+    font-size: 20px;
+    line-height: 48px;
+    width: 70px;
+    padding: 5px;
+    background-color: rgb(216, 211, 211);
+    border: none;
+    border-radius: 4px;
+    outline:0;
+  }
+  .submit{
+    font-size: 20px;
+    line-height: 48px;
+    padding: 5px;
+    margin-left: 38px;
+    width: 70px;
+    background-color: aqua;
+    border: none;
+    border-radius: 4px;
+    outline:0;
+  }
+}
+.sc-side__detail__field{
+  margin-top: 20px;
+}
+.sc-side__detail__field__form.price-range{
+  margin-top: 8px;
+  display: flex;
+}
+.price_range{
+  height: 48px;
+  padding: 0 16px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+}
+select{
+  height: 48px;
+  padding: 0 16px;
+  width: 200px;
+  border: 1px solid #ccc;
+   border-radius: 4px;
+
+}
+.search_field{
+  height: 48px;
+  padding: 0 16px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+}
