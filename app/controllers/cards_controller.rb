@@ -9,7 +9,7 @@ class CardsController < ApplicationController
       card = Card.where(user_id: current_user.id)
       redirect_to action: "index" if card.present?
     else 
-      redirect_to root_path
+      redirect_to new_user_session_path
     end
   end
 
