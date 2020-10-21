@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    createCategoryId()
+    createCategoryId
     @item = Item.new(item_params)
     @item.category_id = @category_id
     if params[:item][:images_attributes] != nil
@@ -77,7 +77,7 @@ class ItemsController < ApplicationController
           flash.now[:alert] = '金額は9,999,999以下を入力してください'
         end 
           @item = Item.new(item_params)
-          #redirect_to new_item_path, flash: {warning:flash.now[:alert]}
+          # redirect_to new_item_path, flash: {warning:flash.now[:alert]}
           return render :new
       end
     else
@@ -98,7 +98,7 @@ class ItemsController < ApplicationController
     changeCategoryId()
     if @item.update(item_params)
       @item.update(category_id: @category_id)
-      redirect_to root_path
+      redirect_to item_path
     else
       flash.now[:alert] = '画像を追加してください'
       render :edit
@@ -106,15 +106,21 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @id = Item.find_by(id: params[:id])
+    if @id == nil
+      redirect_to root_path
+    end
+    
     @category_id = @item.category_id
     @category_parent = Category.find(@category_id).root
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-    @new_items = Item.last(3)
     @items = Item.category_sorce(@item.category,@item.id).last(3)
 
     @comment = Comment.new
     @comments = @item.comments.includes(:user).order(created_at: :desc)
+    @new_items_user = Item.where(user_id:current_user.id)
+    @new_items = @new_items_user.order(created_at: :desc).limit(3)
   end
 
   def destroy
