@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def buycheck
-    if signed_in?
+    if signed_in? && @item.user_id != current_user.id
       if @item.buyer_id == nil
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
       else
@@ -92,16 +92,24 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user_id == current_user.id
+    else
+      redirect_to root_path
+    end
   end
 
   def update
-    changeCategoryId()
-    if @item.update(item_params)
-      @item.update(category_id: @category_id)
-      redirect_to item_path
+    if @item.user_id == current_user.id
+      changeCategoryId()
+      if @item.update(item_params)
+        @item.update(category_id: @category_id)
+        redirect_to item_path
+      else
+        flash.now[:alert] = '画像を追加してください'
+        render :edit
+      end
     else
-      flash.now[:alert] = '画像を追加してください'
-      render :edit
+      redirect_to root_path
     end
   end
 
@@ -135,15 +143,19 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    customer_token = current_user.card.customer_token
-    Payjp::Charge.create(
-      amount: @item.price, # 商品の値段
-      customer: customer_token, # 顧客のトークン
-      currency: 'jpy'  # 通貨の種類
-    )
-    @item_buyer_id= Item.find(params[:id])
-    @item_buyer_id.update( buyer_id: current_user.id)
+    if signed_in? && @item.user_id != current_user.id
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+      customer_token = current_user.card.customer_token
+      Payjp::Charge.create(
+        amount: @item.price, # 商品の値段
+        customer: customer_token, # 顧客のトークン
+        currency: 'jpy'  # 通貨の種類
+      )
+      @item_buyer_id= Item.find(params[:id])
+      @item_buyer_id.update( buyer_id: current_user.id)
+    else
+      redirect_to root_path
+    end
   end
 
   private
