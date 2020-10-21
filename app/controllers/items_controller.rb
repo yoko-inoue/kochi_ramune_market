@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :buycheck, :buy, :purchase, :edit, :update, :destroy]
-  before_action :set_ransack, expect: [:search]
+  before_action :set_ransack
 
   def index
     @new_items = Item.last(5)
@@ -9,8 +9,23 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @q = Item.search(search_params)
-    @items = @q.result(distinct: true)
+    @search = params[:keyword]
+    sort = params[:sort] || "created_at DESC"
+    @items = Item.search(params[:keyword]).limit(132)
+    @count = @items.count
+    if @count == 0
+      @items = Item.order(sort)
+    end
+    sort_result = params[:sort] || "created_at DESC"
+    if sort_result == "price asc"
+      @items = @items.sort {|a, b| a[:price] <=> b[:price]}
+    elsif sort_result == "price desc"
+      @items = @items.sort {|a, b| b[:price] <=> a[:price]}
+    elsif sort_result == "created_at asc"
+      @items = @items.sort {|a, b| a[:created_at] <=> b[:created_at]}
+    elsif sort_result == "created_at desc"
+      @items = @items.sort {|a, b| b[:created_at] <=> a[:created_at]}
+    end
   end
   
   def new
@@ -156,10 +171,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def search_params
-    params.require(:q).permit!
   end
 
 end

@@ -14,6 +14,7 @@ require("category_select")
 require("item")
 require("items")
 require("comment")
+require("item_search")
 // = require turbolinks
 // = require jquery
 // = require jquery_ujs

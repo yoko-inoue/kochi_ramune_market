@@ -1,0 +1,55 @@
+
+.detail_search
+  = search_form_for @q, url: search_items_path do |f|
+    .sc-side__sort
+      %select{name: :sort_order, class: 'sort_order'}
+        %option{value: "location.pathname", name: "location.pathname"}
+          並び替え
+        %option{value: "price_asc"}
+          価格の安い順
+        %option{value: "price_desc"}
+          価格の高い順
+        %option{value: "created_at_asc"}
+          出品の古い順
+        %option{value: "created_at_desc"}
+          出品の新しい順
+    -# .detail_search_form
+    -#   .detail_search__title
+    -#     %h3 詳細検索
+    -#   .detail_search__group
+    -#     .detail_search__group--label
+    -#       = icon('fas','plus')
+    -#       キーワードを追加する
+    -#     = f.search_field :name_cont,class:"search_field", placeholder: "例）値下げ"
+    -#   .sc-side__detail__field
+    -#     %h5.sc-side__detail__field__label
+    -#       %i.fas.fa-list-ul
+    -#       = f.label :category_id, 'カテゴリーを選択する'
+    -#     .exhibit__select-wrap
+    -#       = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "選択してください"}, class: "select-category", id: "parent-category"
+    -#   .sc-side__detail__field
+    -#     %h5.sc-side__detail__field__label
+    -#       = icon('fas','coins')
+    -#       = f.label :price, '価格'
+    -#     .sc-side__detail__field__form.price-range
+    -#       = f.number_field :price_gteq, placeholder: "¥ Min", class: 'price-range__input'
+    -#       .price-range__swang 〜
+    -#       = f.number_field :price_lteq, placeholder: "¥ Max", class: 'price-range__input'
+    -#   .sc-side__detail__field
+    -#     %h5.sc-side__detail__field__label
+    -#       = icon('fas','star')
+    -#       = f.label :price, '商品の状態'
+    -#     .sc-side__detail__field__form
+    -#       = f.collection_select :condition_id, Condition.all, :id, :name, {include_blank: "選択してください"}
+    -#   .sc-side__detail__field
+    -#     %h5.sc-side__detail__field__label
+    -#       = icon('fas','truck-moving')
+    -#       = f.label :price, '配送料の負担'
+    -#     .sc-side__detail__field__form
+    -#       = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, {include_blank: "選択してください"}
+    -#   .detail_search__btns
+    -#     .detail_search__btn--grey
+    -#     %div
+    -#       = f.button "クリア", type: :reset, class:"reset"
+    -#     %div
+    -#       = f.submit '完了',class:"submit"

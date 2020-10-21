@@ -1,11 +1,16 @@
+
 .sc-side__sort{
-  padding-top: 10px;
+  padding-top: 20px;
 }
 .price-range__input{
 width: 92px;
 border: 1px solid #ccc;
 border-radius: 4px;
-
+height: 48px;
+}
+.price-range__swang {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .detail_search__title{
   margin-top: 20px;
@@ -16,7 +21,7 @@ border-radius: 4px;
 .detail_search__btns{
   justify-content: center;
   display: flex;
-  margin-top: 10px;
+  margin-top: 20px;
   .reset{
     font-size: 20px;
     line-height: 48px;
