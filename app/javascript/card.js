@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () {
+window.addEventListener('load', function () {
   if (!$('#card_form')[0]) return false; //カード登録ページではないなら以降実行しない。
 
   Payjp.setPublicKey("pk_test_fdf25c52fd959a5486e20150");
