@@ -86,7 +86,7 @@ class ItemsController < ApplicationController
     else
       flash.now[:alert] = '画像を追加してください'
       @item.images.build
-      render new_item_path
+      render :new and return
     end
     if @item.save
     redirect_to root_path
