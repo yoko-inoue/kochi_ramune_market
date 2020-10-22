@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   end
   # get  "/items/item_params" ,to: "items#item_params"
   resources :users, only: [:show, :edit] do
+    get 'on_sale'
+    get 'buy_history'
     get :bookmarks, on: :collection
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html 

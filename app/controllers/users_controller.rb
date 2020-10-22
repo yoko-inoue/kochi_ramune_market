@@ -12,6 +12,21 @@ class UsersController < ApplicationController
     @bookmark_list = Item.find(bookmarks)     # bookmarksテーブルから、お気に入り登録済みのレコードを取得
   end
 
+  def on_sale
+    @new_items = Item.where(user_id:current_user.id)
+    # @items = @user.items
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:item_id)  # ログイン中のユーザーのお気に入りのitem_idカラムを取得(.pluckを使って、bookmarkテーブル内でログインユーザーのidを持ってるitem_idを取得
+    @bookmark_list = Item.find(bookmarks)     # bookmarksテーブルから、お気に入り登録済みのレコードを取得
+  end
+
+  def buy_history
+    @new_items = Item.where(user_id:current_user.id)
+    @items = Item.where(buyer_id: current_user.id).order(updated_at: 'DESC')
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:item_id)  # ログイン中のユーザーのお気に入りのitem_idカラムを取得(.pluckを使って、bookmarkテーブル内でログインユーザーのidを持ってるitem_idを取得
+    @bookmark_list = Item.find(bookmarks)    # bookmarksテーブルから、お気に入り登録済みのレコードを取得
+  end
+
+
   def edit
   end
 
