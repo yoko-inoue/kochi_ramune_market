@@ -38,5 +38,17 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :render_404
   rescue_from Exception, with: :render_500
   
+  def render_404(exception = nil)
+    if exception
+      logger.info "Rendering 404 with exception: #{exception.message}"
+    end
+    redirect_to root_path
+  end
 
+  def render_500(exception = nil)
+    if exception
+      logger.info "Rendering 500 with exception: #{exception.message}"
+    end
+    redirect_to root_path
+  end
 end

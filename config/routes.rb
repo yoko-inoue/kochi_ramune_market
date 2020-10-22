@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
   namespace :api do
     resources :categories, only: :index, defaults: { format: 'json' }
+    resources :categories, only: [:show]
   end
   # get  "/items/item_params" ,to: "items#item_params"
   resources :users, only: [:show, :edit] do

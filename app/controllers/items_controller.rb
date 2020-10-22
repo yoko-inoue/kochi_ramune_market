@@ -54,7 +54,6 @@ class ItemsController < ApplicationController
       if @item.buyer_id == nil
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
       @sending = current_user.sending_destination
-      binding.pry
       else
         redirect_to root_path
       end
@@ -68,6 +67,9 @@ class ItemsController < ApplicationController
     createCategoryId
     @item = Item.new(item_params)
     @item.category_id = @category_id
+    if @category_id == nil
+      @item.category_id == params[:item][:category_child]
+    end
     if params[:item][:images_attributes] != nil
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
@@ -82,10 +84,9 @@ class ItemsController < ApplicationController
           return render :new
       end
     else
-      
       flash.now[:alert] = '画像を追加してください'
       @item.images.build
-      render new_item_path
+      render :new and return
     end
     if @item.save
     redirect_to root_path

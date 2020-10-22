@@ -151,14 +151,15 @@
 
   .comment-box
     .container
-      - if current_user
-        = form_with(model: [@item, @comment], local: true, id: "new_comment") do |form|
-          = form.text_area :text, placeholder: "コメントを記入してください", rows: "2", class: "textbox"
-          .send-btn
-            = form.submit "コメント送信", class: "form__submit"
-      - else
-        %strong.container-header
-          %p.comment-notice ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
+      - if @item.buyer_id == nil
+        - if current_user
+          = form_with(model: [@item, @comment], local: true, id: "new_comment") do |form|
+            = form.text_area :text, placeholder: "コメントを記入してください", rows: "2", class: "textbox"
+            .send-btn
+              = form.submit "コメント送信", class: "form__submit"
+        - else
+          %strong.container-header
+            %p.comment-notice ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
       .comments
         %h4 ＜コメント一覧＞
         .comments__list
@@ -185,7 +186,7 @@
           = icon("fab", "pinterest-square", style: "color:#BD081C;")
   .items_user
     %h2.items_user__name
-      = link_to "#{@item.user.nickname}さんのその他の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
+      = link_to "#{@item.user.nickname}さんの最近の出品", "#", class: "font-color_blue", data: {"turbolinks" => false}
     .itemLists
       - @new_items.each do |item|
         .itemContent

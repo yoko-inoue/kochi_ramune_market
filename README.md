@@ -12,6 +12,7 @@
 - has_many :buy_items
 - has_one :credit_card
 - has_one :profile
+- has_many :bookmarks
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -20,9 +21,7 @@
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
+|birth_date|integer|null: false|
 |user_id|reference|null: false, foreign_key: true|
 
 ### Association
@@ -36,7 +35,7 @@
 |destination_first_name_kana|string|null: false|
 |destination_last_name_kana|string|null: false|
 |post_code|integer(7)|null: false|
-|prefecture|integer|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
 |building_name|string||
@@ -46,7 +45,7 @@
 ### Association
 - belongs_to:user
 
-## Credit_Cardsテーブル
+## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
@@ -63,13 +62,13 @@
 |price|integer|null: false|
 |category_id|reference|null:false,foreign_key: true|
 |size|reference|null:false,foreign_key: true|
-|brand|reference|null:false,foreign_key: true|
-|item_condition_id|reference|null:false,foreign_key: true|
+|brand_name|reference|null:false,foreign_key: true|
+|condition_id|reference|null:false,foreign_key: true|
 |postage_payer_id|reference|null:false,foreign_key: true|
 |prefecture_id|integer|null: false|
 |postage_type_id|integer|null: false|
 |preparation_day_id|reference|null:false,foreign_key: true|
-|seller_id|reference|null:false,foreign_key: true|
+|user_id|reference|null:false,foreign_key: true|
 |buyer_id|reference|foreign_key: true|
 
 ### Association
@@ -85,13 +84,44 @@
 - belongs_to :seller
 - belongs_to :buyer
 - Gem :jp_prefecture
+- has_many :bookmarks
 
-## item_imagesテーブル
+## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item_id|reference|null: false, foreign_key: true|
-|url|string|null: false|
+|image_url|string|null: false|
 
 ### Association
 - belongs_to :items
 
+## commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text||
+|item_id|reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
+
+### Association
+- belongs_to :items
+- belongs_to :user
+
+## bookmarksテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
+
+### Association
+- belongs_to :items
+- belongs_to :user
+
+## categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|ancestry|string|null: false|
+
+### Association
+- has_many :items
+- has_ancestry
