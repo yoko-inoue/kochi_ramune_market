@@ -21,6 +21,10 @@
           = link_to "#", class: "btn" do
             = image_tag 'icon/icon_brand.png', size: '16x16'
             ブランド
+        %li.List-left__brand-list
+          = link_to "#", class: "btn" do
+            = icon('far','copy')
+            商品一覧
       %ul.List-right
         - if user_signed_in?
           %li.List-right__log-in
