@@ -56,11 +56,16 @@
             = icon('fas','angle-right')
       .shipping-address__info
         %p.shipping-address__info__post_code
-          〒123-4567
+          〒
+          = @sending.post_code.to_s.insert(3, "-")
         %p.shipping-address__info__address
-          東京都千代田区XXXXXX
+          = @sending.prefecture.name
+          = @sending.city
+          = @sending.house_number
+          = @sending.building_name
         %p.shipping-address__info__name
-          フリマ星人
+          = @sending.destination_first_name
+          = @sending.destination_last_name
     .buy-check_section__buy-btn
       %div.buy-btn__box
         = link_to purchase_item_path(@item), method: :post do

@@ -79,7 +79,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def sending_destination_params
-    params.require(:sending_destination).permit(:destination_first_name, :destination_last_name, :destination_first_name_kana, :destination_last_name_kana, :post_code, :prefecture, :city, :house_number, :building_name, :phone_number)
+    params.require(:sending_destination).permit(:destination_first_name, :destination_last_name, :destination_first_name_kana, :destination_last_name_kana, :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number)
   end
 
   def after_update_path_for(resource)
