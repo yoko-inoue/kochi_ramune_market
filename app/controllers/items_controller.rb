@@ -54,7 +54,6 @@ class ItemsController < ApplicationController
       if @item.buyer_id == nil
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
       @sending = current_user.sending_destination
-      binding.pry
       else
         redirect_to root_path
       end

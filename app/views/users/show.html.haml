@@ -18,16 +18,18 @@
             .Prof__data
               登録日：#{current_user.created_at.strftime("%Y年%m月%d日")}
             .Prof__data
-              現在の出品数：#{}
+              現在の出品数:
+              =@new_items.count
+              品
             .Prof__data
-              コメントされた数：#{}
-            .Prof__data
-              コメントした数：#{}
+              ブックマークした商品数：
+              = @bookmark_list.count
+              品
         .User__body__subtitle
           最近出品した商品
         .User__body__lists
           .item-Lists
-            - @new_items1.each do |item|
+            - @buy_items.each do |item|
               .itemContent
                 =link_to item_path(item.id) , data: {"turbolinks" => false} do
                   -if item.buyer_id.present? 
