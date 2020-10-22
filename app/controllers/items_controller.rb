@@ -53,6 +53,8 @@ class ItemsController < ApplicationController
     if signed_in? && @item.user_id != current_user.id
       if @item.buyer_id == nil
       @card = Card.get_card(current_user.card.customer_token) if current_user.card
+      @sending = current_user.sending_destination
+      binding.pry
       else
         redirect_to root_path
       end
@@ -77,7 +79,6 @@ class ItemsController < ApplicationController
           flash.now[:alert] = '金額は9,999,999以下を入力してください'
         end 
           @item = Item.new(item_params)
-          # redirect_to new_item_path, flash: {warning:flash.now[:alert]}
           return render :new
       end
     else

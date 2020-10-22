@@ -38,9 +38,9 @@ describe SendingDestination do
     end
 
     it "都道府県が空だと保存できない" do
-      sending_destination = build(:sending_destination, prefecture: "")
+      sending_destination = build(:sending_destination, prefecture_id: "")
       sending_destination.valid?
-      expect(sending_destination.errors[:prefecture]).to include("を入力してください")
+      expect(sending_destination.errors[:prefecture_id]).to include("を入力してください")
     end
 
     it "市町村が空だと保存できない" do
