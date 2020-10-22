@@ -1,55 +1,57 @@
 .Left-contents
   %nav.My-page-nav
-    %p マイページ
-    %ul.My-page-lists
-      %li
-        .Lists-info
-          = link_to new_item_path do
-            .Card-branch
-              出品する
-        = icon('fas','angle-right')
-      %li
-        .Lists-info
-          = link_to "#" do
-            .Card-branch
-              出品した商品
-        = icon('fas','angle-right')
-      %li
-        .Lists-info
-          = link_to "#" do
-            .Card-branch
-              購入した商品
-        = icon('fas','angle-right')
-      %li
-        .Lists-info
-          = link_to "#" do
-            .Card-branch
-              お問い合わせ
-        = icon('fas','angle-right')
-      %li
-        .Lists-info
-          =link_to "#" do
-            .Card-branch
-              お知らせ
-        = icon('fas','angle-right')
-    %p 設定
-    %ul.Setting-lists
+    %div.My-page
+      %p マイページ
+      %ul.My-page-lists
+        %li
+          .Lists-info
+            = link_to new_item_path do
+              .Card-branch
+                出品する
+          = icon('fas','angle-right')
+        %li
+          .Lists-info
+            = link_to user_on_sale_path(current_user) do
+              .Card-branch
+                出品した商品
+          = icon('fas','angle-right')
+        %li
+          .Lists-info
+            = link_to user_buy_history_path(current_user) do
+              .Card-branch
+                購入した商品
+          = icon('fas','angle-right')
+        %li
+          .Lists-info
+            = link_to "#" do
+              .Card-branch
+                お問い合わせ
+          = icon('fas','angle-right')
+        %li
+          .Lists-info
+            =link_to "#" do
+              .Card-branch
+                お知らせ
+          = icon('fas','angle-right')
+    %div.Setting
+      %p 設定
+      %ul.Setting-lists
 
-      %li.List-setting
-        .List-setting__info
-          - card = Card.where(user_id: current_user.id)
-          - if card.blank?
-            = link_to new_card_path do
+        %li.List-setting
+          .List-setting__info
+            - card = Card.where(user_id: current_user.id)
+            - if card.blank?
+              = link_to new_card_path do
+                .Card-branch
+                  クレジットカード登録
+            - else 
+              = link_to cards_path(current_user) do
+                .Card-branch
+                  クレジットカード詳細・削除
+          = icon('fas','angle-right')
+        %li.List-setting
+          .List-setting__info
+            =link_to edit_user_path(current_user) do
               .Card-branch
-                クレジットカード登録
-          - else 
-            = link_to cards_path(current_user) do
-              .Card-branch
-                クレジットカード詳細・削除
-        = icon('fas','angle-right')
-      %li.List-setting
-        .List-setting__info
-          =link_to edit_user_path(current_user) do
-            .Card-branch
-              ログアウト
-        = icon('fas','angle-right')
+                ログアウト
+          = icon('fas','angle-right')

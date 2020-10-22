@@ -1,0 +1,53 @@
+= render 'items/header'
+.second-header
+  - breadcrumb :mypage
+  = render "items/breadcrumbs"
+
+- if user_signed_in?
+  .Usergray
+    .User
+      = render 'user_side'
+      .User__body
+        .User__body__bgc
+          .Userlisence
+            .Userlisence--title
+              Trading License
+            .Userlisence--name
+              #{current_user.nickname}様
+          .Prof
+            .Prof__data
+              登録日：#{current_user.created_at.strftime("%Y年%m月%d日")}
+            .Prof__data
+              現在の出品数:
+              =@new_items.count
+              品
+            .Prof__data
+              ブックマークした商品数：
+              = @bookmark_list.count
+              品
+        .User__body__subtitle
+          購入した商品
+        -if @items.present?
+          .search__body__lists
+            .searchList
+              - @items.each do |item|
+                .searchContent
+                  =link_to item_path(item.id) , data: {"turbolinks" => false} do
+                    -if item.buyer_id.present? 
+                      .items-box_photo__sold
+                        .items-box_photo__sold__inner SOLD
+                    %figure.searchContent__image
+                      =image_tag item.images[0].image_url.url, class:"img"
+                    .searchContent__info
+                      %h3.name
+                        = item.name
+                      %ul
+                        %li 
+                          = item.price.to_s(:delimited)
+                          円
+                      %p.shipping 
+                        (税込)
+        - else
+          .nothing
+            購入した商品はありません
+          

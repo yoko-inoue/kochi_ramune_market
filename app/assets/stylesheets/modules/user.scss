@@ -168,7 +168,6 @@
         background-color: #000;
         color: white;
         border: 1px  #000 solid;
-        margin-bottom: 40px;
       }
       .Notification {
         color: #ea352d;
@@ -176,7 +175,7 @@
         margin: 0 auto;
       }
       form {     //formのクラス名
-        padding: 40px 40px 64px;
+        padding: 20px 40px 64px;
         #error_explanation {
           color: #ea352d;
           width: 344px;
@@ -267,7 +266,7 @@
             }
           }
           .actions {
-            margin: 70px 0px 40px;
+            margin: 30px 0px 40px;
             .submit_btn {
               color: white;
               background-color: red;
