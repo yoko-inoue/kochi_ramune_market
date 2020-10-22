@@ -132,6 +132,8 @@
       height: 140px;
       border-radius: 5px;
       resize: none;
+      border: solid 1px black;
+      border-radius: 5px;
      }
    }
    &__item-detail{
@@ -176,9 +178,15 @@
       margin-top: 8px;
     }
   }
+  input {
+    border: solid 1px black;
+    border-radius: 5px;
+  }
   select{
     width: 100%;
     height: 50px;
+    border: solid 1px black;
+    border-radius: 5px;
   }
   .select-default{
     text-decoration: none;
