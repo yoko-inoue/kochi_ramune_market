@@ -2,7 +2,6 @@
 .second-header
   - breadcrumb :mypage
   = render "items/breadcrumbs"
-
 - if user_signed_in?
   .Usergray
     .User
@@ -50,3 +49,5 @@
         - else
           .nothing
             出品した商品はありません
+= render 'items/footer'
+= render 'items/btn'

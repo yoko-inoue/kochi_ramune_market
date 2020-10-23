@@ -8,8 +8,11 @@
         -if @items.present?
           %h2.search-result-head
             =@search
-            %span.search-result-head-text
-              の検索結果
+            -if @search == nil
+              商品一覧
+            -else
+              %span.search-result-head-text
+                の検索結果
           .search-result-number
             .searchLists
               - @items.each do |item|
