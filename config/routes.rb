@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     collection do
       # get 'buycheck'
       get 'search', to: 'items#search'
+      get 'list', to: 'items#list'
       get 'get_category_child', to: 'items#get_category_child', defaults: { format: 'json' }
       get 'get_category_grandchild', to: 'items#get_category_grandchild', defaults: { format: 'json' }
     end

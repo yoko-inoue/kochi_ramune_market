@@ -12,10 +12,6 @@ class ItemsController < ApplicationController
     @search = params[:keyword]
     sort = params[:sort] || "created_at DESC"
     @items = Item.search(params[:keyword]).limit(132)
-    @count = @items.count
-    if @count == 0
-      @items = Item.order(sort)
-    end
     sort_result = params[:sort] || "created_at DESC"
     if sort_result == "price asc"
       @items = @items.sort {|a, b| a[:price] <=> b[:price]}
@@ -28,6 +24,21 @@ class ItemsController < ApplicationController
     end
   end
   
+  def list
+    sort = params[:sort] || "created_at DESC"
+    @list_items = Item.all
+    sort_result = params[:sort] || "created_at DESC"
+    if sort_result == "price asc"
+      @list_items = @list_items.sort {|a, b| a[:price] <=> b[:price]}
+    elsif sort_result == "price desc"
+      @list_items = @list_items.sort {|a, b| b[:price] <=> a[:price]}
+    elsif sort_result == "created_at asc"
+      @list_items = @list_items.sort {|a, b| a[:created_at] <=> b[:created_at]}
+    elsif sort_result == "created_at desc"
+      @list_items = @list_items.sort {|a, b| b[:created_at] <=> a[:created_at]}
+    end
+  end
+
   def new
     if signed_in?
       @item = Item.new
