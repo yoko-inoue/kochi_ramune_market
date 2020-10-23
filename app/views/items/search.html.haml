@@ -5,7 +5,7 @@
       = render 'form'
     .search-right
       %section.items-box-container
-        -if @search.present?
+        -if @items.present?
           %h2.search-result-head
             =@search
             %span.search-result-head-text
@@ -29,5 +29,9 @@
                           円
                       %p.shipping 
                         (税込)
+        -else
+          検索にヒットする商品はありませんでした
+
+
 = render "items/btn"
 

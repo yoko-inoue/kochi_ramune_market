@@ -29,7 +29,18 @@
       margin-left: 110px;
       display: flex
     }
+    &-container2{
+      margin-top: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex
+    }
+    &-right2{
+      background-color: white;
+      height: 100%;
+    }
   }
+
   .searchLists {
     text-align: right;
     width: auto;
@@ -116,6 +127,9 @@
       letter-spacing: 2px;
       font-weight: 600;
     }
+  }
+  .items-box-container{
+    width: 810px;
   }
 }
 

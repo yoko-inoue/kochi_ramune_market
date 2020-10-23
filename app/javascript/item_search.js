@@ -24,7 +24,11 @@ $(function() {
       var current_html = current_html.replace(remove, '')
     };
     // ページ遷移
-    window.location.href = current_html + html
+    if (~current_html.indexOf('keyword')){
+      window.location.href = current_html + html
+    }else{
+      window.location.href = current_html + html
+    }
   });
   // ページ遷移後の挙動
   $(function () {
@@ -38,7 +42,6 @@ $(function() {
 
       if(selected_option == "price+asc") {
         var sort = 1
-        
       } else if (selected_option == "price+desc") {
         var sort = 2
       } else if (selected_option == "created_at+asc") {
@@ -46,8 +49,6 @@ $(function() {
       } else if (selected_option == "created_at+desc") {
         var sort = 4
       }
-
-      console.log(sort);
 
       var add_selected = $('select[name=sort_order]').children()[sort]
       $(add_selected).attr('selected', true)
